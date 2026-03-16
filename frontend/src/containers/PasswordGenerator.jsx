@@ -1,6 +1,6 @@
 import React, {useState, useCallback, useEffect} from "react";
 import {useNavigate, useLocation, Link} from "react-router-dom";
-import {copyTextToClipboard, createSecretLink, preloadCryptoJS} from '../utils/util';
+import {copyTextToClipboard, createSecretLink} from '../utils/util';
 import wordlist from '../utils/wordlist';
 import '../styles/generator.css';
 
@@ -163,10 +163,6 @@ export default function PasswordGenerator() {
             metaDesc.setAttribute('content', preset.metaDescription || '');
         }
     }, [preset]);
-
-    useEffect(() => {
-        preloadCryptoJS();
-    }, []);
 
     // Re-apply presets when route changes
     useEffect(() => {

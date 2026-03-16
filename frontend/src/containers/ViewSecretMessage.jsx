@@ -1,6 +1,6 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {useLocation, useNavigate} from "react-router-dom";
-import {Constants, copyTextToClipboard, decryptSecretMessage, hashSecretKey, postJson, preloadCryptoJS} from '../utils/util';
+import {Constants, copyTextToClipboard, decryptSecretMessage, hashSecretKey, postJson} from '../utils/util';
 import '../styles/view.css';
 
 export default function ViewSecretMessage() {
@@ -13,10 +13,6 @@ export default function ViewSecretMessage() {
     const [isWrongKey, setIsWrongKey] = useState(false);
     const [isNoMessage, setIsNoMessage] = useState(false);
     const [copied, setCopied] = useState(false);
-
-    useEffect(() => {
-        preloadCryptoJS();
-    }, []);
 
     const handleChange = (event) => {
         setSecretKey(event.target.value);

@@ -1,6 +1,6 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import {useNavigate, useLocation} from "react-router-dom";
-import {Constants, createSecretLink, preloadCryptoJS} from '../utils/util';
+import {Constants, createSecretLink} from '../utils/util';
 import '../styles/home.css';
 
 export default function NewMessage() {
@@ -11,10 +11,6 @@ export default function NewMessage() {
     const [duration, setDuration] = useState(Constants.defaultDuration);
     const [needOptions, setNeedOptions] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
-
-    useEffect(() => {
-        preloadCryptoJS();
-    }, []);
 
     const handleChange = (event) => {
         const {id, value} = event.target;
@@ -70,7 +66,6 @@ export default function NewMessage() {
                         rows={5}
                         value={secretMessage}
                         onChange={handleChange}
-                        onFocus={preloadCryptoJS}
                     />
                 </div>
 
@@ -85,7 +80,6 @@ export default function NewMessage() {
                                     placeholder="Optional extra security"
                                     value={secretKey}
                                     onChange={handleChange}
-                                    onFocus={preloadCryptoJS}
                                     type="text"
                                 />
                                 <p className="form-help">Recipient will need this to decrypt</p>
