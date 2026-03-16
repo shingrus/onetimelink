@@ -326,25 +326,20 @@ func apiGetMessage(r *http.Request) (responseCode int, response []byte) {
 		if err == nil {
 			if len(payload.Id) > 0 && len(payload.HashedKey) > 0 {
 				log.Printf("payload <- storage: %v, %v\n", payload.Id, payload.HashedKey)
-				val := getMessageFromStorage(payload.Id)
-				if len(val) > 0 {
-
-					var storedMessage StoredMessage
-					err := json.Unmarshal([]byte(val), &storedMessage)
-					if err == nil {
-
-						if storedMessage.HashedKey == payload.HashedKey {
-							jResponse.Status = "ok"
-							jResponse.CryptedMessage = storedMessage.Message
-
-							dropFromStorage(payload.Id)
-						} else {
-							jResponse.Status = "wrong key"
-							log.Println("Hashes aren't equal")
-						}
+				storedMessage, status, err := consumeMessageFromStorage(payload.Id, payload.HashedKey)
+				if err == nil {
+					switch status {
+					case "ok":
+						jResponse.Status = "ok"
+						jResponse.CryptedMessage = storedMessage.Message
+					case "wrong key":
+						jResponse.Status = "wrong key"
+						log.Println("Hashes aren't equal")
+					case "no message":
+						jResponse.Status = "no message"
 					}
 				} else {
-					jResponse.Status = "no message"
+					log.Println(err)
 				}
 
 			}
@@ -380,6 +375,9 @@ func apiHandler(w http.ResponseWriter, r *http.Request) {
 		response, _ = json.Marshal(jResponse)
 	}
 	w.WriteHeader(responseCode)
-	w.Write(response)
+	_, err := w.Write(response)
+	if err != nil {
+		log.Println(err)
+	}
 
 }

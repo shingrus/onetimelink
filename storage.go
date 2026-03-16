@@ -1,6 +1,8 @@
 package main
 
 import (
+	"crypto/subtle"
+	"encoding/json"
 	"log"
 	"os"
 	"strconv"
@@ -48,21 +50,66 @@ func getStoreKey(key string) string {
 	return "messageKey" + key
 }
 
-func getMessageFromStorage(key string) (val string) {
+//func getMessageFromStorage(key string) (val string) {
+//	client := getRedisClient()
+//	val, err := client.Get(getStoreKey(key)).Result()
+//	if err == redis.Nil {
+//		log.Println(getStoreKey(key) + " does not exist")
+//	} else if err != nil {
+//		log.Println(err)
+//	} else {
+//		log.Printf("Got from storage: %v", val)
+//	}
+//	return
+//}
+
+func consumeMessageFromStorage(key string, hashedKey string) (storedMessage StoredMessage, status string, err error) {
 	client := getRedisClient()
-	val, err := client.Get(getStoreKey(key)).Result()
-	if err == redis.Nil {
-		log.Println(getStoreKey(key) + " does not exist")
-	} else if err != nil {
-		log.Println(err)
-	} else {
-		log.Printf("Got from storage: %v", val)
-	}
+	storeKey := getStoreKey(key)
+	status = "no message"
+
+	err = client.Watch(func(tx *redis.Tx) error {
+		value, err := tx.Get(storeKey).Result()
+		if err == redis.Nil {
+			status = "no message"
+			return nil
+		}
+		if err != nil {
+			return err
+		}
+
+		if err := json.Unmarshal([]byte(value), &storedMessage); err != nil {
+			return err
+		}
+
+		if subtle.ConstantTimeCompare([]byte(storedMessage.HashedKey), []byte(hashedKey)) != 1 {
+			storedMessage = StoredMessage{}
+			status = "wrong key"
+			return nil
+		}
+
+		_, err = tx.TxPipelined(func(pipe redis.Pipeliner) error {
+			pipe.Del(storeKey)
+			return nil
+		})
+		if err == redis.TxFailedErr {
+			storedMessage = StoredMessage{}
+			status = "no message"
+			return nil
+		}
+		if err != nil {
+			return err
+		}
+
+		status = "ok"
+		return nil
+	}, storeKey)
+
 	return
 }
 
-func dropFromStorage(key string) {
-	client := getRedisClient()
-	client.Del(getStoreKey(key)).Err()
-
-}
+//func dropFromStorage(key string) {
+//	client := getRedisClient()
+//	client.Del(getStoreKey(key)).Err()
+//
+//}
