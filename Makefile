@@ -1,6 +1,9 @@
 PROJECT_NAME=1time
 BINARIES_DIRECTORY=bin
+FRONTEND_DIRECTORY=frontend
 LDFLAGS = "-w -s"
+
+.PHONY: clean vet frontend_build build
 
 clean:
 	rm -rf ${BINARIES_DIRECTORY}
@@ -8,9 +11,9 @@ clean:
 vet:
 	go vet ./...
 
-collect_static: clean
-	mkdir ${BINARIES_DIRECTORY}
-	cp -r templates ${BINARIES_DIRECTORY}/templates
+frontend_build:
+	cd ${FRONTEND_DIRECTORY} && npm run build
 
-build: clean collect_static
+build: clean frontend_build
+	mkdir -p ${BINARIES_DIRECTORY}
 	go build -ldflags ${LDFLAGS} -o ${BINARIES_DIRECTORY}/${PROJECT_NAME}

@@ -33,15 +33,15 @@ describe('App routes', () => {
 
     renderApp();
 
-    const submitButton = screen.getByRole('button', { name: /get a link/i });
+    const submitButton = screen.getByRole('button', { name: /create secret link/i });
     expect(submitButton).toBeDisabled();
 
-    await user.type(screen.getByLabelText(/one-time message/i), 'top secret');
+    await user.type(screen.getByLabelText(/your secret message/i), 'top secret');
     expect(submitButton).toBeEnabled();
 
     await user.click(screen.getByRole('button', { name: /options/i }));
-    expect(screen.getByLabelText(/additional secret key/i)).toBeInTheDocument();
-    expect(screen.getByLabelText(/keep message for:/i)).toBeInTheDocument();
+    expect(screen.getByLabelText(/additional passphrase/i)).toBeInTheDocument();
+    expect(screen.getByLabelText(/self-destruct after/i)).toBeInTheDocument();
   });
 
   it('submits a new secret and navigates to the generated link page', async () => {
@@ -55,8 +55,8 @@ describe('App routes', () => {
 
     renderApp();
 
-    await user.type(screen.getByLabelText(/one-time message/i), 'ship it');
-    await user.click(screen.getByRole('button', { name: /get a link/i }));
+    await user.type(screen.getByLabelText(/your secret message/i), 'ship it');
+    await user.click(screen.getByRole('button', { name: /create secret link/i }));
 
     await waitFor(() => {
       expect(axios.post).toHaveBeenCalledTimes(1);
@@ -78,7 +78,7 @@ describe('App routes', () => {
 
   it('shows not found on unknown routes', () => {
     renderApp(['/missing']);
-    expect(screen.getByText(/page not found/i)).toBeInTheDocument();
+    expect(screen.getByText(/doesn't exist/i)).toBeInTheDocument();
   });
 
   it('treats invalid view links as destroyed after submit', async () => {
@@ -86,9 +86,9 @@ describe('App routes', () => {
 
     renderApp(['/v/short']);
 
-    await user.click(screen.getByRole('button', { name: /read the message/i }));
+    await user.click(screen.getByRole('button', { name: /decrypt & read/i }));
 
-    expect(await screen.findByText(/message was destroyed/i)).toBeInTheDocument();
+    expect(await screen.findByText(/already been read or has expired/i)).toBeInTheDocument();
     expect(axios.post).not.toHaveBeenCalled();
   });
 });

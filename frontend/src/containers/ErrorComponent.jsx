@@ -1,22 +1,20 @@
 import React from 'react';
 import {useNavigate} from "react-router-dom";
 
-import "./Container.css";
-
-
 export default function ViewError() {
     const navigate = useNavigate();
 
-    return (<div className="Center">
-            <p className="large" color="red">
-                Page not found.
-            </p>
+    return (
+        <div className="error-page">
+            <h2>404</h2>
+            <p>This page doesn't exist.</p>
             <button
-                className="btn btn-primary btn-lg center-block"
+                className="btn btn-primary"
                 type="button"
                 onClick={() => navigate('/')}
             >
-                Create New
+                Go home
             </button>
-        </div>)
+        </div>
+    );
 }

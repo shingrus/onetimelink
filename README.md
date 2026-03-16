@@ -44,6 +44,8 @@ GOCACHE=/tmp/go-cache go test ./...
 make build
 ```
 
+`make build` now produces both the backend binary in `bin/1time` and the frontend production bundle in `frontend/build`. Install frontend dependencies with `cd frontend && npm install` before using it.
+
 Bootstrap an Ubuntu/Debian VM from this repo checkout after `make build`:
 
 ```bash

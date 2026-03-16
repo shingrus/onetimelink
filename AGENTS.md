@@ -32,6 +32,8 @@ GOCACHE=/tmp/go-cache go test ./...
 make build
 ```
 
+- `make build` builds the frontend production bundle into `frontend/build` and the backend binary into `bin/1time`.
+
 ## Frontend
 
 - Toolchain: Vite
