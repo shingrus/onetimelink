@@ -2,6 +2,8 @@
    onetimelink.me Design System
    Warm Utilitarian — clean, fast, trustworthy
    ============================================ */
+@import '@fontsource-variable/bricolage-grotesque';
+@import '@fontsource-variable/outfit';
 
 :root {
   --bg: #FAF9F6;
@@ -22,8 +24,8 @@
   --shadow-sm: 0 1px 2px rgba(28, 25, 23, 0.05);
   --shadow: 0 1px 3px rgba(28, 25, 23, 0.08), 0 1px 2px rgba(28, 25, 23, 0.04);
   --shadow-lg: 0 4px 12px rgba(28, 25, 23, 0.08);
-  --font-display: 'Bricolage Grotesque', system-ui, sans-serif;
-  --font-body: 'Outfit', system-ui, sans-serif;
+  --font-display: 'Bricolage Grotesque Variable', 'Bricolage Grotesque', system-ui, sans-serif;
+  --font-body: 'Outfit Variable', 'Outfit', system-ui, sans-serif;
   --transition: 150ms ease;
 }
 
