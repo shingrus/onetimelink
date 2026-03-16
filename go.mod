@@ -1,6 +1,6 @@
 module 1time
 
-go 1.15
+go 1.22
 
 require (
 	github.com/Luzifer/go-openssl v1.2.0
