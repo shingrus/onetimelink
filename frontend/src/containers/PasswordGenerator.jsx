@@ -2,6 +2,7 @@ import React, {useState, useCallback, useEffect} from "react";
 import {useNavigate, useLocation, Link} from "react-router-dom";
 import {copyTextToClipboard} from '../utils/util';
 import wordlist from '../utils/wordlist';
+import '../styles/generator.css';
 
 const CHARSETS = {
     uppercase: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',

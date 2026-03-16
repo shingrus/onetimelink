@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import {useLocation, useNavigate} from "react-router-dom";
 import {copyTextToClipboard} from '../utils/util';
+import '../styles/link.css';
 
 export default function ShowNewLink() {
     const location = useLocation();

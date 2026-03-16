@@ -1,5 +1,6 @@
 import React from 'react';
 import {useNavigate} from "react-router-dom";
+import '../styles/view.css';
 
 export default function ViewError() {
     const navigate = useNavigate();

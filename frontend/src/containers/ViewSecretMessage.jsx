@@ -3,6 +3,7 @@ import {useLocation, useNavigate} from "react-router-dom";
 import axios from 'axios';
 import CryptoJS from 'crypto-js'
 import {Constants, copyTextToClipboard} from '../utils/util';
+import '../styles/view.css';
 
 export default function ViewSecretMessage() {
     const location = useLocation();

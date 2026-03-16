@@ -3,6 +3,7 @@ import {useNavigate, useLocation} from "react-router-dom";
 import axios from "axios"
 import CryptoJS from 'crypto-js'
 import {getRandomString, Constants} from '../utils/util';
+import '../styles/home.css';
 
 export default function NewMessage() {
     const navigate = useNavigate();
