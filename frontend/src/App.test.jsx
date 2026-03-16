@@ -19,6 +19,7 @@ function renderApp(initialEntries = ['/']) {
 beforeEach(() => {
   vi.clearAllMocks();
   global.fetch = vi.fn();
+  document.head.querySelectorAll('link[rel="canonical"], meta[property="og:url"]').forEach((node) => node.remove());
   Object.defineProperty(window.navigator, 'clipboard', {
     configurable: true,
     value: {
@@ -85,6 +86,24 @@ describe('App routes', () => {
     expect(secretLinkField.value).toContain('/v/#');
     expect(secretLinkField.value).toContain('abc123');
     expect(await screen.findByRole('button', { name: /link already copied/i })).toBeInTheDocument();
+  });
+
+  it('sets the canonical and og:url tags for indexable routes', async () => {
+    renderApp(['/password-generator']);
+
+    await waitFor(() => {
+      expect(document.querySelector('link[rel="canonical"]')?.getAttribute('href')).toBe(`${window.location.origin}/password-generator`);
+      expect(document.querySelector('meta[property="og:url"]')?.getAttribute('content')).toBe(`${window.location.origin}/password-generator`);
+    });
+  });
+
+  it('canonicalizes /index.html to the root URL', async () => {
+    renderApp(['/index.html']);
+
+    await waitFor(() => {
+      expect(document.querySelector('link[rel="canonical"]')?.getAttribute('href')).toBe(`${window.location.origin}/`);
+      expect(document.querySelector('meta[property="og:url"]')?.getAttribute('content')).toBe(`${window.location.origin}/`);
+    });
   });
 
   it('creates a one-time link from the password generator page and shows the standard result screen', async () => {

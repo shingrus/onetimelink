@@ -1,9 +1,58 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Link, useLocation} from "react-router-dom";
 import Routes from "./Routes"
 
+const canonicalPaths = new Set([
+    '/',
+    '/about',
+    '/create-password-14-symbols',
+    '/passphrase-generator',
+    '/password-generator',
+    '/random-password-generator',
+    '/strong-password-generator',
+]);
+
+function getCanonicalPath(pathname) {
+    if (pathname === '/index.html') {
+        return '/';
+    }
+
+    if (canonicalPaths.has(pathname)) {
+        return pathname;
+    }
+
+    return '/';
+}
+
+function upsertCanonicalUrl(canonicalUrl) {
+    let canonical = document.querySelector('link[rel="canonical"]');
+    if (!canonical) {
+        canonical = document.createElement('link');
+        canonical.setAttribute('rel', 'canonical');
+        document.head.appendChild(canonical);
+    }
+    canonical.setAttribute('href', canonicalUrl);
+}
+
+function upsertOgUrl(canonicalUrl) {
+    let ogUrl = document.querySelector('meta[property="og:url"]');
+    if (!ogUrl) {
+        ogUrl = document.createElement('meta');
+        ogUrl.setAttribute('property', 'og:url');
+        document.head.appendChild(ogUrl);
+    }
+    ogUrl.setAttribute('content', canonicalUrl);
+}
+
 export default function App() {
     const location = useLocation();
+
+    useEffect(() => {
+        const canonicalUrl = new URL(getCanonicalPath(location.pathname), window.location.origin).toString();
+
+        upsertCanonicalUrl(canonicalUrl);
+        upsertOgUrl(canonicalUrl);
+    }, [location.pathname]);
 
     return (
         <div className="app-layout">

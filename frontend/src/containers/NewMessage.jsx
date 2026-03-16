@@ -57,7 +57,7 @@ export default function NewMessage() {
         <div>
             <form onSubmit={handleSubmit}>
                 <div className="form-field">
-                    <label className="form-label" htmlFor="secretMessage">Your secret message</label>
+                    <label className="form-label" htmlFor="secretMessage">Your secret message, end-to-end encrypted.</label>
                     <textarea
                         autoFocus
                         className="form-textarea"
@@ -118,11 +118,11 @@ export default function NewMessage() {
             </form>
 
             <section className="seo-section">
-                <h2>Simple. End to End Encrypted. Self-destruct.</h2>
+                <h2>End-to-end encrypted. Self-destruct.</h2>
                 <p>
                     Stop sending passwords through email and chat. onetimelink.me creates encrypted one-time links
                     that automatically destroy themselves after being read. Your data is encrypted in the
-                    browser before it ever leaves your device — we never see it.
+                    browser before it ever leaves your device - we never see it.
                 </p>
 
                 <div className="features-grid">
