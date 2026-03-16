@@ -1,8 +1,6 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {useNavigate, useLocation} from "react-router-dom";
-import axios from "axios"
-import CryptoJS from 'crypto-js'
-import {getRandomString, Constants} from '../utils/util';
+import {getRandomString, Constants, encryptSecretMessage, postJson, preloadCryptoJS} from '../utils/util';
 import '../styles/home.css';
 
 export default function NewMessage() {
@@ -13,6 +11,10 @@ export default function NewMessage() {
     const [duration, setDuration] = useState(Constants.defaultDuration);
     const [needOptions, setNeedOptions] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
+
+    useEffect(() => {
+        preloadCryptoJS();
+    }, []);
 
     const handleChange = (event) => {
         const {id, value} = event.target;
@@ -38,22 +40,21 @@ export default function NewMessage() {
         const randomKey = getRandomString(Constants.randomKeyLen);
         const durationDays = parseInt(duration, 10);
         const fullSecretKey = secretKey + randomKey;
-        const encryptedMessage = CryptoJS.AES.encrypt(secretMessage, fullSecretKey);
-        const hashedKey = CryptoJS.SHA256(fullSecretKey);
+        const {encryptedMessage, hashedKey} = await encryptSecretMessage(secretMessage, fullSecretKey);
 
         const payload = {
-            secretMessage: encryptedMessage.toString(),
-            hashedKey: hashedKey.toString(),
+            secretMessage: encryptedMessage,
+            hashedKey,
             duration: durationDays * 86400,
         };
 
         try {
-            const response = await axios.post(Constants.apiBaseUrl + 'saveSecret', payload);
-            if (response.data.status === "ok") {
+            const data = await postJson('saveSecret', payload);
+            if (data.status === "ok") {
                 navigate("/new", {
                     state: {
                         randomString: randomKey,
-                        newId: response.data.newId,
+                        newId: data.newId,
                     },
                 });
                 return;
@@ -76,6 +77,7 @@ export default function NewMessage() {
                         rows={5}
                         value={secretMessage}
                         onChange={handleChange}
+                        onFocus={preloadCryptoJS}
                     />
                 </div>
 
@@ -90,6 +92,7 @@ export default function NewMessage() {
                                     placeholder="Optional extra security"
                                     value={secretKey}
                                     onChange={handleChange}
+                                    onFocus={preloadCryptoJS}
                                     type="text"
                                 />
                                 <p className="form-help">Recipient will need this to decrypt</p>

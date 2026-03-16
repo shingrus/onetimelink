@@ -1,8 +1,6 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useLocation, useNavigate} from "react-router-dom";
-import axios from 'axios';
-import CryptoJS from 'crypto-js'
-import {Constants, copyTextToClipboard} from '../utils/util';
+import {Constants, copyTextToClipboard, decryptSecretMessage, hashSecretKey, postJson, preloadCryptoJS} from '../utils/util';
 import '../styles/view.css';
 
 export default function ViewSecretMessage() {
@@ -15,6 +13,10 @@ export default function ViewSecretMessage() {
     const [isWrongKey, setIsWrongKey] = useState(false);
     const [isNoMessage, setIsNoMessage] = useState(false);
     const [copied, setCopied] = useState(false);
+
+    useEffect(() => {
+        preloadCryptoJS();
+    }, []);
 
     const handleChange = (event) => {
         setSecretKey(event.target.value);
@@ -46,33 +48,32 @@ export default function ViewSecretMessage() {
         const randomKey = link.substring(0, Constants.randomKeyLen);
         const id = link.substring(Constants.randomKeyLen);
         const fullSecretKey = secretKey + randomKey;
-        const hashedKey = CryptoJS.SHA256(fullSecretKey).toString();
+        const hashedKey = await hashSecretKey(fullSecretKey);
 
         try {
-            const response = await axios.post(Constants.apiBaseUrl + 'get', {
+            const data = await postJson('get', {
                 id,
                 hashedKey,
             });
 
-            if (response.data.status === "ok" &&
-                typeof (response.data.cryptedMessage) !== "undefined" &&
-                response.data.cryptedMessage.length > 0
+            if (data.status === "ok" &&
+                typeof (data.cryptedMessage) !== "undefined" &&
+                data.cryptedMessage.length > 0
             ) {
-                const decryptedData = CryptoJS.AES.decrypt(response.data.cryptedMessage, fullSecretKey);
-                const decryptedMessage = decryptedData.toString(CryptoJS.enc.Utf8);
+                const decryptedMessage = await decryptSecretMessage(data.cryptedMessage, fullSecretKey);
                 setIsLoading(false);
                 setSecretMessage(decryptedMessage);
                 return;
             }
 
-            if (response.data.status === "wrong key") {
+            if (data.status === "wrong key") {
                 setIsLoading(false);
                 setIsWrongKey(true);
                 setNeedSecretKey(true);
                 return;
             }
 
-            if (response.data.status === "no message") {
+            if (data.status === "no message") {
                 setIsLoading(false);
                 setIsNoMessage(true);
                 return;

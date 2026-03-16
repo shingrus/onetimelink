@@ -5,6 +5,8 @@ export var Constants = {
     apiBaseUrl: "/api/",
 };
 
+let cryptoJSPromise;
+
 const chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz";
 // create a key for symmetric encryption
 // pass in the desired length of your key
@@ -16,6 +18,54 @@ export function getRandomString(stringLen) {
         randomstring += chars[rnum];
     }
     return randomstring;
+}
+
+async function loadCryptoJS() {
+    if (!cryptoJSPromise) {
+        cryptoJSPromise = import('crypto-js').then((module) => module.default);
+    }
+
+    return cryptoJSPromise;
+}
+
+export function preloadCryptoJS() {
+    void loadCryptoJS();
+}
+
+export async function encryptSecretMessage(secretMessage, fullSecretKey) {
+    const CryptoJS = await loadCryptoJS();
+
+    return {
+        encryptedMessage: CryptoJS.AES.encrypt(secretMessage, fullSecretKey).toString(),
+        hashedKey: CryptoJS.SHA256(fullSecretKey).toString(),
+    };
+}
+
+export async function hashSecretKey(fullSecretKey) {
+    const CryptoJS = await loadCryptoJS();
+    return CryptoJS.SHA256(fullSecretKey).toString();
+}
+
+export async function decryptSecretMessage(cryptedMessage, fullSecretKey) {
+    const CryptoJS = await loadCryptoJS();
+    const decryptedData = CryptoJS.AES.decrypt(cryptedMessage, fullSecretKey);
+    return decryptedData.toString(CryptoJS.enc.Utf8);
+}
+
+export async function postJson(path, payload) {
+    const response = await fetch(`${Constants.apiBaseUrl}${path}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+    });
+
+    if (!response.ok) {
+        throw new Error(`Request failed with status ${response.status}`);
+    }
+
+    return response.json();
 }
 
 export async function copyTextToClipboard(text) {
