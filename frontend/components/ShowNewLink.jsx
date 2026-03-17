@@ -2,23 +2,13 @@
 
 import {useEffect, useRef, useState} from "react";
 import {useRouter} from "next/navigation";
-import {buildSecretLink, consumePendingSecretLink, copyTextToClipboard} from '../utils/util';
+import {copyTextToClipboard} from '../utils/util';
 
-export default function ShowNewLink() {
+export default function ShowNewLink({newLink = "", onReset}) {
     const router = useRouter();
     const [copied, setCopied] = useState(false);
     const [didAutoCopy, setDidAutoCopy] = useState(false);
-    const [newLink, setNewLink] = useState("");
     const resetCopiedTimeoutRef = useRef(null);
-
-    useEffect(() => {
-        const pendingSecretLink = consumePendingSecretLink();
-        if (!pendingSecretLink) {
-            return;
-        }
-
-        setNewLink(buildSecretLink(pendingSecretLink.randomKey, pendingSecretLink.newId));
-    }, []);
 
     useEffect(() => {
         if (!newLink) {
@@ -61,6 +51,15 @@ export default function ShowNewLink() {
         }
     };
 
+    const handleReset = () => {
+        if (onReset) {
+            onReset();
+            return;
+        }
+
+        router.push('/');
+    };
+
     return (
         <div className="link-display">
             {!newLink && (
@@ -70,7 +69,7 @@ export default function ShowNewLink() {
                         <button
                             className="btn btn-secondary btn-lg"
                             type="button"
-                            onClick={() => router.push('/')}
+                            onClick={handleReset}
                         >Create another</button>
                     </div>
                 </>
@@ -109,7 +108,7 @@ export default function ShowNewLink() {
                 <button
                     className="btn btn-secondary btn-lg"
                     type="button"
-                    onClick={() => router.push('/')}
+                    onClick={handleReset}
                 >Create another</button>
             </div>
             <p className="link-notice">

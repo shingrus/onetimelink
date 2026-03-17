@@ -69,9 +69,9 @@ npm run build
 - SEO metadata is defined via `export const metadata` in each page.jsx file, NOT via useEffect. This is critical for Google indexing.
 - Each page.jsx is a server component that exports metadata and renders a client component from `components/`.
 - The `'use client'` directive is required on all interactive components (forms, buttons, state).
-- The `/new` route receives secret link data via URL search params (`?rs=...&id=...`).
+- The active create/share flow renders the generated secret link inline on the current page.
 - The `/v/` route reads the secret key from the URL hash (`#key`), which is client-side only.
-- Pages with `robots: 'noindex, nofollow'` in metadata: `/new`, `/v/`.
+- Pages with `robots: 'noindex, nofollow'` in metadata: `/v/`.
 - Tests live in `frontend/src/App.test.jsx` and use vitest + React Testing Library.
 - The vitest config (`frontend/vitest.config.js`) uses esbuild with `jsx: 'automatic'` to handle JSX in components.
 

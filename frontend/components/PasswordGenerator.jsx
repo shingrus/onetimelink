@@ -1,9 +1,9 @@
 'use client';
 
 import {useState, useCallback, useEffect} from "react";
-import {useRouter} from "next/navigation";
 import Link from "next/link";
-import {copyTextToClipboard, createSecretLink, storePendingSecretLink} from '../utils/util';
+import ShowNewLink from './ShowNewLink';
+import {copyTextToClipboard, createSecretLink} from '../utils/util';
 import wordlist from '../utils/wordlist';
 
 const CHARSETS = {
@@ -128,13 +128,13 @@ function getStrength(entropy) {
 }
 
 export default function PasswordGenerator({ presetPath }) {
-    const router = useRouter();
     const preset = PRESETS[presetPath] || PRESETS['/password-generator'];
 
     const [mode, setMode] = useState(preset.mode);
     const [copied, setCopied] = useState(false);
     const [generated, setGenerated] = useState('');
     const [isSharing, setIsSharing] = useState(false);
+    const [sharedLink, setSharedLink] = useState('');
 
     // Password options
     const [length, setLength] = useState(preset.length);
@@ -175,9 +175,9 @@ export default function PasswordGenerator({ presetPath }) {
         setIsSharing(true);
 
         try {
-            const {randomKey, newId} = await createSecretLink(generated);
-            storePendingSecretLink(randomKey, newId);
-            router.push('/new');
+            const {link} = await createSecretLink(generated);
+            setIsSharing(false);
+            setSharedLink(link);
             return;
         } catch (error) {}
 
@@ -191,6 +191,15 @@ export default function PasswordGenerator({ presetPath }) {
     };
 
     const otherPages = SEO_LINKS.filter(l => l.path !== presetPath);
+
+    if (sharedLink) {
+        return (
+            <ShowNewLink
+                newLink={sharedLink}
+                onReset={() => setSharedLink('')}
+            />
+        );
+    }
 
     return (
         <div>

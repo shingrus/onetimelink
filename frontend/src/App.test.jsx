@@ -28,7 +28,6 @@ beforeEach(() => {
     mockPathname.mockReturnValue('/');
     global.fetch = vi.fn();
     window.scrollTo = vi.fn();
-    window.sessionStorage.clear();
     Object.defineProperty(window.navigator, 'clipboard', {
         configurable: true,
         value: {
@@ -91,33 +90,22 @@ describe('NewMessage component', () => {
             duration: 604800,
         }));
 
-        await waitFor(() => {
-            expect(mockPush).toHaveBeenCalledWith('/new');
-        });
-
-        const pendingLink = JSON.parse(window.sessionStorage.getItem('pendingSecretLink'));
-        expect(pendingLink).toEqual(expect.objectContaining({
-            randomKey: expect.any(String),
-            newId: 'abc123',
-        }));
+        const linkInput = await screen.findByLabelText(/secret one-time link/i);
+        expect(linkInput.value).toContain('/v/#');
+        expect(linkInput.value).toContain('abc123');
+        expect(mockPush).not.toHaveBeenCalled();
     });
 });
 
 describe('ShowNewLink component', () => {
     it('displays the generated link and auto-copies it', async () => {
-        window.sessionStorage.setItem('pendingSecretLink', JSON.stringify({
-            randomKey: 'testRandomKey1',
-            newId: 'testId123',
-        }));
-
-        render(<ShowNewLink />);
+        render(<ShowNewLink newLink="http://localhost:3001/v/#testRandomKey1testId123" onReset={vi.fn()} />);
 
         const linkInput = await screen.findByLabelText(/secret one-time link/i);
         expect(linkInput).toBeInTheDocument();
         expect(linkInput.value).toContain('/v/#');
         expect(linkInput.value).toContain('testRandomKey1');
         expect(linkInput.value).toContain('testId123');
-        expect(window.sessionStorage.getItem('pendingSecretLink')).toBeNull();
 
         await waitFor(() => {
             expect(screen.getByRole('button', { name: /link already copied/i })).toBeInTheDocument();
@@ -169,15 +157,10 @@ describe('PasswordGenerator component', () => {
             duration: 604800,
         }));
 
-        await waitFor(() => {
-            expect(mockPush).toHaveBeenCalledWith('/new');
-        });
-
-        const pendingLink = JSON.parse(window.sessionStorage.getItem('pendingSecretLink'));
-        expect(pendingLink).toEqual(expect.objectContaining({
-            randomKey: expect.any(String),
-            newId: 'gen123',
-        }));
+        const linkInput = await screen.findByLabelText(/secret one-time link/i);
+        expect(linkInput.value).toContain('/v/#');
+        expect(linkInput.value).toContain('gen123');
+        expect(mockPush).not.toHaveBeenCalled();
     });
 });
 

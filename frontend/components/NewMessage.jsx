@@ -2,16 +2,16 @@
 
 import {useState} from "react";
 import Link from "next/link";
-import {useRouter} from "next/navigation";
-import {Constants, createSecretLink, storePendingSecretLink} from '../utils/util';
+import ShowNewLink from './ShowNewLink';
+import {Constants, createSecretLink} from '../utils/util';
 
 export default function NewMessage() {
-    const router = useRouter();
     const [secretMessage, setSecretMessage] = useState("");
     const [secretKey, setSecretKey] = useState("");
     const [duration, setDuration] = useState(Constants.defaultDuration);
     const [needOptions, setNeedOptions] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
+    const [newLink, setNewLink] = useState("");
 
     const handleChange = (event) => {
         const {id, value} = event.target;
@@ -35,20 +35,33 @@ export default function NewMessage() {
         setIsLoading(true);
 
         try {
-            const {randomKey, newId} = await createSecretLink(secretMessage, {
+            const {link} = await createSecretLink(secretMessage, {
                 secretKey,
                 durationDays: parseInt(duration, 10),
             });
 
-            if (newId) {
-                storePendingSecretLink(randomKey, newId);
-                router.push('/new');
+            if (link) {
+                setSecretMessage("");
+                setSecretKey("");
+                setDuration(Constants.defaultDuration);
+                setNeedOptions(false);
+                setIsLoading(false);
+                setNewLink(link);
                 return;
             }
         } catch (error) {}
 
         setIsLoading(false);
     };
+
+    if (newLink) {
+        return (
+            <ShowNewLink
+                newLink={newLink}
+                onReset={() => setNewLink("")}
+            />
+        );
+    }
 
     return (
         <div>
