@@ -359,6 +359,22 @@ func apiHandler(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Access-Control-Allow-Headers", "	content-type, accept")
 	}
 
+	if r.Method != http.MethodPost {
+		w.Header().Set("Allow", http.MethodPost)
+		responseCode = http.StatusMethodNotAllowed
+		jResponse := struct {
+			Code        int    `json:"code"`
+			Description string `json:"description"`
+		}{responseCode, "Only POST is allowed for API endpoints"}
+		response, _ = json.Marshal(jResponse)
+		w.WriteHeader(responseCode)
+		_, err := w.Write(response)
+		if err != nil {
+			log.Println(err)
+		}
+		return
+	}
+
 	apiCall := r.URL.Path[len("/api/"):]
 	switch apiCall {
 	case "saveSecret":
