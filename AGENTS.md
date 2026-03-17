@@ -62,7 +62,9 @@ npm run build
 
 ## Frontend Notes
 
-- The dev server runs on `127.0.0.1:3000`. For API calls in development, set `NEXT_PUBLIC_API_URL=http://127.0.0.1:8080/api/` or use nginx proxy.
+- The dev server runs on `127.0.0.1:3001`.
+- In normal local development, leave `NEXT_PUBLIC_API_URL` unset so the frontend uses relative `/api/` requests and Next.js proxies them to `http://127.0.0.1:8080`.
+- To use a different backend target in development, set `API_PROXY_TARGET` before `npm run dev`.
 - Do not edit `frontend/build` directly; it is generated output.
 - SEO metadata is defined via `export const metadata` in each page.jsx file, NOT via useEffect. This is critical for Google indexing.
 - Each page.jsx is a server component that exports metadata and renders a client component from `components/`.
