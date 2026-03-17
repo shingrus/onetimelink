@@ -3,7 +3,7 @@
 import {useState, useCallback, useEffect} from "react";
 import {useRouter} from "next/navigation";
 import Link from "next/link";
-import {copyTextToClipboard, createSecretLink} from '../utils/util';
+import {copyTextToClipboard, createSecretLink, storePendingSecretLink} from '../utils/util';
 import wordlist from '../utils/wordlist';
 
 const CHARSETS = {
@@ -176,7 +176,8 @@ export default function PasswordGenerator({ presetPath }) {
 
         try {
             const {randomKey, newId} = await createSecretLink(generated);
-            router.push(`/new?rs=${encodeURIComponent(randomKey)}&id=${encodeURIComponent(newId)}`);
+            storePendingSecretLink(randomKey, newId);
+            router.push('/new');
             return;
         } catch (error) {}
 

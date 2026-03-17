@@ -1,4 +1,3 @@
-import {Suspense} from 'react';
 import ShowNewLink from '../../components/ShowNewLink';
 
 export const metadata = {
@@ -7,9 +6,5 @@ export const metadata = {
 };
 
 export default function NewLinkPage() {
-    return (
-        <Suspense fallback={null}>
-            <ShowNewLink />
-        </Suspense>
-    );
+    return <ShowNewLink />;
 }

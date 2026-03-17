@@ -3,7 +3,7 @@
 import {useState} from "react";
 import Link from "next/link";
 import {useRouter} from "next/navigation";
-import {Constants, createSecretLink} from '../utils/util';
+import {Constants, createSecretLink, storePendingSecretLink} from '../utils/util';
 
 export default function NewMessage() {
     const router = useRouter();
@@ -41,7 +41,8 @@ export default function NewMessage() {
             });
 
             if (newId) {
-                router.push(`/new?rs=${encodeURIComponent(randomKey)}&id=${encodeURIComponent(newId)}`);
+                storePendingSecretLink(randomKey, newId);
+                router.push('/new');
                 return;
             }
         } catch (error) {}
