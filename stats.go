@@ -8,8 +8,3 @@ type InMemoryCounters struct {
 }
 
 var inMemoryCounters InMemoryCounters
-
-
-function
-
-
