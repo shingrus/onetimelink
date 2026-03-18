@@ -22,6 +22,7 @@ import NewMessage from '../components/NewMessage';
 import ShowNewLink from '../components/ShowNewLink';
 import ViewSecretMessage from '../components/ViewSecretMessage';
 import PasswordGenerator from '../components/PasswordGenerator';
+import { Constants, decryptSecretMessage, encryptSecretMessage, hashSecretKey } from '../utils/util';
 
 beforeEach(() => {
     vi.clearAllMocks();
@@ -87,7 +88,7 @@ describe('NewMessage component', () => {
         expect(requestPayload).toEqual(expect.objectContaining({
             secretMessage: expect.any(String),
             hashedKey: expect.any(String),
-            duration: 604800,
+            duration: Constants.defaultDuration * 86400,
         }));
 
         const linkInput = await screen.findByLabelText(/secret one-time link/i);
@@ -154,7 +155,7 @@ describe('PasswordGenerator component', () => {
         expect(requestPayload).toEqual(expect.objectContaining({
             secretMessage: expect.any(String),
             hashedKey: expect.any(String),
-            duration: 604800,
+            duration: Constants.defaultDuration * 86400,
         }));
 
         const linkInput = await screen.findByLabelText(/secret one-time link/i);
@@ -181,5 +182,15 @@ describe('ViewSecretMessage component', () => {
 
         expect(await screen.findByText(/already been read or has expired/i)).toBeInTheDocument();
         expect(fetch).not.toHaveBeenCalled();
+    });
+});
+
+describe('crypto util', () => {
+    it('round-trips HKDF-derived encryption and auth for a secret', async () => {
+        const fullSecretKey = 'extra-passphraseAbCd1234';
+        const {encryptedMessage, hashedKey} = await encryptSecretMessage('hello hkdf', fullSecretKey);
+
+        await expect(hashSecretKey(fullSecretKey)).resolves.toBe(hashedKey);
+        await expect(decryptSecretMessage(encryptedMessage, fullSecretKey)).resolves.toBe('hello hkdf');
     });
 });

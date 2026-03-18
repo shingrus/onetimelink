@@ -3,8 +3,9 @@ export var Constants = {
     defaultDuration: 1,
     isDebug: process.env.NODE_ENV === 'development',
     apiBaseUrl: process.env.NEXT_PUBLIC_API_URL || "/api/",
-    encryptPrefix: 'encrypt:',
-    authPrefix: 'auth:',
+    hkdfSalt: 'onetimelink:v2',
+    hkdfEncryptInfo: 'encrypt',
+    hkdfAuthInfo: 'auth',
 };
 
 const chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
@@ -63,17 +64,50 @@ function fromBase64Url(base64Url) {
     return base64ToBytes(base64);
 }
 
-async function sha256Bytes(value) {
+async function deriveHkdfBaseKey(fullSecretKey) {
     const crypto = requireWebCrypto();
-    const hashBuffer = await crypto.subtle.digest('SHA-256', textEncoder.encode(value));
-    return new Uint8Array(hashBuffer);
+
+    return crypto.subtle.importKey(
+        'raw',
+        textEncoder.encode(fullSecretKey),
+        'HKDF',
+        false,
+        ['deriveBits', 'deriveKey'],
+    );
 }
 
-async function importSecretKey(fullSecretKey) {
-    const crypto = requireWebCrypto();
-    const keyBytes = await sha256Bytes(fullSecretKey);
+function getHkdfParams(info) {
+    return {
+        name: 'HKDF',
+        hash: 'SHA-256',
+        salt: textEncoder.encode(Constants.hkdfSalt),
+        info: textEncoder.encode(info),
+    };
+}
 
-    return crypto.subtle.importKey('raw', keyBytes, 'AES-GCM', false, ['encrypt', 'decrypt']);
+async function deriveSecretKey(fullSecretKey) {
+    const crypto = requireWebCrypto();
+    const baseKey = await deriveHkdfBaseKey(fullSecretKey);
+
+    return crypto.subtle.deriveKey(
+        getHkdfParams(Constants.hkdfEncryptInfo),
+        baseKey,
+        {name: 'AES-GCM', length: 256},
+        false,
+        ['encrypt', 'decrypt'],
+    );
+}
+
+async function deriveAuthToken(fullSecretKey) {
+    const crypto = requireWebCrypto();
+    const baseKey = await deriveHkdfBaseKey(fullSecretKey);
+    const authBits = await crypto.subtle.deriveBits(
+        getHkdfParams(Constants.hkdfAuthInfo),
+        baseKey,
+        256,
+    );
+
+    return bytesToHex(new Uint8Array(authBits));
 }
 
 export function getRandomString(stringLen) {
@@ -102,37 +136,40 @@ export function getRandomString(stringLen) {
 export async function encryptSecretMessage(secretMessage, fullSecretKey) {
     const crypto = requireWebCrypto();
     const iv = crypto.getRandomValues(new Uint8Array(12));
-    const encryptKey = await importSecretKey(Constants.encryptPrefix+fullSecretKey);
+    const encryptKey = await deriveSecretKey(fullSecretKey);
     const encryptedBuffer = await crypto.subtle.encrypt(
         {name: 'AES-GCM', iv},
         encryptKey,
         textEncoder.encode(secretMessage),
     );
-    const hashedKey = bytesToHex(await sha256Bytes(Constants.authPrefix + fullSecretKey));
+    const hashedKey = await deriveAuthToken(fullSecretKey);
 
     return {
-        encryptedMessage: `v1.${toBase64Url(iv)}.${toBase64Url(new Uint8Array(encryptedBuffer))}`,
+        encryptedMessage: `${toBase64Url(iv)}.${toBase64Url(new Uint8Array(encryptedBuffer))}`,
         hashedKey,
     };
 }
 
 export async function hashSecretKey(fullSecretKey) {
-    return bytesToHex(await sha256Bytes(fullSecretKey));
+    return deriveAuthToken(fullSecretKey);
 }
 
 export async function decryptSecretMessage(cryptedMessage, fullSecretKey) {
     const crypto = requireWebCrypto();
-    const [version, encodedIv, encodedMessage] = cryptedMessage.split('.');
+    const [encodedIv, encodedMessage] = cryptedMessage.split('.');
 
-    if (version !== 'v1' || !encodedIv || !encodedMessage) {
+    if (!encodedIv || !encodedMessage ) {
         throw new Error('Unsupported encrypted message format');
     }
 
-    const decryptKey = await importSecretKey(Constants.encryptPrefix+ fullSecretKey);
+    const iv = fromBase64Url(encodedIv);
+    const encryptedMessage = fromBase64Url(encodedMessage);
+
+    const decryptKey = await deriveSecretKey(fullSecretKey);
     const decryptedBuffer = await crypto.subtle.decrypt(
-        {name: 'AES-GCM', iv: fromBase64Url(encodedIv)},
+        {name: 'AES-GCM', iv},
         decryptKey,
-        fromBase64Url(encodedMessage),
+        encryptedMessage,
     );
 
     return textDecoder.decode(decryptedBuffer);
