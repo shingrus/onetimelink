@@ -50,7 +50,7 @@ export default function Article() {
                 <span className="article-tag">How It Works</span>
                 <h1>What Is HKDF and Why We Use It for End-to-End Encryption</h1>
                 <p className="article-subtitle">
-                    We recently upgraded onetimelink.me from simple SHA-256 hashing to HKDF-based key derivation.
+                    We recently upgraded <Link href="/">onetimelink.me</Link> from simple SHA-256 hashing to HKDF-based key derivation.
                     Here is what that means in plain language, why it matters, and how it makes your secrets safer.
                 </p>
                 <div className="article-meta">March 2026 &middot; 8 min read</div>
@@ -59,7 +59,7 @@ export default function Article() {
             <div className="article-body">
                 <h2>The Problem We Needed to Solve</h2>
                 <p>
-                    When you create a one-time link on onetimelink.me, your browser needs to do two things
+                    When you create a one-time link on <Link href="/">onetimelink.me</Link>, your browser needs to do two things
                     with a single random key:
                 </p>
                 <ol>
@@ -246,7 +246,7 @@ export default function Article() {
                     </p>
                 </div>
 
-                <h2>How onetimelink.me Uses HKDF</h2>
+                <h2>How <Link href="/">onetimelink.me</Link> Uses HKDF</h2>
                 <p>
                     Here is the complete flow when you create a one-time link:
                 </p>
@@ -347,21 +347,80 @@ export default function Article() {
                     <li><strong>Generating keys from weak passwords</strong> — HKDF assumes the input already has sufficient entropy</li>
                 </ul>
 
-                <h2>The Technical Details</h2>
+                <h2>The Full Cryptographic Flow</h2>
                 <p>
-                    For developers who want to implement something similar, here is exactly what we do:
+                    For developers who want to implement something similar or audit our approach,
+                    here is the complete flow step by step.
+                </p>
+
+                <h3>1. Key material generation</h3>
+                <p>
+                    A 16-character random string is generated using <code>crypto.getRandomValues()</code> with
+                    rejection sampling to avoid modulo bias. The character set
+                    is <code>0-9A-Za-z</code> (62 characters). If the user set an optional passphrase,
+                    it is prepended to the random string to form the full secret
+                    key: <code>fullSecretKey = userPassphrase + randomKey</code>.
+                </p>
+
+                <h3>2. HKDF key derivation</h3>
+                <p>
+                    The full secret key is imported as raw key material into the Web Crypto API
+                    with algorithm <code>HKDF</code>. Two independent outputs are derived:
                 </p>
                 <ul>
-                    <li><strong>Hash function:</strong> SHA-256</li>
-                    <li><strong>Salt:</strong> <code>onetimelink:v2</code> (static, application-specific)</li>
-                    <li><strong>Encryption key:</strong> HKDF-Expand with info <code>encrypt</code>, output: AES-GCM key (256 bits)</li>
-                    <li><strong>Auth token:</strong> HKDF-Expand with info <code>auth</code>, output: 256 bits, hex-encoded</li>
-                    <li><strong>Implementation:</strong> Web Crypto API (<code>subtle.deriveKey</code> and <code>subtle.deriveBits</code>)</li>
+                    <li>
+                        <strong>Encryption key</strong> — <code>crypto.subtle.deriveKey()</code> with
+                        HKDF params <code>(hash: SHA-256, salt: "onetimelink:v2", info: "encrypt")</code>,
+                        producing an AES-GCM key with 256-bit length
+                    </li>
+                    <li>
+                        <strong>Auth token</strong> — <code>crypto.subtle.deriveBits()</code> with
+                        HKDF params <code>(hash: SHA-256, salt: "onetimelink:v2", info: "auth")</code>,
+                        producing 256 bits, hex-encoded to a 64-character string
+                    </li>
                 </ul>
+
+                <h3>3. Encryption</h3>
                 <p>
-                    The entire implementation is open source. You can read
-                    the <a href="https://github.com/shingrus/onetimelink/blob/main/frontend/utils/util.js" target="_blank" rel="noopener noreferrer">encryption code on GitHub</a> and
-                    verify every claim in this article.
+                    A random 12-byte initialization vector (IV) is generated
+                    via <code>crypto.getRandomValues()</code>. The secret message is encrypted
+                    with AES-GCM using the derived encryption key and this IV.
+                    The output ciphertext includes the GCM authentication tag (built into the Web Crypto API).
+                </p>
+                <p>
+                    The final encrypted payload is formatted
+                    as <code>base64url(iv).base64url(ciphertext)</code> — the IV and ciphertext
+                    concatenated with a dot separator, both URL-safe base64 encoded.
+                </p>
+
+                <h3>4. Storage and URL structure</h3>
+                <p>
+                    The encrypted payload and the hex-encoded auth token are sent to the server
+                    via <code>POST /api/saveSecret</code>. The server stores the encrypted blob
+                    keyed by a server-generated ID and indexed by the auth token.
+                </p>
+                <p>
+                    The generated URL has the
+                    format: <code>https://onetimelink.me/v/#randomKeyServerId</code>.
+                    The random key lives in the URL fragment
+                    after <code>#</code> — it is never sent to the server by the browser. The server ID is
+                    appended so the recipient&#39;s browser knows which blob to request.
+                </p>
+
+                <h3>5. Decryption (recipient side)</h3>
+                <p>
+                    The recipient&#39;s browser extracts the random key from the URL fragment,
+                    re-derives the auth token using the same HKDF process, and sends it to the server
+                    to fetch the encrypted blob. Then it re-derives the encryption key, splits the
+                    payload at the dot to recover the IV and ciphertext, and decrypts with AES-GCM.
+                    The server permanently deletes the blob after returning it.
+                </p>
+
+                <p>
+                    The entire implementation is open source — about 200 lines of JavaScript with
+                    zero dependencies beyond the Web Crypto API. You can read
+                    the <a href="https://github.com/shingrus/onetimelink/blob/main/frontend/utils/util.js" target="_blank" rel="noopener noreferrer">full encryption code on GitHub</a> and
+                    verify every claim in this article yourself.
                 </p>
 
                 <div className="article-cta">

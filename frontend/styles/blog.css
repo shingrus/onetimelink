@@ -96,6 +96,16 @@
   margin-bottom: 8px;
 }
 
+.article-subtitle a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.article-subtitle a:hover {
+  color: var(--accent);
+}
+
 .article-meta {
   font-size: 13px;
   color: var(--text-muted);
