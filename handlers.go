@@ -263,7 +263,7 @@ func apiSaveSecret(r *http.Request) (responseCode int, response []byte) {
 	if dec.More() {
 		err := dec.Decode(&payload)
 		if err == nil {
-			if len(payload.SecretMessage) > 0 {
+			if len(payload.SecretMessage) > 0 && len(payload.HashedKey) > 0 {
 
 				newMessage := StoredMessage{
 					Encrypted: true,
