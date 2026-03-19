@@ -157,12 +157,12 @@ export default function NewMessage() {
                         </div>
                         <p>Links self-destruct after 1 to 30 days, even if nobody opens them.</p>
                     </div>
-                    <Link href="/strong-password-generator" className="feature-card feature-card-link">
+                    <Link href="/password-generator" className="feature-card feature-card-link">
                         <div className="feature-card-header">
                             <div className="feature-card-icon" aria-hidden="true">&#x1f511;</div>
-                            <h2>Strong Password Generator</h2>
+                            <h2>Password Generator</h2>
                         </div>
-                        <p>Create a longer, higher-entropy password in your browser for critical accounts.</p>
+                        <p>Create a strong, high-entropy password in your browser for critical accounts.</p>
                     </Link>
                 </div>
 
@@ -180,6 +180,7 @@ export default function NewMessage() {
                     database credentials, configuration secrets, or any text you need to share
                     securely just once.
                 </p>
+
             </section>
         </div>
     );
