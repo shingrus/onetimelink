@@ -181,33 +181,6 @@ export default function NewMessage() {
                     securely just once.
                 </p>
 
-                <h2>Free security tools</h2>
-                <div className="tools-grid">
-                    <Link href="/password-generator" className="tool-card">
-                        <strong>Password Generator</strong>
-                        <span>All-purpose password and passphrase tool</span>
-                    </Link>
-                    <Link href="/passphrase-generator" className="tool-card">
-                        <strong>Passphrase Generator</strong>
-                        <span>Memorable multi-word passphrases</span>
-                    </Link>
-                    <Link href="/password-generator-14-characters" className="tool-card">
-                        <strong>14-Character Password</strong>
-                        <span>Quick passwords for most sites</span>
-                    </Link>
-                    <Link href="/password-generator-16-characters" className="tool-card">
-                        <strong>16-Character Password</strong>
-                        <span>The sweet spot of security</span>
-                    </Link>
-                    <Link href="/wifi-password-generator" className="tool-card">
-                        <strong>WiFi Password Generator</strong>
-                        <span>Easy-to-type network passwords</span>
-                    </Link>
-                    <Link href="/api-key-generator" className="tool-card">
-                        <strong>API Key Generator</strong>
-                        <span>Random tokens for developers</span>
-                    </Link>
-                </div>
             </section>
         </div>
     );
