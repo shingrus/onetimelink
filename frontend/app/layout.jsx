@@ -1,6 +1,4 @@
-import '@fontsource-variable/bricolage-grotesque';
-import '@fontsource-variable/outfit';
-import './globals.css';
+import InlineCss from '../components/InlineCss';
 import Header from '../components/Header';
 import PageStatsTracker from '../components/PageStatsTracker';
 import Link from 'next/link';
@@ -40,6 +38,7 @@ export default function RootLayout({children}) {
     return (
         <html lang="en">
             <body>
+                <InlineCss file="app/globals.css" />
                 <script
                     type="application/ld+json"
                     dangerouslySetInnerHTML={{ __html: JSON.stringify({
