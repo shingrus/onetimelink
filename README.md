@@ -59,9 +59,13 @@ mkdir -p "${DATA_DIR}"
 docker compose up -d --build
 ```
 
+This brings the self-hosted stack up on `http://127.0.0.1:${APP_PORT}`.
+
 If you do not need a custom port, you can skip `APP_PORT` and it will default to `8080`.
 
-Setup:
+### Using `.env`
+
+If you prefer a persistent config file instead of shell exports:
 
 ```bash
 cp .env.example .env
