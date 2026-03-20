@@ -78,7 +78,6 @@ npm run build
 ## Domain And Branding
 
 - Public domain is `https://onetimelink.me`.
-- Do not reintroduce old domains such as `1time.it`, `1time.click`, or `sharepass.to`.
 
 ## Deployment
 

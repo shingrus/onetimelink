@@ -50,7 +50,8 @@ The repo includes a production-ready self-hosted `docker-compose.yml` for encryp
 Copy-paste quick start:
 
 ```bash
-git pull
+git clone https://github.com/shingrus/onetimelink.git
+cd onetimelink
 export DATA_DIR=/srv/onetimelink-data
 export APP_HOSTNAME=secrets.example.com
 export APP_PORT=8080
