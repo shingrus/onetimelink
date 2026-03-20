@@ -1,3 +1,4 @@
+import '../../styles/about.css';
 import Link from 'next/link';
 import {siteHost} from '../../utils/siteConfig';
 

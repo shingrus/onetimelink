@@ -6,38 +6,6 @@ If you need a **self-hosted one-time secret link** service with **Docker Compose
 
 **[Try it live →](https://onetimelink.me)**
 
-## Why Use onetimelink.me for One-Time Secret Sharing?
-
-- **Self-hosted one-time secret links** — share passwords, API keys, notes, and credentials through links that are designed to be opened once.
-- **End-to-end encrypted** — secrets are encrypted in the browser before they leave your device. The decryption key is stored in the URL fragment (`#`), which is never sent to the server.
-- **Zero-knowledge architecture** — the server stores only encrypted blobs. Even with full database access, your secrets cannot be read.
-- **Self-destructing secret sharing** — each link can only be opened once. After that, the encrypted data is permanently deleted.
-- **No signup required** — paste a secret, get a link, share it. No accounts, no tracking.
-- **Open source** — the full source code is right here. Audit it yourself or run your own private deployment.
-- **Docker Compose ready** — deploy a self-hosted one-time secret service with Redis, nginx, and the Go backend.
-
-## How This One-Time Secret Link App Works
-
-1. You paste a secret into [onetimelink.me](https://onetimelink.me)
-2. Your browser encrypts it with AES-GCM and a random key
-3. The encrypted blob is sent to the server; the key stays in the URL fragment
-4. You share the link — the recipient opens it, the browser decrypts it, and the server deletes the encrypted blob
-
-The encryption key never touches the server. Even if the server is compromised, your secrets remain safe.
-
-## Free tools
-
-- [Password Generator](https://onetimelink.me/password-generator) — generate strong random passwords
-- [Passphrase Generator](https://onetimelink.me/passphrase-generator) — memorable multi-word passphrases
-- [API Key Generator](https://onetimelink.me/api-key-generator) — random tokens for developers
-- [WiFi Password Generator](https://onetimelink.me/wifi-password-generator) — easy-to-type network passwords
-
-## Tech stack
-
-- **Backend:** Go + Redis
-- **Frontend:** Next.js (static export)
-- **Encryption:** Web Crypto API (AES-GCM)
-- **Deployment:** Docker Compose, nginx, systemd
 
 ## Self-Hosted One-Time Secret Links with Docker Compose
 
@@ -96,6 +64,40 @@ Notes:
 - The default self-hosted path is optimized for private secret sharing rather than the public blog/SEO content used on the hosted site.
 
 ---
+
+## Why Use onetimelink.me for One-Time Secret Sharing?
+
+- **Self-hosted one-time secret links** — share passwords, API keys, notes, and credentials through links that are designed to be opened once.
+- **End-to-end encrypted** — secrets are encrypted in the browser before they leave your device. The decryption key is stored in the URL fragment (`#`), which is never sent to the server.
+- **Zero-knowledge architecture** — the server stores only encrypted blobs. Even with full database access, your secrets cannot be read.
+- **Self-destructing secret sharing** — each link can only be opened once. After that, the encrypted data is permanently deleted.
+- **No signup required** — paste a secret, get a link, share it. No accounts, no tracking.
+- **Open source** — the full source code is right here. Audit it yourself or run your own private deployment.
+- **Docker Compose ready** — deploy a self-hosted one-time secret service with Redis, nginx, and the Go backend.
+
+## How This One-Time Secret Link App Works
+
+1. You paste a secret into [onetimelink.me](https://onetimelink.me)
+2. Your browser encrypts it with AES-GCM and a random key
+3. The encrypted blob is sent to the server; the key stays in the URL fragment
+4. You share the link — the recipient opens it, the browser decrypts it, and the server deletes the encrypted blob
+
+The encryption key never touches the server. Even if the server is compromised, your secrets remain safe.
+
+## Free tools
+
+- [Password Generator](https://onetimelink.me/password-generator) — generate strong random passwords
+- [Passphrase Generator](https://onetimelink.me/passphrase-generator) — memorable multi-word passphrases
+- [API Key Generator](https://onetimelink.me/api-key-generator) — random tokens for developers
+- [WiFi Password Generator](https://onetimelink.me/wifi-password-generator) — easy-to-type network passwords
+
+## Tech stack
+
+- **Backend:** Go + Redis
+- **Frontend:** Next.js (static export)
+- **Encryption:** Web Crypto API (AES-GCM)
+- **Deployment:** Docker Compose, nginx, systemd
+
 
 ## Development
 

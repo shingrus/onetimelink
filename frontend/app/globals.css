@@ -2,9 +2,6 @@
    Shared Base Styles
    Component styles live in src/styles/*.css
    ============================================ */
-@import '@fontsource-variable/bricolage-grotesque';
-@import '@fontsource-variable/outfit';
-
 :root {
   --bg: #FAF9F6;
   --surface: #FFFFFF;

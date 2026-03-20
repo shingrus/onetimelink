@@ -1,5 +1,6 @@
 'use client';
 
+import '../styles/generator.css';
 import {useState, useCallback, useEffect} from "react";
 import Link from "next/link";
 import ShowNewLink from './ShowNewLink';

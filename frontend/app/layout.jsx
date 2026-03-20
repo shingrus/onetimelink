@@ -1,13 +1,6 @@
 import '@fontsource-variable/bricolage-grotesque';
 import '@fontsource-variable/outfit';
 import './globals.css';
-import '../styles/home.css';
-import '../styles/link.css';
-import '../styles/view.css';
-import '../styles/generator.css';
-import '../styles/about.css';
-import '../styles/blog.css';
-import '../styles/stats.css';
 import Header from '../components/Header';
 import PageStatsTracker from '../components/PageStatsTracker';
 import Link from 'next/link';

@@ -1,3 +1,4 @@
+import '../styles/home.css';
 import NewMessage from '../components/NewMessage';
 import {siteHost, siteUrl} from '../utils/siteConfig';
 

@@ -1,5 +1,6 @@
 'use client';
 
+import '../styles/link.css';
 import {useEffect, useRef, useState} from "react";
 import {useRouter} from "next/navigation";
 import {copyTextToClipboard} from '../utils/util';

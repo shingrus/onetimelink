@@ -1,5 +1,6 @@
 'use client';
 
+import '../styles/stats.css';
 import {useEffect, useState} from 'react';
 import {postJson} from '../utils/util';
 
@@ -50,7 +51,7 @@ export default function StatsSnapshot() {
     return (
         <div className="stats-page">
             <div className="stats-header">
-                <h1>Stats</h1>
+                <h1>In-Memory Stats</h1>
             </div>
 
             <div className="stats-grid">

@@ -1,5 +1,6 @@
 'use client';
 
+import '../styles/view.css';
 import {useRouter} from "next/navigation";
 
 export default function NotFound() {
