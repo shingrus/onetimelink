@@ -2,19 +2,19 @@
 
 set -euo pipefail
 
-APP_USER="${APP_USER:-onetimelink}"
+APP_USER="${APP_USER:-1time}"
 APP_GROUP="${APP_GROUP:-$APP_USER}"
-SERVICE_NAME="${SERVICE_NAME:-onetimelink}"
-INSTALL_ROOT="${INSTALL_ROOT:-/opt/onetimelink}"
+SERVICE_NAME="${SERVICE_NAME:-1time}"
+INSTALL_ROOT="${INSTALL_ROOT:-/opt/1time}"
 BIN_DIR="${INSTALL_ROOT}/bin"
-STATIC_ROOT="${STATIC_ROOT:-/var/www/onetimelink}"
+STATIC_ROOT="${STATIC_ROOT:-/var/www/1time}"
 REDIS_HOST="${REDIS_HOST:-127.0.0.1:6379}"
 REDIS_PASS="${REDIS_PASS:-}"
 
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 BIN_SOURCE="${REPO_ROOT}/bin/1time"
 FRONTEND_SOURCE="${REPO_ROOT}/frontend/build"
-UNIT_SOURCE="${REPO_ROOT}/configs/systemd/onetimelink.service"
+UNIT_SOURCE="${REPO_ROOT}/configs/systemd/1time.service"
 UNIT_TARGET="/etc/systemd/system/${SERVICE_NAME}.service"
 
 if [[ "${EUID}" -ne 0 ]]; then
