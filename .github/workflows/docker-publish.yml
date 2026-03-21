@@ -41,9 +41,9 @@ jobs:
             echo "tags_backend=${{ env.BACKEND_IMAGE }}:${VERSION},${{ env.BACKEND_IMAGE }}:latest" >> "$GITHUB_OUTPUT"
             echo "tags_web=${{ env.WEB_IMAGE }}:${VERSION},${{ env.WEB_IMAGE }}:latest" >> "$GITHUB_OUTPUT"
           else
-            echo "version=dev" >> "$GITHUB_OUTPUT"
-            echo "tags_backend=${{ env.BACKEND_IMAGE }}:dev" >> "$GITHUB_OUTPUT"
-            echo "tags_web=${{ env.WEB_IMAGE }}:dev" >> "$GITHUB_OUTPUT"
+            echo "version=latest" >> "$GITHUB_OUTPUT"
+            echo "tags_backend=${{ env.BACKEND_IMAGE }}:latest" >> "$GITHUB_OUTPUT"
+            echo "tags_web=${{ env.WEB_IMAGE }}:latest" >> "$GITHUB_OUTPUT"
           fi
 
       - name: Build and push backend
