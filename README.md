@@ -1,103 +1,139 @@
-# [onetimelink.me](https://onetimelink.me) — Self-Hosted One-Time Secret Links with End-to-End Encryption
+<p align="center">
+  <a href="https://onetimelink.me">
+    <img src="frontend/public/og-image.png" alt="OneTimeLink" width="400">
+  </a>
+</p>
 
-`onetimelink.me` is an open-source, self-hosted one-time secret sharing app for passwords, API keys, access tokens, private notes, and other sensitive text. It creates encrypted one-time links that self-destruct after the first read, so you can share secrets without leaving them in chat history, email inboxes, or ticketing systems.
+<p align="center">
+  <strong>Zero-knowledge one-time secret sharing with end-to-end encryption</strong><br>
+  Share passwords, API keys, and sensitive text through self-destructing links.
+</p>
 
-If you need a **self-hosted one-time secret link** service with **Docker Compose**, **zero-knowledge encryption**, and a lightweight **Go + Next.js** stack, this repo is built for that use case.
+<p align="center">
+  <a href="https://onetimelink.me"><img src="https://img.shields.io/badge/Try_it_live-onetimelink.me-E8552D?style=for-the-badge" alt="Try it live"></a>
+</p>
 
-**[Try it live →](https://onetimelink.me)**
-
-
-## Self-Hosted One-Time Secret Links with Docker Compose
-
-The repo includes a production-ready self-hosted `docker-compose.yml` for encrypted one-time secret sharing. It runs:
-
-- Redis with persistent RDB storage for one-time secret data
-- The Go API backend for secret creation and one-time retrieval
-- nginx serving the static frontend over plain HTTP and proxying `/api`
-
-Copy-paste quick start:
-
-```bash
-git clone https://github.com/shingrus/onetimelink.git
-cd onetimelink
-export DATA_DIR=/srv/onetimelink-data
-export APP_HOSTNAME=secrets.example.com
-export APP_PORT=8080
-mkdir -p "${DATA_DIR}"
-docker compose up -d --build
-```
-
-This brings the self-hosted stack up on `http://127.0.0.1:${APP_PORT}`.
-
-If you do not need a custom port, you can skip `APP_PORT` and it will default to `8080`.
-
-### Using `.env`
-
-If you prefer a persistent config file instead of shell exports:
-
-```bash
-cp .env.example .env
-```
-
-Set these required values in `.env`:
-
-- `DATA_DIR` — host path for Redis `dump.rdb`
-- `APP_HOSTNAME` — public hostname used for one-time links, metadata, and branding, default `onetimelink.me`
-
-Optional values:
-
-- `APP_PORT` — external HTTP port, default `8080`
-- `SHOW_BLOG` — blog visibility toggle, default `false` in the compose example for self-hosted deployments
-
-Start everything with one command:
-
-```bash
-docker compose up -d --build
-```
-
-The stack serves plain HTTP on `http://127.0.0.1:${APP_PORT}`. Put your own SSL terminator or reverse proxy in front of it if you want HTTPS for your self-hosted one-time secret link service.
-
-Notes:
-
-- The frontend image is generic. The hostname is injected at container startup, so changing `APP_HOSTNAME` does not require rebuilding the image.
-- Blog routes are excluded from the self-hosted build when `SHOW_BLOG=false` and return `404`.
-- The default self-hosted path is optimized for private secret sharing rather than the public blog/SEO content used on the hosted site.
+<p align="center">
+  <a href="https://github.com/shingrus/1time/blob/master/LICENSE"><img src="https://img.shields.io/github/license/shingrus/1time?style=flat-square" alt="License"></a>
+  <a href="https://github.com/shingrus/1time/releases"><img src="https://img.shields.io/github/v/release/shingrus/1time?style=flat-square" alt="Release"></a>
+  <a href="https://github.com/shingrus/1time/stargazers"><img src="https://img.shields.io/github/stars/shingrus/1time?style=flat-square" alt="Stars"></a>
+  <a href="https://github.com/shingrus/1time"><img src="https://img.shields.io/github/last-commit/shingrus/1time?style=flat-square" alt="Last commit"></a>
+</p>
 
 ---
 
-## Why Use onetimelink.me for One-Time Secret Sharing?
+<p align="center">
+  <img src="docs/screenshot-create.png" alt="Create a secret" width="45%">
+  &nbsp;&nbsp;
+  <img src="docs/screenshot-reveal.png" alt="Reveal a secret" width="45%">
+</p>
 
-- **Self-hosted one-time secret links** — share passwords, API keys, notes, and credentials through links that are designed to be opened once.
-- **End-to-end encrypted** — secrets are encrypted in the browser before they leave your device. The decryption key is stored in the URL fragment (`#`), which is never sent to the server.
-- **Zero-knowledge architecture** — the server stores only encrypted blobs. Even with full database access, your secrets cannot be read.
-- **Self-destructing secret sharing** — each link can only be opened once. After that, the encrypted data is permanently deleted.
-- **No signup required** — paste a secret, get a link, share it. No accounts, no tracking.
-- **Open source** — the full source code is right here. Audit it yourself or run your own private deployment.
-- **Docker Compose ready** — deploy a self-hosted one-time secret service with Redis, nginx, and the Go backend.
+## Why OneTimeLink?
 
-## How This One-Time Secret Link App Works
+| | Feature | Details |
+|---|---|---|
+| **🔐** | **Zero-knowledge encryption** | Secrets are encrypted in your browser with AES-GCM. The server never sees plaintext. |
+| **🔥** | **Self-destructing links** | Each link works exactly once, then the data is permanently deleted. |
+| **🏠** | **Self-hosted** | Run your own instance with Docker Compose in under 2 minutes. |
+| **👤** | **No signup required** | Paste a secret, get a link, share it. No accounts, no tracking. |
+| **🔑** | **Built-in generators** | Password, passphrase, API key, and WiFi password generators included. |
+| **⚡** | **Lightweight stack** | Go + Redis backend, static Next.js frontend. Minimal resource usage. |
 
-1. You paste a secret into [onetimelink.me](https://onetimelink.me)
-2. Your browser encrypts it with AES-GCM and a random key
-3. The encrypted blob is sent to the server; the key stays in the URL fragment
-4. You share the link — the recipient opens it, the browser decrypts it, and the server deletes the encrypted blob
+---
 
-The encryption key never touches the server. Even if the server is compromised, your secrets remain safe.
+## How It Works
 
-## Free tools
+```
+You                          Server                        Recipient
+ │                             │                              │
+ │  1. Type secret             │                              │
+ │  2. Browser encrypts        │                              │
+ │     with AES-GCM            │                              │
+ │  3. Send encrypted blob ──► │  Stores encrypted blob       │
+ │  4. Get link with key       │  (cannot decrypt it)         │
+ │     in URL fragment (#)     │                              │
+ │                             │                              │
+ │  5. Share link ─────────────┼──────────────────────────►   │
+ │                             │                              │
+ │                             │  ◄── 6. Fetch encrypted blob │
+ │                             │  7. Delete blob permanently  │
+ │                             │  8. Send blob ──────────►    │
+ │                             │                              │
+ │                             │     9. Browser decrypts      │
+ │                             │        with key from #       │
+```
 
-- [Password Generator](https://onetimelink.me/password-generator) — generate strong random passwords
+The encryption key stays in the URL fragment (`#`), which is **never sent to the server**. Even with full database access, secrets cannot be read.
+
+---
+
+## Quick Start
+
+### Use the hosted version
+
+**[onetimelink.me](https://onetimelink.me)** — free, no signup, ready to use.
+
+### Self-host with Docker Compose
+
+```bash
+git clone https://github.com/shingrus/1time.git
+cd 1time
+cp .env.example .env
+# Edit .env: set APP_HOSTNAME to your domain
+docker compose up -d --build
+```
+
+That's it. The stack runs on `http://localhost:8080` with Redis persistence, the Go API, and nginx serving the frontend.
+
+### Configuration
+
+| Variable | Default | Description |
+|---|---|---|
+| `APP_HOSTNAME` | `onetimelink.me` | Public hostname for links and metadata |
+| `APP_PORT` | `8080` | External HTTP port |
+| `DATA_DIR` | `./data` | Host path for Redis persistence |
+| `SHOW_BLOG` | `false` | Enable blog routes (for hosted version) |
+
+Put your own reverse proxy (Caddy, Traefik, nginx) in front for HTTPS/TLS termination.
+
+> **Note:** The frontend image is generic — changing `APP_HOSTNAME` does not require rebuilding. The hostname is injected at container startup.
+
+---
+
+## Comparison with Alternatives
+
+| Feature | **OneTimeLink** | OneTimeSecret | Yopass | PrivateBin | Password Pusher |
+|---|:---:|:---:|:---:|:---:|:---:|
+| Zero-knowledge (E2E encrypted) | **Yes** | No | Yes | Yes | No |
+| Self-destructing after first read | **Yes** | Yes | Yes | Optional | Optional |
+| No signup required | **Yes** | Yes | Yes | Yes | Yes |
+| Self-hosted Docker Compose | **Yes** | Yes | Yes | Yes | Yes |
+| Built-in password generators | **Yes** | No | No | No | No |
+| Lightweight (Go + static HTML) | **Yes** | No (Ruby) | Yes (Go) | No (PHP) | No (Ruby) |
+| Open source | **MIT** | MIT | Apache-2.0 | zlib | Apache-2.0 |
+
+---
+
+## Free Tools
+
+- [Password Generator](https://onetimelink.me/password-generator) — strong random passwords
 - [Passphrase Generator](https://onetimelink.me/passphrase-generator) — memorable multi-word passphrases
 - [API Key Generator](https://onetimelink.me/api-key-generator) — random tokens for developers
 - [WiFi Password Generator](https://onetimelink.me/wifi-password-generator) — easy-to-type network passwords
 
-## Tech stack
+---
 
-- **Backend:** Go + Redis
-- **Frontend:** Next.js (static export)
-- **Encryption:** Web Crypto API (AES-GCM)
-- **Deployment:** Docker Compose, nginx, systemd
+## Tech Stack
 
+| Layer | Technology |
+|---|---|
+| Backend | Go (stdlib, no frameworks) |
+| Storage | Redis with RDB persistence |
+| Frontend | Next.js (static export) |
+| Encryption | Web Crypto API (AES-GCM) |
+| Deployment | Docker Compose + nginx |
+
+---
 
 ## Development
 
@@ -107,87 +143,72 @@ The encryption key never touches the server. Even if the server is compromised, 
 - Redis 8+
 - Node.js 25+ and npm
 
-This repo currently builds locally with:
-
-- Go `1.25.5`
-- Node `25.2.1`
-- npm `11.6.2`
-- Redis `8.4.0`
-
-### Backend setup
-
-Start Redis locally and export the backend connection settings:
+### Backend
 
 ```bash
+# Start Redis locally
 export REDISHOST=127.0.0.1:6379
 export REDISPASS=
-```
 
-Run the backend:
-
-```bash
+# Run the backend
 go run .
-```
+# Listening on http://127.0.0.1:8080
 
-The app listens on `http://127.0.0.1:8080`.
-
-Useful backend commands:
-
-```bash
-go build ./...
+# Tests
 GOCACHE=/tmp/go-cache go test ./...
-make build
 ```
 
-`make build` now produces both the backend binary in `bin/1time` and the frontend production bundle in `frontend/build`. Install frontend dependencies with `cd frontend && npm install` before using it.
-
-Bootstrap an Ubuntu/Debian VM from this repo checkout after `make build`:
-
-```bash
-sudo ./scripts/init_vm.sh
-```
-
-The script installs `nginx`, `redis-server`, and `rsync`, creates the `onetimelink` user, copies the built backend into `/opt/onetimelink/bin`, installs the `onetimelink` systemd unit, and starts the `onetimelink` service. If `frontend/build` exists, it also syncs it to `/var/www/onetimelink`.
-
-`init_vm.sh` intentionally does not deploy the deprecated `templates/` flow. Use nginx to serve the React build and proxy only `/api` to the Go app for this deployment mode.
-
-Install the sample nginx site from `configs/nginx/onetimelink.conf`, adjust `server_name`, then run `nginx -t` before reloading nginx.
-
-### Frontend setup
-
-Install dependencies:
+### Frontend
 
 ```bash
 cd frontend
 npm install
-```
-
-Start the frontend dev server:
-
-```bash
 npm run dev
-```
+# Dev server on http://127.0.0.1:3001, proxies /api to Go backend
 
-The frontend runs on Next.js. In development it serves on `http://127.0.0.1:3001` and proxies `/api` to the Go backend on `http://127.0.0.1:8080`, so the Go server must be running first. This keeps frontend requests same-origin in development, matching production behind nginx.
-
-If you need to point the dev proxy somewhere else, set `API_PROXY_TARGET` before `npm run dev`.
-
-`NEXT_PUBLIC_API_URL` should usually be left unset in local development so the frontend continues to use relative `/api/` requests through the Next.js proxy.
-
-Create a production build:
-
-```bash
+# Production build
 npm run build
-```
 
-Run frontend tests:
-
-```bash
+# Tests
 npm test
 ```
 
-### Notes
+### Full build
 
-- The frontend has been migrated from Create React App to Next.js with static export for production builds.
-- The server-rendered flow under `templates/` is deprecated. It still exists in the codebase, but it is not part of the recommended deployment path.
-- Production nginx, Redis, and systemd example configs are in `configs/`.
+```bash
+make build
+# Produces: bin/1time (backend) + frontend/build/ (static assets)
+```
+
+### VM deployment (Ubuntu/Debian)
+
+```bash
+make build
+sudo ./scripts/init_vm.sh
+```
+
+Installs nginx, Redis, creates the `onetimelink` systemd service, and deploys the built artifacts.
+
+---
+
+## Contributing
+
+Contributions are welcome! Please open an issue first to discuss what you'd like to change.
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes
+4. Push to the branch
+5. Open a Pull Request
+
+---
+
+## Security
+
+The encryption model is designed so that **the server operator cannot read secrets**, even with full database and infrastructure access. If you find a security vulnerability, please email the maintainer directly instead of opening a public issue.
+
+---
+
+## License
+
+[MIT](LICENSE) — Copyright (c) 2018-2026 onetimelink.me
