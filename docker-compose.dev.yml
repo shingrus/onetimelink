@@ -1,8 +1,6 @@
-## Deploy with pre-built images from GHCR (no build required)
+## Development: build from source
 ## Usage:
-##   cp .env.example .env
-##   # Edit .env: set APP_HOSTNAME to your domain
-##   docker compose up -d
+##   docker compose -f docker-compose.dev.yml up -d --build
 
 services:
   redis:
@@ -23,7 +21,9 @@ services:
       - ${DATA_DIR:-./data}:/data
 
   backend:
-    image: ghcr.io/shingrus/onetimelink-backend:latest
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
     restart: unless-stopped
     environment:
       LISTEN_ADDR: 0.0.0.0:8080
@@ -33,7 +33,12 @@ services:
       - redis
 
   web:
-    image: ghcr.io/shingrus/onetimelink-web:latest
+    build:
+      context: .
+      dockerfile: Dockerfile.web
+      args:
+        APP_HOSTNAME: ${APP_HOSTNAME:-onetimelink.me}
+        SHOW_BLOG: ${SHOW_BLOG:-false}
     restart: unless-stopped
     environment:
       APP_HOSTNAME: ${APP_HOSTNAME:-onetimelink.me}

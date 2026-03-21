@@ -65,6 +65,8 @@ You                          Server                        Recipient
 
 The encryption key stays in the URL fragment (`#`), which is **never sent to the server**. Even with full database access, secrets cannot be read.
 
+**Cryptographic details:** Keys are derived using HKDF-SHA256 with a fixed salt. Two separate keys are produced — one for AES-256-GCM encryption and one for authentication (hash-based proof-of-knowledge). The server verifies the auth hash with constant-time comparison before releasing the encrypted blob, then permanently deletes it.
+
 ---
 
 ## Quick Start
@@ -75,15 +77,27 @@ The encryption key stays in the URL fragment (`#`), which is **never sent to the
 
 ### Self-host with Docker Compose
 
+**Option 1: Pre-built images (recommended)**
+
+```bash
+curl -O https://raw.githubusercontent.com/shingrus/1time/master/docker-compose.yml
+curl -O https://raw.githubusercontent.com/shingrus/1time/master/.env.example
+cp .env.example .env
+# Edit .env: set APP_HOSTNAME to your domain
+docker compose up -d
+```
+
+**Option 2: Build from source**
+
 ```bash
 git clone https://github.com/shingrus/1time.git
 cd 1time
 cp .env.example .env
 # Edit .env: set APP_HOSTNAME to your domain
-docker compose up -d --build
+docker compose -f docker-compose.dev.yml up -d --build
 ```
 
-That's it. The stack runs on `http://localhost:8080` with Redis persistence, the Go API, and nginx serving the frontend.
+Both options start on `http://localhost:8080` with Redis persistence, the Go API, and nginx serving the frontend. Multi-arch images (amd64 + arm64) are available.
 
 ### Configuration
 
@@ -130,7 +144,7 @@ Put your own reverse proxy (Caddy, Traefik, nginx) in front for HTTPS/TLS termin
 | Backend | Go (stdlib, no frameworks) |
 | Storage | Redis with RDB persistence |
 | Frontend | Next.js (static export) |
-| Encryption | Web Crypto API (AES-GCM) |
+| Encryption | Web Crypto API (AES-256-GCM, HKDF-SHA256) |
 | Deployment | Docker Compose + nginx |
 
 ---
