@@ -6,16 +6,16 @@ COPY go.mod go.sum ./
 RUN go mod download
 
 COPY . ./
-RUN CGO_ENABLED=0 GOOS=linux go build -ldflags "-w -s" -o /out/1time .
+RUN CGO_ENABLED=0 GOOS=linux go build -ldflags "-w -s" -o /out/1time-api .
 
 FROM alpine:3.21
 
 RUN apk add --no-cache ca-certificates
 
-COPY --from=builder /out/1time /usr/local/bin/1time
+COPY --from=builder /out/1time-api /usr/local/bin/1time-api
 
 ENV LISTEN_ADDR=0.0.0.0:8080
 
 EXPOSE 8080
 
-CMD ["1time"]
+CMD ["1time-api"]

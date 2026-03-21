@@ -1,182 +1,22 @@
+import {
+    ProtocolConstants,
+    buildSecretLink as buildProtocolSecretLink,
+    decryptSecretMessage,
+    encryptSecretMessage,
+    getRandomString,
+    hashSecretKey,
+} from './protocol.mjs';
+
 export var Constants = {
-    randomKeyLen: 16,
-    defaultDuration: 1,
+    ...ProtocolConstants,
     isDebug: process.env.NODE_ENV === 'development',
     apiBaseUrl: process.env.NEXT_PUBLIC_API_URL || "/api/",
-    hkdfSalt: 'onetimelink:v2',
-    hkdfEncryptInfo: 'encrypt',
-    hkdfAuthInfo: 'auth',
 };
 
-const chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-const textEncoder = new TextEncoder();
-const textDecoder = new TextDecoder();
-const randomCharLimit = 256 - (256 % chars.length);
-
-function requireWebCrypto() {
-    if (!globalThis.crypto?.subtle || !globalThis.crypto?.getRandomValues) {
-        throw new Error('Web Crypto API is unavailable');
-    }
-
-    return globalThis.crypto;
-}
-
-function bytesToHex(bytes) {
-    return Array.from(bytes, (byte) => byte.toString(16).padStart(2, '0')).join('');
-}
-
-function bytesToBase64(bytes) {
-    let binary = '';
-
-    for (let i = 0; i < bytes.length; i += 0x8000) {
-        const chunk = bytes.subarray(i, i + 0x8000);
-        binary += String.fromCharCode(...chunk);
-    }
-
-    return btoa(binary);
-}
-
-function base64ToBytes(base64) {
-    const binary = atob(base64);
-    const bytes = new Uint8Array(binary.length);
-
-    for (let i = 0; i < binary.length; i++) {
-        bytes[i] = binary.charCodeAt(i);
-    }
-
-    return bytes;
-}
-
-function toBase64Url(bytes) {
-    return bytesToBase64(bytes)
-        .replace(/\+/g, '-')
-        .replace(/\//g, '_')
-        .replace(/=+$/, '');
-}
-
-function fromBase64Url(base64Url) {
-    const padding = (4 - (base64Url.length % 4)) % 4;
-    const base64 = base64Url
-        .replace(/-/g, '+')
-        .replace(/_/g, '/')
-        + '='.repeat(padding);
-
-    return base64ToBytes(base64);
-}
-
-async function deriveHkdfBaseKey(fullSecretKey) {
-    const crypto = requireWebCrypto();
-
-    return crypto.subtle.importKey(
-        'raw',
-        textEncoder.encode(fullSecretKey),
-        'HKDF',
-        false,
-        ['deriveBits', 'deriveKey'],
-    );
-}
-
-function getHkdfParams(info) {
-    return {
-        name: 'HKDF',
-        hash: 'SHA-256',
-        salt: textEncoder.encode(Constants.hkdfSalt),
-        info: textEncoder.encode(info),
-    };
-}
-
-async function deriveSecretKey(fullSecretKey) {
-    const crypto = requireWebCrypto();
-    const baseKey = await deriveHkdfBaseKey(fullSecretKey);
-
-    return crypto.subtle.deriveKey(
-        getHkdfParams(Constants.hkdfEncryptInfo),
-        baseKey,
-        {name: 'AES-GCM', length: 256},
-        false,
-        ['encrypt', 'decrypt'],
-    );
-}
-
-async function deriveAuthToken(fullSecretKey) {
-    const crypto = requireWebCrypto();
-    const baseKey = await deriveHkdfBaseKey(fullSecretKey);
-    const authBits = await crypto.subtle.deriveBits(
-        getHkdfParams(Constants.hkdfAuthInfo),
-        baseKey,
-        256,
-    );
-
-    return bytesToHex(new Uint8Array(authBits));
-}
-
-export function getRandomString(stringLen) {
-    const crypto = requireWebCrypto();
-    const randomBytes = new Uint8Array(Math.max(16, stringLen * 2));
-    let randomString = '';
-
-    while (randomString.length < stringLen) {
-        crypto.getRandomValues(randomBytes);
-
-        for (const byte of randomBytes) {
-            if (byte >= randomCharLimit) {
-                continue;
-            }
-
-            randomString += chars[byte % chars.length];
-            if (randomString.length === stringLen) {
-                break;
-            }
-        }
-    }
-
-    return randomString;
-}
-
-export async function encryptSecretMessage(secretMessage, fullSecretKey) {
-    const crypto = requireWebCrypto();
-    const iv = crypto.getRandomValues(new Uint8Array(12));
-    const encryptKey = await deriveSecretKey(fullSecretKey);
-    const encryptedBuffer = await crypto.subtle.encrypt(
-        {name: 'AES-GCM', iv},
-        encryptKey,
-        textEncoder.encode(secretMessage),
-    );
-    const hashedKey = await deriveAuthToken(fullSecretKey);
-
-    return {
-        encryptedMessage: `${toBase64Url(iv)}.${toBase64Url(new Uint8Array(encryptedBuffer))}`,
-        hashedKey,
-    };
-}
-
-export async function hashSecretKey(fullSecretKey) {
-    return deriveAuthToken(fullSecretKey);
-}
-
-export async function decryptSecretMessage(cryptedMessage, fullSecretKey) {
-    const crypto = requireWebCrypto();
-    const [encodedIv, encodedMessage] = cryptedMessage.split('.');
-
-    if (!encodedIv || !encodedMessage ) {
-        throw new Error('Unsupported encrypted message format');
-    }
-
-    const iv = fromBase64Url(encodedIv);
-    const encryptedMessage = fromBase64Url(encodedMessage);
-
-    const decryptKey = await deriveSecretKey(fullSecretKey);
-    const decryptedBuffer = await crypto.subtle.decrypt(
-        {name: 'AES-GCM', iv},
-        decryptKey,
-        encryptedMessage,
-    );
-
-    return textDecoder.decode(decryptedBuffer);
-}
+export {decryptSecretMessage, encryptSecretMessage, getRandomString, hashSecretKey};
 
 export function buildSecretLink(randomString, newId) {
-    return `${window.location.origin}/v/#${randomString}${newId}`;
+    return buildProtocolSecretLink(window.location.origin, randomString, newId);
 }
 
 export async function createSecretLink(secretMessage, options = {}) {

@@ -191,7 +191,7 @@ npm test
 
 ```bash
 make build
-# Produces: bin/1time (backend) + frontend/build/ (static assets)
+# Produces: bin/1time-api (backend) + frontend/build/ (static assets)
 ```
 
 ### VM deployment (Ubuntu/Debian)
