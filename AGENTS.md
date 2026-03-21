@@ -86,6 +86,21 @@ npm run build
 - Before merging frontend UI changes, run `cd frontend && npm run build` and inspect the generated HTML for the affected route to confirm it is not pulling unrelated CSS chunks.
 - A route should not ship CSS for unrelated pages such as blog, stats, view, about, or post-submit states during initial render.
 
+## Frontend JS Performance
+
+- Lighthouse performance is a hard constraint, not a nice-to-have. Treat regressions as bugs unless there is a clear product reason.
+- Static content routes such as `/blog/**` and other read-mostly pages should stay as close to zero-JS as practical. Do not add client components to content pages unless the interaction is essential.
+- Treat every `<script src>` in `frontend/build/**/index.html` as suspect on content routes. Verify whether each chunk is required for user-visible behavior on that route.
+- Do not pull generator, share-flow, stats, view-secret, or other app-tooling bundles into blog or marketing pages.
+- Avoid putting client components in `frontend/app/layout.jsx` when a server component, plain markup, or a tiny standalone script would work. Shared client components in the root layout force hydration across the whole site.
+- For static pages, prefer plain links and server-rendered navigation patterns when they materially reduce app-router hydration cost.
+- If a page is primarily article or marketing content, optimize for first-load HTML and CSS first, and only then add JavaScript that is strictly necessary.
+- After frontend performance changes, build with `cd frontend && npm run build` and inspect the affected HTML for both CSS and JS:
+  - confirm there are no unrelated route chunks
+  - confirm route-specific assets stay route-specific
+  - confirm content pages are not loading interactive app bundles
+- If you self-host fonts or other root-level static assets outside `/_next/static/`, make sure deployment config adds explicit cache headers for them.
+
 ## Domain And Branding
 
 - Public domain is `https://onetimelink.me`.

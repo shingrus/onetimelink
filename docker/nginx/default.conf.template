@@ -1,3 +1,8 @@
+limit_req_zone $binary_remote_addr zone=api_write:10m rate=20r/m;
+limit_req_zone $binary_remote_addr zone=api_read:10m rate=30r/m;
+limit_req_zone $binary_remote_addr zone=api_stats:10m rate=240r/m;
+limit_req_status 429;
+
 server {
     listen       ${NGINX_PORT};
     server_name  _;
@@ -11,7 +16,38 @@ server {
         internal;
     }
 
+    location = /api/saveSecret {
+        limit_req zone=api_write burst=5 nodelay;
+        proxy_pass http://backend:8080;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-Host $host;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+
+    location = /api/get {
+        limit_req zone=api_read burst=10 nodelay;
+        proxy_pass http://backend:8080;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-Host $host;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+
+    location = /api/stat {
+        limit_req zone=api_stats burst=30 nodelay;
+        proxy_pass http://backend:8080;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-Host $host;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+
     location /api/ {
+        limit_req zone=api_read burst=10 nodelay;
         proxy_pass http://backend:8080;
         proxy_http_version 1.1;
         proxy_set_header Host $host;
