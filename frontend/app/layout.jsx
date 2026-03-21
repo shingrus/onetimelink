@@ -47,7 +47,7 @@ export default function RootLayout({children}) {
                         name: siteHost,
                         url: siteUrl,
                         logo: absoluteUrl('/favicon.svg'),
-                        sameAs: ['https://github.com/shingrus/onetimelink'],
+                        sameAs: ['https://github.com/shingrus/1time'],
                     }) }}
                 />
                 <script
@@ -79,7 +79,7 @@ export default function RootLayout({children}) {
                                     {' '} &middot; <Link href="/blog">Blog</Link>
                                 </>
                             )}
-                            {' '} &middot; End-to-end encrypted &middot; <a href="https://github.com/shingrus/onetimelink" target="_blank" rel="noopener noreferrer">Open source</a>
+                            {' '} &middot; End-to-end encrypted &middot; <a href="https://github.com/shingrus/1time" target="_blank" rel="noopener noreferrer">Open source</a>
                         </p>
                     </footer>
                 </div>

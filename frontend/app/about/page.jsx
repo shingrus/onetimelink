@@ -62,7 +62,7 @@ export default function AboutPage() {
                 <p>
                     {siteHost} is open source. You can inspect the code, verify the encryption implementation,
                     or host your own instance. Transparency is a core part of our security model.
-                    Check out the source on <a href="https://github.com/shingrus/onetimelink" target="_blank" rel="noopener noreferrer">GitHub</a>.
+                    Check out the source on <a href="https://github.com/shingrus/1time" target="_blank" rel="noopener noreferrer">GitHub</a>.
                 </p>
             </div>
 

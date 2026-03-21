@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 export const metadata = {
-    title: 'Team Password Sharing Without a Password Manager — onetimelink.me',
+    title: 'Team Password Sharing Without a Password Manager — 1time.io',
     description: 'Practical approaches to sharing passwords within a team when you do not have a password manager. Covers one-time links, secure workflows, and when to upgrade.',
     alternates: { canonical: '/blog/team-password-sharing' },
     openGraph: {
@@ -25,16 +25,16 @@ const jsonLd = [
         description: 'Practical approaches to sharing passwords within a team when you do not have a password manager.',
         datePublished: '2026-03-18',
         dateModified: '2026-03-18',
-        author: { '@type': 'Organization', name: 'onetimelink.me', url: 'https://onetimelink.me' },
-        publisher: { '@type': 'Organization', name: 'onetimelink.me', url: 'https://onetimelink.me' },
-        mainEntityOfPage: 'https://onetimelink.me/blog/team-password-sharing',
+        author: { '@type': 'Organization', name: '1time.io', url: 'https://1time.io' },
+        publisher: { '@type': 'Organization', name: '1time.io', url: 'https://1time.io' },
+        mainEntityOfPage: 'https://1time.io/blog/team-password-sharing',
     },
     {
         '@context': 'https://schema.org',
         '@type': 'BreadcrumbList',
         itemListElement: [
-            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://onetimelink.me' },
-            { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://onetimelink.me/blog' },
+            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://1time.io' },
+            { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://1time.io/blog' },
             { '@type': 'ListItem', position: 3, name: 'Team Password Sharing' },
         ],
     },
@@ -82,7 +82,7 @@ export default function Article() {
                 </ol>
                 <p>
                     No accounts. No installs. No training. The recipient does not even need to know what
-                    onetimelink.me is — they just click the link.
+                    1time.io is — they just click the link.
                 </p>
 
                 <h3>Generate a team password and share it instantly</h3>

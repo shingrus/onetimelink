@@ -1,19 +1,19 @@
 import Link from 'next/link';
 
 export const metadata = {
-    title: 'What Is HKDF and Why We Use It for End-to-End Encryption — onetimelink.me',
-    description: 'A plain-language explanation of HKDF (HMAC-based Key Derivation Function), why it is better than using raw SHA-256 hashes, and how onetimelink.me uses it to separate encryption keys from server-side auth tokens.',
+    title: 'What Is HKDF and Why We Use It for End-to-End Encryption — 1time.io',
+    description: 'A plain-language explanation of HKDF (HMAC-based Key Derivation Function), why it is better than using raw SHA-256 hashes, and how 1time.io uses it to separate encryption keys from server-side auth tokens.',
     alternates: { canonical: '/blog/hkdf-key-derivation-explained' },
     openGraph: {
         title: 'What Is HKDF and Why We Use It for End-to-End Encryption',
-        description: 'How onetimelink.me uses HKDF to derive separate encryption and authentication keys from one master secret.',
+        description: 'How 1time.io uses HKDF to derive separate encryption and authentication keys from one master secret.',
         url: '/blog/hkdf-key-derivation-explained',
         images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'HKDF Key Derivation Explained' }],
     },
     twitter: {
         card: 'summary_large_image',
         title: 'What Is HKDF and Why We Use It for End-to-End Encryption',
-        description: 'How onetimelink.me uses HKDF to derive separate encryption and authentication keys from one master secret.',
+        description: 'How 1time.io uses HKDF to derive separate encryption and authentication keys from one master secret.',
     },
 };
 
@@ -22,19 +22,19 @@ const jsonLd = [
         '@context': 'https://schema.org',
         '@type': 'Article',
         headline: 'What Is HKDF and Why We Use It for End-to-End Encryption',
-        description: 'A plain-language explanation of HKDF and how onetimelink.me uses it to separate encryption keys from server-side auth tokens.',
+        description: 'A plain-language explanation of HKDF and how 1time.io uses it to separate encryption keys from server-side auth tokens.',
         datePublished: '2026-03-18',
         dateModified: '2026-03-18',
-        author: { '@type': 'Organization', name: 'onetimelink.me', url: 'https://onetimelink.me' },
-        publisher: { '@type': 'Organization', name: 'onetimelink.me', url: 'https://onetimelink.me' },
-        mainEntityOfPage: 'https://onetimelink.me/blog/hkdf-key-derivation-explained',
+        author: { '@type': 'Organization', name: '1time.io', url: 'https://1time.io' },
+        publisher: { '@type': 'Organization', name: '1time.io', url: 'https://1time.io' },
+        mainEntityOfPage: 'https://1time.io/blog/hkdf-key-derivation-explained',
     },
     {
         '@context': 'https://schema.org',
         '@type': 'BreadcrumbList',
         itemListElement: [
-            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://onetimelink.me' },
-            { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://onetimelink.me/blog' },
+            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://1time.io' },
+            { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://1time.io/blog' },
             { '@type': 'ListItem', position: 3, name: 'HKDF Key Derivation Explained' },
         ],
     },
@@ -50,7 +50,7 @@ export default function Article() {
                 <span className="article-tag">How It Works</span>
                 <h1>What Is HKDF and Why We Use It for End-to-End Encryption</h1>
                 <p className="article-subtitle">
-                    We recently upgraded <Link href="/">onetimelink.me</Link> from simple SHA-256 hashing to HKDF-based key derivation.
+                    We recently upgraded <Link href="/">1time.io</Link> from simple SHA-256 hashing to HKDF-based key derivation.
                     Here is what that means in plain language, why it matters, and how it makes your secrets safer.
                 </p>
                 <div className="article-meta">March 2026 &middot; 8 min read</div>
@@ -59,7 +59,7 @@ export default function Article() {
             <div className="article-body">
                 <h2>The Problem We Needed to Solve</h2>
                 <p>
-                    When you create a one-time link on <Link href="/">onetimelink.me</Link>, your browser needs to do two things
+                    When you create a one-time link on <Link href="/">1time.io</Link>, your browser needs to do two things
                     with a single random key:
                 </p>
                 <ol>
@@ -125,7 +125,7 @@ export default function Article() {
                     "concentrates" the randomness into a clean, uniformly distributed key.
                 </p>
                 <p>
-                    At <Link href="/">onetimelink.me</Link>, our input is a 16-character random string generated using the
+                    At <Link href="/">1time.io</Link>, our input is a 16-character random string generated using the
                     Web Crypto API, and our salt is <code>onetimelink:v2</code>.
                 </p>
 
@@ -246,7 +246,7 @@ export default function Article() {
                     </p>
                 </div>
 
-                <h2>How <Link href="/">onetimelink.me</Link> Uses HKDF</h2>
+                <h2>How <Link href="/">1time.io</Link> Uses HKDF</h2>
                 <p>
                     Here is the complete flow when you create a one-time link:
                 </p>
@@ -313,7 +313,7 @@ export default function Article() {
                     a client-side-only feature defined in the HTTP specification.
                 </p>
                 <p>
-                    When your browser requests <code>https://onetimelink.me/v#abc123</code>, it sends
+                    When your browser requests <code>https://1time.io/v#abc123</code>, it sends
                     a request for <code>/v</code> — the <code>#abc123</code> part stays entirely in the browser.
                     This is not a custom security feature — it is how every browser has worked since the
                     beginning of the web.
@@ -401,7 +401,7 @@ export default function Article() {
                 </p>
                 <p>
                     The generated URL has the
-                    format: <code>https://onetimelink.me/v/#randomKeyServerId</code>.
+                    format: <code>https://1time.io/v/#randomKeyServerId</code>.
                     The random key lives in the URL fragment
                     after <code>#</code> — it is never sent to the server by the browser. The server ID is
                     appended so the recipient&#39;s browser knows which blob to request.
@@ -419,7 +419,7 @@ export default function Article() {
                 <p>
                     The entire implementation is open source — about 200 lines of JavaScript with
                     zero dependencies beyond the Web Crypto API. You can read
-                    the <a href="https://github.com/shingrus/onetimelink/blob/main/frontend/utils/util.js" target="_blank" rel="noopener noreferrer">full encryption code on GitHub</a> and
+                    the <a href="https://github.com/shingrus/1time/blob/main/frontend/utils/util.js" target="_blank" rel="noopener noreferrer">full encryption code on GitHub</a> and
                     verify every claim in this article yourself.
                 </p>
 
@@ -439,7 +439,7 @@ export default function Article() {
                         <span>How one-time links work under the hood.</span>
                     </Link>
                     <Link href="/blog/onetimesecret-alternative" className="related-article-card">
-                        <span>onetimelink.me vs OneTimeSecret</span>
+                        <span>1time.io vs OneTimeSecret</span>
                         <span>Why encryption model matters when choosing a tool.</span>
                     </Link>
                     <Link href="/blog/how-to-share-api-keys" className="related-article-card">

@@ -1,14 +1,14 @@
 import Link from 'next/link';
 
 export const metadata = {
-    title: 'Blog — onetimelink.me',
+    title: 'Blog — 1time.io',
     description: 'Guides on secure password sharing, self-destructing messages, and protecting sensitive data online. Learn best practices for zero-knowledge encryption.',
     alternates: { canonical: '/blog' },
     openGraph: {
-        title: 'Blog — onetimelink.me',
+        title: 'Blog — 1time.io',
         description: 'Guides on secure password sharing, self-destructing messages, and protecting sensitive data online.',
         url: '/blog',
-        images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'onetimelink.me Blog' }],
+        images: [{ url: '/og-image.png', width: 1200, height: 630, alt: '1time.io Blog' }],
     },
 };
 
@@ -96,7 +96,7 @@ const articles = [
     {
         slug: 'bitwarden-send-alternative',
         tag: 'Comparison',
-        title: 'onetimelink.me vs Bitwarden Send — A Practical Comparison',
+        title: '1time.io vs Bitwarden Send — A Practical Comparison',
         excerpt: 'Bitwarden Send requires an account and multiple steps. Here is how a dedicated one-time link tool compares for quick secret sharing.',
         date: 'March 2026',
         readTime: '5 min read',
@@ -104,7 +104,7 @@ const articles = [
     {
         slug: 'privnote-alternative',
         tag: 'Comparison',
-        title: 'onetimelink.me vs Privnote — Why Encryption Matters',
+        title: '1time.io vs Privnote — Why Encryption Matters',
         excerpt: 'Privnote deletes messages after reading but does not encrypt them end-to-end. The server sees everything. Here is why that matters.',
         date: 'March 2026',
         readTime: '5 min read',
@@ -112,8 +112,8 @@ const articles = [
     {
         slug: 'password-pusher-alternative',
         tag: 'Comparison',
-        title: 'onetimelink.me vs Password Pusher — Which Is More Secure?',
-        excerpt: 'Password Pusher encrypts on the server. onetimelink.me encrypts in the browser. Compare features, security models, and ease of use.',
+        title: '1time.io vs Password Pusher — Which Is More Secure?',
+        excerpt: 'Password Pusher encrypts on the server. 1time.io encrypts in the browser. Compare features, security models, and ease of use.',
         date: 'March 2026',
         readTime: '5 min read',
     },
@@ -136,7 +136,7 @@ const articles = [
     {
         slug: 'onetimesecret-alternative',
         tag: 'Comparison',
-        title: 'onetimelink.me vs OneTimeSecret — A Transparent Comparison',
+        title: '1time.io vs OneTimeSecret — A Transparent Comparison',
         excerpt: 'Both tools let you share secrets via one-time links. But there are real differences in encryption, privacy, and usability. Here\'s an honest side-by-side breakdown.',
         date: 'March 2025',
         readTime: '5 min read',

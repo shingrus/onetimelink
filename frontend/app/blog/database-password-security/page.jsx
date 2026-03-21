@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 export const metadata = {
-    title: 'Database Password Security Best Practices — onetimelink.me',
+    title: 'Database Password Security Best Practices — 1time.io',
     description: 'Learn how to generate and manage strong database passwords. Covers PostgreSQL, MySQL, MongoDB, and Redis. Includes a free database password generator.',
     alternates: { canonical: '/blog/database-password-security' },
     openGraph: {
@@ -25,16 +25,16 @@ const jsonLd = [
         description: 'Learn how to generate and manage strong database passwords for PostgreSQL, MySQL, MongoDB, and Redis.',
         datePublished: '2026-03-18',
         dateModified: '2026-03-18',
-        author: { '@type': 'Organization', name: 'onetimelink.me', url: 'https://onetimelink.me' },
-        publisher: { '@type': 'Organization', name: 'onetimelink.me', url: 'https://onetimelink.me' },
-        mainEntityOfPage: 'https://onetimelink.me/blog/database-password-security',
+        author: { '@type': 'Organization', name: '1time.io', url: 'https://1time.io' },
+        publisher: { '@type': 'Organization', name: '1time.io', url: 'https://1time.io' },
+        mainEntityOfPage: 'https://1time.io/blog/database-password-security',
     },
     {
         '@context': 'https://schema.org',
         '@type': 'BreadcrumbList',
         itemListElement: [
-            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://onetimelink.me' },
-            { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://onetimelink.me/blog' },
+            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://1time.io' },
+            { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://1time.io/blog' },
             { '@type': 'ListItem', position: 3, name: 'Database Password Security' },
         ],
     },

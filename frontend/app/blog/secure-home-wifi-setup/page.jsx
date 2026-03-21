@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 export const metadata = {
-    title: 'How to Set Up a Secure Home WiFi Network — onetimelink.me',
+    title: 'How to Set Up a Secure Home WiFi Network — 1time.io',
     description: 'Step-by-step guide to securing your home WiFi network. Covers strong passwords, WPA3, guest networks, and router settings. Includes a free WiFi password generator.',
     alternates: { canonical: '/blog/secure-home-wifi-setup' },
     openGraph: {
@@ -25,16 +25,16 @@ const jsonLd = [
         description: 'Step-by-step guide to securing your home WiFi network with strong passwords, WPA3, and proper router configuration.',
         datePublished: '2026-03-18',
         dateModified: '2026-03-18',
-        author: { '@type': 'Organization', name: 'onetimelink.me', url: 'https://onetimelink.me' },
-        publisher: { '@type': 'Organization', name: 'onetimelink.me', url: 'https://onetimelink.me' },
-        mainEntityOfPage: 'https://onetimelink.me/blog/secure-home-wifi-setup',
+        author: { '@type': 'Organization', name: '1time.io', url: 'https://1time.io' },
+        publisher: { '@type': 'Organization', name: '1time.io', url: 'https://1time.io' },
+        mainEntityOfPage: 'https://1time.io/blog/secure-home-wifi-setup',
     },
     {
         '@context': 'https://schema.org',
         '@type': 'BreadcrumbList',
         itemListElement: [
-            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://onetimelink.me' },
-            { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://onetimelink.me/blog' },
+            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://1time.io' },
+            { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://1time.io/blog' },
             { '@type': 'ListItem', position: 3, name: 'Secure Home WiFi Setup' },
         ],
     },

@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 export const metadata = {
-    title: 'How to Share Passwords Securely with Your Team — onetimelink.me',
+    title: 'How to Share Passwords Securely with Your Team — 1time.io',
     description: 'Learn why sharing passwords via Slack, email, or spreadsheets is dangerous and discover secure alternatives like encrypted one-time links, password managers, and more.',
     alternates: { canonical: '/blog/how-to-share-passwords-securely' },
     openGraph: {
@@ -25,16 +25,16 @@ const jsonLd = [
         description: 'Learn why sharing passwords via Slack, email, or spreadsheets is dangerous and discover secure alternatives like encrypted one-time links, password managers, and more.',
         datePublished: '2025-03-01',
         dateModified: '2026-03-18',
-        author: { '@type': 'Organization', name: 'onetimelink.me', url: 'https://onetimelink.me' },
-        publisher: { '@type': 'Organization', name: 'onetimelink.me', url: 'https://onetimelink.me' },
-        mainEntityOfPage: 'https://onetimelink.me/blog/how-to-share-passwords-securely',
+        author: { '@type': 'Organization', name: '1time.io', url: 'https://1time.io' },
+        publisher: { '@type': 'Organization', name: '1time.io', url: 'https://1time.io' },
+        mainEntityOfPage: 'https://1time.io/blog/how-to-share-passwords-securely',
     },
     {
         '@context': 'https://schema.org',
         '@type': 'BreadcrumbList',
         itemListElement: [
-            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://onetimelink.me' },
-            { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://onetimelink.me/blog' },
+            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://1time.io' },
+            { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://1time.io/blog' },
             { '@type': 'ListItem', position: 3, name: 'How to Share Passwords Securely' },
         ],
     },
@@ -140,7 +140,7 @@ export default function Article() {
                         <div className="diagram-step">
                             <span className="diagram-step-icon">🔑</span>
                             <span className="diagram-step-label">Paste password</span>
-                            <span className="diagram-step-desc">Into onetimelink.me</span>
+                            <span className="diagram-step-desc">Into 1time.io</span>
                         </div>
                         <span className="diagram-arrow">→</span>
                         <div className="diagram-step diagram-step-success">
@@ -278,7 +278,7 @@ export default function Article() {
                         <span>Why emailing passwords is dangerous and what to do instead.</span>
                     </Link>
                     <Link href="/blog/onetimesecret-alternative" className="related-article-card">
-                        <span>onetimelink.me vs OneTimeSecret</span>
+                        <span>1time.io vs OneTimeSecret</span>
                         <span>A transparent feature-by-feature comparison.</span>
                     </Link>
                 </div>

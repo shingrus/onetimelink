@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 export const metadata = {
-    title: 'How to Send Passwords Securely Over Email — onetimelink.me',
+    title: 'How to Send Passwords Securely Over Email — 1time.io',
     description: 'Learn why emailing passwords is dangerous and discover safe alternatives. Use encrypted one-time links to share passwords over email without exposing them.',
     alternates: { canonical: '/blog/how-to-send-passwords-over-email' },
     openGraph: {
@@ -25,16 +25,16 @@ const jsonLd = [
         description: 'Learn why emailing passwords is dangerous and discover safe alternatives. Use encrypted one-time links to share passwords over email without exposing them.',
         datePublished: '2026-03-18',
         dateModified: '2026-03-18',
-        author: { '@type': 'Organization', name: 'onetimelink.me', url: 'https://onetimelink.me' },
-        publisher: { '@type': 'Organization', name: 'onetimelink.me', url: 'https://onetimelink.me' },
-        mainEntityOfPage: 'https://onetimelink.me/blog/how-to-send-passwords-over-email',
+        author: { '@type': 'Organization', name: '1time.io', url: 'https://1time.io' },
+        publisher: { '@type': 'Organization', name: '1time.io', url: 'https://1time.io' },
+        mainEntityOfPage: 'https://1time.io/blog/how-to-send-passwords-over-email',
     },
     {
         '@context': 'https://schema.org',
         '@type': 'BreadcrumbList',
         itemListElement: [
-            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://onetimelink.me' },
-            { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://onetimelink.me/blog' },
+            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://1time.io' },
+            { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://1time.io/blog' },
             { '@type': 'ListItem', position: 3, name: 'How to Send Passwords Over Email' },
         ],
     },
@@ -111,7 +111,7 @@ export default function Article() {
                     encrypted one-time link. The workflow is simple:
                 </p>
                 <ol>
-                    <li>Go to <Link href="/">onetimelink.me</Link> and paste the password.</li>
+                    <li>Go to <Link href="/">1time.io</Link> and paste the password.</li>
                     <li>Copy the generated encrypted link.</li>
                     <li>Paste the link into your email instead of the actual password.</li>
                     <li>The recipient clicks the link, sees the password, and the link self-destructs.</li>
@@ -126,7 +126,7 @@ export default function Article() {
 
                 <h3>Step 1: Create the encrypted link</h3>
                 <p>
-                    Open <Link href="/">onetimelink.me</Link> in your browser. Paste the password,
+                    Open <Link href="/">1time.io</Link> in your browser. Paste the password,
                     API key, or credential into the text field. Optionally set a short expiration time
                     (15 minutes is usually enough for email) and add a passphrase for extra protection.
                 </p>

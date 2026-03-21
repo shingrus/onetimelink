@@ -17,7 +17,7 @@ export default function Header() {
                     <path d="M24 28V22a8 8 0 1 1 16 0v6" fill="none" stroke="#fff" strokeWidth="5" strokeLinecap="round"/>
                     <circle cx="32" cy="40" r="4" fill="currentColor"/>
                 </svg>
-                <span className="app-logo-text">onetime<span>link</span></span>
+                <span className="app-logo-text">1time<span>io</span></span>
             </Link>
             <nav className="app-nav">
                 <Link
@@ -36,7 +36,7 @@ export default function Header() {
                 )}
                 <a
                     className="app-nav-icon"
-                    href="https://github.com/shingrus/onetimelink"
+                    href="https://github.com/shingrus/1time"
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="View on GitHub"

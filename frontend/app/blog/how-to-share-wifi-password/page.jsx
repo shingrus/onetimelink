@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 export const metadata = {
-    title: 'How to Share Your WiFi Password Securely — onetimelink.me',
+    title: 'How to Share Your WiFi Password Securely — 1time.io',
     description: 'Learn the safest ways to share your WiFi password with guests, Airbnb visitors, and coworkers without exposing your network to security risks.',
     alternates: { canonical: '/blog/how-to-share-wifi-password' },
     openGraph: {
@@ -25,16 +25,16 @@ const jsonLd = [
         description: 'Learn the safest ways to share your WiFi password with guests, Airbnb visitors, and coworkers without exposing your network to security risks.',
         datePublished: '2026-03-18',
         dateModified: '2026-03-18',
-        author: { '@type': 'Organization', name: 'onetimelink.me', url: 'https://onetimelink.me' },
-        publisher: { '@type': 'Organization', name: 'onetimelink.me', url: 'https://onetimelink.me' },
-        mainEntityOfPage: 'https://onetimelink.me/blog/how-to-share-wifi-password',
+        author: { '@type': 'Organization', name: '1time.io', url: 'https://1time.io' },
+        publisher: { '@type': 'Organization', name: '1time.io', url: 'https://1time.io' },
+        mainEntityOfPage: 'https://1time.io/blog/how-to-share-wifi-password',
     },
     {
         '@context': 'https://schema.org',
         '@type': 'BreadcrumbList',
         itemListElement: [
-            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://onetimelink.me' },
-            { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://onetimelink.me/blog' },
+            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://1time.io' },
+            { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://1time.io/blog' },
             { '@type': 'ListItem', position: 3, name: 'How to Share WiFi Password' },
         ],
     },
@@ -73,7 +73,7 @@ export default function Article() {
 
                 <h3>1. Send a Self-Destructing Link</h3>
                 <p>
-                    The simplest secure approach: paste your WiFi password into <Link href="/">onetimelink.me</Link>,
+                    The simplest secure approach: paste your WiFi password into <Link href="/">1time.io</Link>,
                     get an encrypted link, and send it via text or email. The recipient opens it, copies
                     the password, connects to WiFi, and the link self-destructs. No trace left in any
                     message history.

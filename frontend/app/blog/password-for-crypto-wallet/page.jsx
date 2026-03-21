@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 export const metadata = {
-    title: 'How to Create a Strong Password for Your Crypto Wallet — onetimelink.me',
+    title: 'How to Create a Strong Password for Your Crypto Wallet — 1time.io',
     description: 'Learn why crypto wallets need the strongest passwords possible and how to generate one that resists brute-force attacks. Includes a free crypto-grade password generator.',
     alternates: { canonical: '/blog/password-for-crypto-wallet' },
     openGraph: {
@@ -25,16 +25,16 @@ const jsonLd = [
         description: 'Learn why crypto wallets need the strongest passwords possible and how to generate one that resists brute-force attacks.',
         datePublished: '2026-03-18',
         dateModified: '2026-03-18',
-        author: { '@type': 'Organization', name: 'onetimelink.me', url: 'https://onetimelink.me' },
-        publisher: { '@type': 'Organization', name: 'onetimelink.me', url: 'https://onetimelink.me' },
-        mainEntityOfPage: 'https://onetimelink.me/blog/password-for-crypto-wallet',
+        author: { '@type': 'Organization', name: '1time.io', url: 'https://1time.io' },
+        publisher: { '@type': 'Organization', name: '1time.io', url: 'https://1time.io' },
+        mainEntityOfPage: 'https://1time.io/blog/password-for-crypto-wallet',
     },
     {
         '@context': 'https://schema.org',
         '@type': 'BreadcrumbList',
         itemListElement: [
-            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://onetimelink.me' },
-            { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://onetimelink.me/blog' },
+            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://1time.io' },
+            { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://1time.io/blog' },
             { '@type': 'ListItem', position: 3, name: 'Crypto Wallet Password' },
         ],
     },

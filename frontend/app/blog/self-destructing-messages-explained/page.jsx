@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 export const metadata = {
-    title: 'Self-Destructing Messages — How They Actually Work — onetimelink.me',
+    title: 'Self-Destructing Messages — How They Actually Work — 1time.io',
     description: 'Learn how self-destructing messages work under the hood: encryption, one-time access, and permanent deletion. Plus why most "disappearing message" apps are less private than they claim.',
     alternates: { canonical: '/blog/self-destructing-messages-explained' },
     openGraph: {
@@ -25,16 +25,16 @@ const jsonLd = [
         description: 'Learn how self-destructing messages work under the hood: encryption, one-time access, and permanent deletion.',
         datePublished: '2025-03-01',
         dateModified: '2026-03-18',
-        author: { '@type': 'Organization', name: 'onetimelink.me', url: 'https://onetimelink.me' },
-        publisher: { '@type': 'Organization', name: 'onetimelink.me', url: 'https://onetimelink.me' },
-        mainEntityOfPage: 'https://onetimelink.me/blog/self-destructing-messages-explained',
+        author: { '@type': 'Organization', name: '1time.io', url: 'https://1time.io' },
+        publisher: { '@type': 'Organization', name: '1time.io', url: 'https://1time.io' },
+        mainEntityOfPage: 'https://1time.io/blog/self-destructing-messages-explained',
     },
     {
         '@context': 'https://schema.org',
         '@type': 'BreadcrumbList',
         itemListElement: [
-            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://onetimelink.me' },
-            { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://onetimelink.me/blog' },
+            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://1time.io' },
+            { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://1time.io/blog' },
             { '@type': 'ListItem', position: 3, name: 'Self-Destructing Messages — How They Actually Work' },
         ],
     },
@@ -145,10 +145,10 @@ export default function Article() {
                     </tbody>
                 </table>
 
-                <h2>Under the Hood: How onetimelink.me Self-Destructs</h2>
+                <h2>Under the Hood: How 1time.io Self-Destructs</h2>
                 <p>
                     Let us walk through exactly what happens when you create and share a self-destructing
-                    message on onetimelink.me, step by step.
+                    message on 1time.io, step by step.
                 </p>
 
                 <div className="diagram">
@@ -295,7 +295,7 @@ export default function Article() {
                 <h2>Related Articles</h2>
                 <div className="related-articles-grid">
                     <Link href="/blog/privnote-alternative" className="related-article-card">
-                        <span>onetimelink.me vs Privnote</span>
+                        <span>1time.io vs Privnote</span>
                         <span>Why encryption matters more than just deleting messages.</span>
                     </Link>
                     <Link href="/blog/how-to-share-passwords-securely" className="related-article-card">
@@ -303,7 +303,7 @@ export default function Article() {
                         <span>The complete guide to secure credential sharing.</span>
                     </Link>
                     <Link href="/blog/onetimesecret-alternative" className="related-article-card">
-                        <span>onetimelink.me vs OneTimeSecret</span>
+                        <span>1time.io vs OneTimeSecret</span>
                         <span>A transparent feature-by-feature comparison.</span>
                     </Link>
                 </div>

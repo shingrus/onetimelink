@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 export const metadata = {
-    title: 'How to Share API Keys Securely with Your Team — onetimelink.me',
+    title: 'How to Share API Keys Securely with Your Team — 1time.io',
     description: 'Learn how to share API keys, tokens, and secrets with developers safely. Stop pasting credentials in Slack and use encrypted one-time links instead.',
     alternates: { canonical: '/blog/how-to-share-api-keys' },
     openGraph: {
@@ -25,16 +25,16 @@ const jsonLd = [
         description: 'Learn how to share API keys, tokens, and secrets with developers safely. Stop pasting credentials in Slack and use encrypted one-time links instead.',
         datePublished: '2026-03-18',
         dateModified: '2026-03-18',
-        author: { '@type': 'Organization', name: 'onetimelink.me', url: 'https://onetimelink.me' },
-        publisher: { '@type': 'Organization', name: 'onetimelink.me', url: 'https://onetimelink.me' },
-        mainEntityOfPage: 'https://onetimelink.me/blog/how-to-share-api-keys',
+        author: { '@type': 'Organization', name: '1time.io', url: 'https://1time.io' },
+        publisher: { '@type': 'Organization', name: '1time.io', url: 'https://1time.io' },
+        mainEntityOfPage: 'https://1time.io/blog/how-to-share-api-keys',
     },
     {
         '@context': 'https://schema.org',
         '@type': 'BreadcrumbList',
         itemListElement: [
-            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://onetimelink.me' },
-            { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://onetimelink.me/blog' },
+            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://1time.io' },
+            { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://1time.io/blog' },
             { '@type': 'ListItem', position: 3, name: 'How to Share API Keys Securely' },
         ],
     },
@@ -100,7 +100,7 @@ export default function Article() {
                     fastest secure option.
                 </p>
                 <ol>
-                    <li>Paste the API key into <Link href="/">onetimelink.me</Link>.</li>
+                    <li>Paste the API key into <Link href="/">1time.io</Link>.</li>
                     <li>Set a short expiration (5-15 minutes is usually plenty).</li>
                     <li>Send the link to your teammate via any channel.</li>
                     <li>The key is destroyed after they view it. Nothing persists.</li>
@@ -173,7 +173,7 @@ export default function Article() {
                         <span>Why Slack DMs are not as private as you think.</span>
                     </Link>
                     <Link href="/blog/password-pusher-alternative" className="related-article-card">
-                        <span>onetimelink.me vs Password Pusher</span>
+                        <span>1time.io vs Password Pusher</span>
                         <span>Two open-source tools compared for developer workflows.</span>
                     </Link>
                 </div>

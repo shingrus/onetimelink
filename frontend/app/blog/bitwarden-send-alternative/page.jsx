@@ -1,18 +1,18 @@
 import Link from 'next/link';
 
 export const metadata = {
-    title: 'onetimelink.me vs Bitwarden Send — Better Alternative — onetimelink.me',
-    description: 'Compare onetimelink.me and Bitwarden Send for sharing secrets securely. See why a dedicated one-time link tool is faster and easier than Bitwarden Send.',
+    title: '1time.io vs Bitwarden Send — Better Alternative — 1time.io',
+    description: 'Compare 1time.io and Bitwarden Send for sharing secrets securely. See why a dedicated one-time link tool is faster and easier than Bitwarden Send.',
     alternates: { canonical: '/blog/bitwarden-send-alternative' },
     openGraph: {
-        title: 'onetimelink.me vs Bitwarden Send — A Practical Comparison',
+        title: '1time.io vs Bitwarden Send — A Practical Comparison',
         description: 'Bitwarden Send vs a dedicated one-time link tool. Which is better for sharing passwords and secrets?',
         url: '/blog/bitwarden-send-alternative',
-        images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'onetimelink.me vs Bitwarden Send' }],
+        images: [{ url: '/og-image.png', width: 1200, height: 630, alt: '1time.io vs Bitwarden Send' }],
     },
     twitter: {
         card: 'summary_large_image',
-        title: 'onetimelink.me vs Bitwarden Send — A Practical Comparison',
+        title: '1time.io vs Bitwarden Send — A Practical Comparison',
         description: 'Bitwarden Send vs a dedicated one-time link tool. Which is better for sharing passwords and secrets?',
     },
 };
@@ -21,21 +21,21 @@ const jsonLd = [
     {
         '@context': 'https://schema.org',
         '@type': 'Article',
-        headline: 'onetimelink.me vs Bitwarden Send — A Practical Comparison',
-        description: 'Compare onetimelink.me and Bitwarden Send for sharing secrets securely. See why a dedicated one-time link tool is faster and easier than Bitwarden Send.',
+        headline: '1time.io vs Bitwarden Send — A Practical Comparison',
+        description: 'Compare 1time.io and Bitwarden Send for sharing secrets securely. See why a dedicated one-time link tool is faster and easier than Bitwarden Send.',
         datePublished: '2026-03-18',
         dateModified: '2026-03-18',
-        author: { '@type': 'Organization', name: 'onetimelink.me', url: 'https://onetimelink.me' },
-        publisher: { '@type': 'Organization', name: 'onetimelink.me', url: 'https://onetimelink.me' },
-        mainEntityOfPage: 'https://onetimelink.me/blog/bitwarden-send-alternative',
+        author: { '@type': 'Organization', name: '1time.io', url: 'https://1time.io' },
+        publisher: { '@type': 'Organization', name: '1time.io', url: 'https://1time.io' },
+        mainEntityOfPage: 'https://1time.io/blog/bitwarden-send-alternative',
     },
     {
         '@context': 'https://schema.org',
         '@type': 'BreadcrumbList',
         itemListElement: [
-            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://onetimelink.me' },
-            { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://onetimelink.me/blog' },
-            { '@type': 'ListItem', position: 3, name: 'onetimelink.me vs Bitwarden Send' },
+            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://1time.io' },
+            { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://1time.io/blog' },
+            { '@type': 'ListItem', position: 3, name: '1time.io vs Bitwarden Send' },
         ],
     },
 ];
@@ -48,7 +48,7 @@ export default function Article() {
             ))}
             <div className="article-header">
                 <span className="article-tag">Comparison</span>
-                <h1>onetimelink.me vs Bitwarden Send — A Practical Comparison</h1>
+                <h1>1time.io vs Bitwarden Send — A Practical Comparison</h1>
                 <p className="article-subtitle">
                     Bitwarden is an excellent password manager. But when you just need to send a secret
                     to someone quickly, Bitwarden Send adds friction. Here is how the two compare for
@@ -85,7 +85,7 @@ export default function Article() {
                     <thead>
                         <tr>
                             <th>Feature</th>
-                            <th>onetimelink.me</th>
+                            <th>1time.io</th>
                             <th>Bitwarden Send</th>
                         </tr>
                     </thead>
@@ -145,7 +145,7 @@ export default function Article() {
                     <li><strong>Access controls.</strong> You can set maximum access counts, add a password, and set custom expiration dates with granular control.</li>
                 </ul>
 
-                <h2>Where onetimelink.me Wins</h2>
+                <h2>Where 1time.io Wins</h2>
                 <ul>
                     <li><strong>Zero friction.</strong> Open the page, paste a secret, get a link. No account, no login, no app to install. Takes under 10 seconds.</li>
                     <li><strong>True zero-knowledge.</strong> The encryption key exists only in the URL fragment (after the #). It is never sent to the server — not during creation, not during retrieval. The server is cryptographically unable to read your secret.</li>
@@ -160,7 +160,7 @@ export default function Article() {
                     already on Bitwarden, and you want everything in one ecosystem.
                 </p>
                 <p>
-                    <strong>Use onetimelink.me</strong> for everything else — quick password shares,
+                    <strong>Use 1time.io</strong> for everything else — quick password shares,
                     sharing with external people, situations where you do not want to create an account,
                     or when you need a link in under 10 seconds.
                 </p>
@@ -169,7 +169,7 @@ export default function Article() {
                     <span className="callout-icon">💡</span>
                     <p>
                         <strong>They are not mutually exclusive.</strong> Use Bitwarden as your password
-                        manager and onetimelink.me when you need to quickly share a secret with someone
+                        manager and 1time.io when you need to quickly share a secret with someone
                         outside your Bitwarden organization.
                     </p>
                 </div>
@@ -186,11 +186,11 @@ export default function Article() {
                 <h2>Related Articles</h2>
                 <div className="related-articles-grid">
                     <Link href="/blog/onetimesecret-alternative" className="related-article-card">
-                        <span>onetimelink.me vs OneTimeSecret</span>
+                        <span>1time.io vs OneTimeSecret</span>
                         <span>A transparent feature-by-feature comparison.</span>
                     </Link>
                     <Link href="/blog/privnote-alternative" className="related-article-card">
-                        <span>onetimelink.me vs Privnote</span>
+                        <span>1time.io vs Privnote</span>
                         <span>Why encryption matters more than disappearing messages.</span>
                     </Link>
                     <Link href="/blog/how-to-share-passwords-securely" className="related-article-card">

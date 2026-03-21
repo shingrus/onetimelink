@@ -1,4 +1,4 @@
-export const siteHostDefault = 'onetimelink.me';
+export const siteHostDefault = '1time.io';
 export const siteHost = process.env.NEXT_PUBLIC_SITE_HOST || siteHostDefault;
 export const siteUrl = `https://${siteHost}`;
 

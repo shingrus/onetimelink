@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 export const metadata = {
-    title: 'Is Slack Safe for Sharing Passwords? (No, and Here Is Why) — onetimelink.me',
+    title: 'Is Slack Safe for Sharing Passwords? (No, and Here Is Why) — 1time.io',
     description: 'Slack stores all messages indefinitely and admins can read DMs. Learn why Slack is dangerous for sharing passwords and what secure alternatives exist.',
     alternates: { canonical: '/blog/is-slack-safe-for-passwords' },
     openGraph: {
@@ -25,16 +25,16 @@ const jsonLd = [
         description: 'Slack stores all messages indefinitely and admins can read DMs. Learn why Slack is dangerous for sharing passwords and what secure alternatives exist.',
         datePublished: '2026-03-18',
         dateModified: '2026-03-18',
-        author: { '@type': 'Organization', name: 'onetimelink.me', url: 'https://onetimelink.me' },
-        publisher: { '@type': 'Organization', name: 'onetimelink.me', url: 'https://onetimelink.me' },
-        mainEntityOfPage: 'https://onetimelink.me/blog/is-slack-safe-for-passwords',
+        author: { '@type': 'Organization', name: '1time.io', url: 'https://1time.io' },
+        publisher: { '@type': 'Organization', name: '1time.io', url: 'https://1time.io' },
+        mainEntityOfPage: 'https://1time.io/blog/is-slack-safe-for-passwords',
     },
     {
         '@context': 'https://schema.org',
         '@type': 'BreadcrumbList',
         itemListElement: [
-            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://onetimelink.me' },
-            { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://onetimelink.me/blog' },
+            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://1time.io' },
+            { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://1time.io/blog' },
             { '@type': 'ListItem', position: 3, name: 'Is Slack Safe for Passwords?' },
         ],
     },
@@ -134,7 +134,7 @@ export default function Article() {
                     password in the message. Replace the password with an encrypted one-time link:
                 </p>
                 <ol>
-                    <li>Paste the password into <Link href="/">onetimelink.me</Link>.</li>
+                    <li>Paste the password into <Link href="/">1time.io</Link>.</li>
                     <li>Copy the encrypted one-time link.</li>
                     <li>Send the link in the Slack DM instead of the password.</li>
                     <li>The recipient clicks it, sees the password, and the link is permanently destroyed.</li>

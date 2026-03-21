@@ -1,18 +1,18 @@
 import Link from 'next/link';
 
 export const metadata = {
-    title: 'onetimelink.me vs OneTimeSecret — Honest Comparison — onetimelink.me',
-    description: 'An honest, transparent comparison between onetimelink.me and OneTimeSecret (onetimesecret.com). Compare encryption, privacy, features, pricing, and open-source status side by side.',
+    title: '1time.io vs OneTimeSecret — Honest Comparison — 1time.io',
+    description: 'An honest, transparent comparison between 1time.io and OneTimeSecret (onetimesecret.com). Compare encryption, privacy, features, pricing, and open-source status side by side.',
     alternates: { canonical: '/blog/onetimesecret-alternative' },
     openGraph: {
-        title: 'onetimelink.me vs OneTimeSecret — A Transparent Comparison',
+        title: '1time.io vs OneTimeSecret — A Transparent Comparison',
         description: 'Side-by-side comparison of two one-time secret sharing tools. Encryption, privacy, features, and pricing.',
         url: '/blog/onetimesecret-alternative',
-        images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'onetimelink.me vs OneTimeSecret' }],
+        images: [{ url: '/og-image.png', width: 1200, height: 630, alt: '1time.io vs OneTimeSecret' }],
     },
     twitter: {
         card: 'summary_large_image',
-        title: 'onetimelink.me vs OneTimeSecret — A Transparent Comparison',
+        title: '1time.io vs OneTimeSecret — A Transparent Comparison',
         description: 'Side-by-side comparison of two one-time secret sharing tools. Encryption, privacy, features, and pricing.',
     },
 };
@@ -21,21 +21,21 @@ const jsonLd = [
     {
         '@context': 'https://schema.org',
         '@type': 'Article',
-        headline: 'onetimelink.me vs OneTimeSecret — A Transparent Comparison',
-        description: 'An honest, transparent comparison between onetimelink.me and OneTimeSecret (onetimesecret.com). Compare encryption, privacy, features, pricing, and open-source status side by side.',
+        headline: '1time.io vs OneTimeSecret — A Transparent Comparison',
+        description: 'An honest, transparent comparison between 1time.io and OneTimeSecret (onetimesecret.com). Compare encryption, privacy, features, pricing, and open-source status side by side.',
         datePublished: '2025-03-01',
         dateModified: '2026-03-18',
-        author: { '@type': 'Organization', name: 'onetimelink.me', url: 'https://onetimelink.me' },
-        publisher: { '@type': 'Organization', name: 'onetimelink.me', url: 'https://onetimelink.me' },
-        mainEntityOfPage: 'https://onetimelink.me/blog/onetimesecret-alternative',
+        author: { '@type': 'Organization', name: '1time.io', url: 'https://1time.io' },
+        publisher: { '@type': 'Organization', name: '1time.io', url: 'https://1time.io' },
+        mainEntityOfPage: 'https://1time.io/blog/onetimesecret-alternative',
     },
     {
         '@context': 'https://schema.org',
         '@type': 'BreadcrumbList',
         itemListElement: [
-            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://onetimelink.me' },
-            { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://onetimelink.me/blog' },
-            { '@type': 'ListItem', position: 3, name: 'onetimelink.me vs OneTimeSecret' },
+            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://1time.io' },
+            { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://1time.io/blog' },
+            { '@type': 'ListItem', position: 3, name: '1time.io vs OneTimeSecret' },
         ],
     },
 ];
@@ -48,10 +48,10 @@ export default function Article() {
             ))}
             <div className="article-header">
                 <span className="article-tag">Comparison</span>
-                <h1>onetimelink.me vs OneTimeSecret — A Transparent Comparison</h1>
+                <h1>1time.io vs OneTimeSecret — A Transparent Comparison</h1>
                 <p className="article-subtitle">
                     OneTimeSecret is the most well-known one-time secret sharing tool. We built
-                    onetimelink.me to address what we see as gaps in its approach. Here is an honest
+                    1time.io to address what we see as gaps in its approach. Here is an honest
                     comparison — where we are better, where we are similar, and where OneTimeSecret
                     has the edge.
                 </p>
@@ -101,7 +101,7 @@ export default function Article() {
                 </div>
 
                 <div className="diagram">
-                    <div className="diagram-title">onetimelink.me encryption model</div>
+                    <div className="diagram-title">1time.io encryption model</div>
                     <div className="diagram-flow">
                         <div className="diagram-step">
                             <span className="diagram-step-icon">✍️</span>
@@ -134,7 +134,7 @@ export default function Article() {
                     or have it exposed in a server breach.
                 </p>
                 <p>
-                    With onetimelink.me, encryption happens in your browser using the Web Crypto API
+                    With 1time.io, encryption happens in your browser using the Web Crypto API
                     before anything leaves your device. The server only ever receives ciphertext that
                     it cannot decrypt. This is <strong>true zero-knowledge architecture</strong>.
                 </p>
@@ -143,7 +143,7 @@ export default function Article() {
                     <span className="callout-icon">💡</span>
                     <p>
                         <strong>What does this mean practically?</strong> If someone compromised the
-                        onetimelink.me server, they would get encrypted data with no way to decrypt it.
+                        1time.io server, they would get encrypted data with no way to decrypt it.
                         The encryption keys exist only in the URLs shared between sender and recipient,
                         never on the server.
                     </p>
@@ -155,7 +155,7 @@ export default function Article() {
                     <thead>
                         <tr>
                             <th>Feature</th>
-                            <th>onetimelink.me</th>
+                            <th>1time.io</th>
                             <th>OneTimeSecret</th>
                         </tr>
                     </thead>
@@ -228,7 +228,7 @@ export default function Article() {
                     <li><strong>Custom branding</strong> on paid plans. Enterprise users can white-label the interface.</li>
                 </ul>
 
-                <h2>Where onetimelink.me Has the Edge</h2>
+                <h2>Where 1time.io Has the Edge</h2>
                 <ul>
                     <li><strong>True end-to-end encryption.</strong> The biggest differentiator. Your secrets are encrypted in the browser, not on the server. The server is cryptographically unable to read your data.</li>
                     <li><strong>No account wall.</strong> Full functionality with no signup. OneTimeSecret limits anonymous users to 25 characters.</li>
@@ -241,7 +241,7 @@ export default function Article() {
                 <p>
                     If you need an API or enterprise features like custom branding, OneTimeSecret is a
                     solid choice. But if your priority is <strong>maximum privacy and genuine
-                    zero-knowledge encryption</strong>, onetimelink.me has a fundamental architectural
+                    zero-knowledge encryption</strong>, 1time.io has a fundamental architectural
                     advantage: the server never sees your secrets, period.
                 </p>
                 <p>
@@ -253,7 +253,7 @@ export default function Article() {
                     <span className="callout-icon">💡</span>
                     <p>
                         <strong>Switching is easy.</strong> There is no account to migrate, no data to
-                        transfer. Just bookmark onetimelink.me and start using it for your next secret
+                        transfer. Just bookmark 1time.io and start using it for your next secret
                         share.
                     </p>
                 </div>
@@ -270,11 +270,11 @@ export default function Article() {
                 <h2>Related Articles</h2>
                 <div className="related-articles-grid">
                     <Link href="/blog/privnote-alternative" className="related-article-card">
-                        <span>onetimelink.me vs Privnote</span>
+                        <span>1time.io vs Privnote</span>
                         <span>Why encryption matters more than disappearing messages.</span>
                     </Link>
                     <Link href="/blog/bitwarden-send-alternative" className="related-article-card">
-                        <span>onetimelink.me vs Bitwarden Send</span>
+                        <span>1time.io vs Bitwarden Send</span>
                         <span>Dedicated tool vs password manager feature.</span>
                     </Link>
                     <Link href="/blog/how-to-share-passwords-securely" className="related-article-card">
