@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-APP_USER="${APP_USER:-1time}"
+APP_USER="${APP_USER:-onetime}"
 APP_GROUP="${APP_GROUP:-$APP_USER}"
 SERVICE_NAME="${SERVICE_NAME:-1time}"
 INSTALL_ROOT="${INSTALL_ROOT:-/opt/1time}"
