@@ -10,7 +10,7 @@ Group=1time
 WorkingDirectory=/opt/1time/bin
 Environment=REDISHOST=127.0.0.1:6379
 Environment=REDISPASS=
-ExecStart=/opt/1time/bin/1time
+ExecStart=/opt/1time/bin/1time-api
 Restart=always
 RestartSec=3
 

@@ -1,4 +1,4 @@
-PROJECT_NAME=1time
+PROJECT_NAME=1time-api
 BINARIES_DIRECTORY=bin
 FRONTEND_DIRECTORY=frontend
 LDFLAGS = "-w -s"
@@ -16,4 +16,4 @@ frontend_build:
 
 build: clean frontend_build
 	mkdir -p ${BINARIES_DIRECTORY}
-	go build -ldflags ${LDFLAGS} -o ${BINARIES_DIRECTORY}/${PROJECT_NAME}
+	GOCACHE=/tmp/go-cache go build -ldflags ${LDFLAGS} -o ${BINARIES_DIRECTORY}/${PROJECT_NAME}

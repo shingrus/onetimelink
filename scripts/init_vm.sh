@@ -12,7 +12,7 @@ REDIS_HOST="${REDIS_HOST:-127.0.0.1:6379}"
 REDIS_PASS="${REDIS_PASS:-}"
 
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-BIN_SOURCE="${REPO_ROOT}/bin/1time"
+BIN_SOURCE="${REPO_ROOT}/bin/1time-api"
 FRONTEND_SOURCE="${REPO_ROOT}/frontend/build"
 UNIT_SOURCE="${REPO_ROOT}/configs/systemd/1time.service"
 UNIT_TARGET="/etc/systemd/system/${SERVICE_NAME}.service"
@@ -48,7 +48,7 @@ fi
 install -d -m 700 -o "${APP_USER}" -g "${APP_GROUP}" "/home/${APP_USER}/.ssh"
 install -d -m 755 -o "${APP_USER}" -g "${APP_GROUP}" "${INSTALL_ROOT}" "${BIN_DIR}" "${STATIC_ROOT}"
 
-install -m 0755 -o "${APP_USER}" -g "${APP_GROUP}" "${BIN_SOURCE}" "${BIN_DIR}/1time"
+install -m 0755 -o "${APP_USER}" -g "${APP_GROUP}" "${BIN_SOURCE}" "${BIN_DIR}/1time-api"
 
 if [[ -d "${FRONTEND_SOURCE}" ]]; then
     rsync -a --delete "${FRONTEND_SOURCE}/" "${STATIC_ROOT}/"
@@ -66,7 +66,7 @@ sed \
     -e "s#^WorkingDirectory=.*#WorkingDirectory=${BIN_DIR}#" \
     -e "s#^Environment=REDISHOST=.*#Environment=REDISHOST=${REDIS_HOST}#" \
     -e "s#^Environment=REDISPASS=.*#Environment=REDISPASS=${REDIS_PASS}#" \
-    -e "s#^ExecStart=.*#ExecStart=${BIN_DIR}/1time#" \
+    -e "s#^ExecStart=.*#ExecStart=${BIN_DIR}/1time-api#" \
     "${UNIT_SOURCE}" > "${tmp_unit}"
 install -m 0644 "${tmp_unit}" "${UNIT_TARGET}"
 rm -f "${tmp_unit}"
