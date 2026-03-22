@@ -3,7 +3,18 @@
 import {lazy, Suspense, useState, useCallback, useEffect} from "react";
 import Link from "next/link";
 import {copyTextToClipboard, createSecretLink} from '../utils/util';
-import wordlist from '../utils/wordlist';
+
+let _wordlistCache = null;
+function getWordlist() {
+    if (!_wordlistCache) {
+        // Dynamic import returns a promise, but we call this only after the
+        // module has been eagerly fetched in the useEffect below, so by the
+        // time generatePassphrase runs the cache is always populated.
+        throw new Error('Wordlist not loaded yet');
+    }
+    return _wordlistCache;
+}
+const wordlistReady = import('../utils/wordlist').then(m => { _wordlistCache = m.default; });
 
 const ShowNewLink = lazy(() => import('./ShowNewLink'));
 
@@ -309,9 +320,10 @@ function generatePassword(length, options) {
 }
 
 function generatePassphrase(wordCount, separator, capitalize, includeNumber) {
+    const wl = getWordlist();
     const words = [];
     for (let i = 0; i < wordCount; i++) {
-        let word = wordlist[secureRandom(wordlist.length)];
+        let word = wl[secureRandom(wl.length)];
         if (capitalize) {
             word = word.charAt(0).toUpperCase() + word.slice(1);
         }
@@ -365,8 +377,13 @@ export default function PasswordGenerator({ presetPath }) {
         setCopied(false);
         if (mode === 'password') {
             setGenerated(generatePassword(length, options));
-        } else {
+        } else if (_wordlistCache) {
             setGenerated(generatePassphrase(wordCount, separator, capitalize, includeNumber));
+        } else {
+            // Wordlist still loading — wait for it, then generate
+            wordlistReady.then(() => {
+                setGenerated(generatePassphrase(wordCount, separator, capitalize, includeNumber));
+            });
         }
     }, [mode, length, options, wordCount, separator, capitalize, includeNumber]);
 
