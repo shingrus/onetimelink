@@ -3,7 +3,7 @@ import NewMessage from '../components/NewMessage';
 import {siteHost, siteUrl} from '../utils/siteConfig';
 
 export const metadata = {
-    title: `${siteHost} — Free Encrypted One-Time Links for Passwords & Secrets`,
+    title: `${siteHost} - Free Encrypted One-Time Links for Passwords & Secrets`,
     description: 'Send passwords, API keys, and sensitive data through free encrypted one-time links that self-destruct after reading. Zero-knowledge encryption — we never see your data. No signup required.',
     alternates: { canonical: '/' },
     openGraph: {
