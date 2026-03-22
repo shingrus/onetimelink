@@ -9,7 +9,7 @@
 @font-face {
   font-family: 'Bricolage Grotesque Variable';
   font-style: normal;
-  font-display: swap;
+  font-display: optional;
   font-weight: 200 800;
   src: url('/bricolage-grotesque-latin-wght-normal.woff2') format('woff2-variations');
   unicode-range:
@@ -37,7 +37,7 @@
 @font-face {
   font-family: 'Outfit Variable';
   font-style: normal;
-  font-display: swap;
+  font-display: optional;
   font-weight: 100 900;
   src: url('/outfit-latin-wght-normal.woff2') format('woff2-variations');
   unicode-range:
