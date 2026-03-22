@@ -83,7 +83,7 @@ export default function Article() {
                 <ol>
                     <li><strong>Slack or Teams messages</strong> — Stored forever in workspace history, searchable by admins and compliance tools.</li>
                     <li><strong>Git commits</strong> — Even if you delete the key in a later commit, it remains in git history forever unless you rewrite the entire branch.</li>
-                    <li><strong>.env files in shared drives</strong> — No access controls, no audit trail, often shared with the entire team.</li>
+                    <li><strong>.env files in shared drives</strong> - No access controls, no audit trail, often shared with the entire team.</li>
                     <li><strong>Confluence or Notion pages</strong> — Wikis are designed for sharing, not secrets. Anyone with workspace access can find them.</li>
                     <li><strong>GitHub issues or PRs</strong> — Public by default on open source projects. Even on private repos, all collaborators can see them.</li>
                 </ol>

@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 export const metadata = {
-    title: '1time.io vs Bitwarden Send — Better Alternative — 1time.io',
+    title: '1time.io vs Bitwarden Send - Better Alternative - 1time.io',
     description: 'Compare 1time.io and Bitwarden Send for sharing secrets securely. See why a dedicated one-time link tool is faster and easier than Bitwarden Send.',
     alternates: { canonical: '/blog/bitwarden-send-alternative' },
     openGraph: {

@@ -156,6 +156,7 @@ export default function ViewSecretMessage() {
                                 </svg>
                                 {copied ? "Copied!" : "Copy"}
                             </button>
+                            <a href="/" className="btn btn-primary btn-sm">Create your own secret link</a>
                         </div>
                     </div>
                 )}
@@ -195,6 +196,11 @@ export default function ViewSecretMessage() {
                     </div>
                 )}
             </form>
+            <div style={{textAlign: 'center', padding: '24px 0 8px', fontSize: '12px'}}>
+                <a href="https://1time.io" target="_blank" rel="noopener noreferrer" style={{color: 'var(--text-muted)', textDecoration: 'none'}}>
+                    Powered by <strong>1time.io</strong> — zero-knowledge secret sharing
+                </a>
+            </div>
         </div>
     );
 }
