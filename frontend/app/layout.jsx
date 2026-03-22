@@ -74,6 +74,7 @@ export default function RootLayout({children}) {
                         </nav>
                         <p className="app-footer-text">
                             <Link href="/about">About</Link>
+                            {' '} &middot; <Link href="/privacy">Privacy</Link>
                             {showBlog && (
                                 <>
                                     {' '} &middot; <Link href="/blog">Blog</Link>

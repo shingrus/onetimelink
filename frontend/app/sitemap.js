@@ -13,8 +13,9 @@ const coreRoutes = [
     ['/password-generator-16-characters/', 0.8, '2026-03-21'],
     ['/wifi-password-generator/', 0.8, '2026-03-21'],
     ['/api-key-generator/', 0.8, '2026-03-21'],
-    // About
+    // About & legal
     ['/about/', 0.5, '2026-03-21'],
+    ['/privacy/', 0.5, '2026-03-22'],
 ];
 
 const blogRoutes = [
