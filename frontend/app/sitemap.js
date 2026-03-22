@@ -9,7 +9,9 @@ const coreRoutes = [
     // Password generator tools
     ['/password-generator/', 0.9, '2026-03-21'],
     ['/passphrase-generator/', 0.8, '2026-03-21'],
+    ['/password-generator-12-characters/', 0.8, '2026-03-22'],
     ['/password-generator-14-characters/', 0.8, '2026-03-21'],
+    ['/password-generator-15-characters/', 0.8, '2026-03-22'],
     ['/password-generator-16-characters/', 0.8, '2026-03-21'],
     ['/wifi-password-generator/', 0.8, '2026-03-21'],
     ['/api-key-generator/', 0.8, '2026-03-21'],

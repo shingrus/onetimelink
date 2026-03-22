@@ -120,6 +120,64 @@ const PRESETS = {
             { q: 'What separator should I use between words?', a: 'Any separator works. Hyphens are popular because they\'re easy to type. Spaces work if the system allows them. The separator itself adds minimal entropy — it\'s the word count that matters most.' },
         ],
     },
+    '/password-generator-12-characters': {
+        title: '12-Character Password Generator',
+        subtitle: 'Generate a secure 12-character password — the recommended minimum length.',
+        length: 12,
+        mode: 'password',
+        options: { uppercase: true, lowercase: true, numbers: true, symbols: true },
+        seoHeading: 'Generate a 12-Character Password',
+        seoText: 'A 12-character password is the minimum length recommended by NIST and OWASP for strong account security. With a mix of uppercase letters, lowercase letters, numbers, and symbols, a 12-character password provides approximately 78 bits of entropy — enough to resist brute-force attacks with current hardware. This generator creates your password entirely in the browser using cryptographic randomness. Nothing is transmitted to any server.',
+        seoSections: [
+            {
+                heading: 'Why 12 characters is the minimum standard',
+                text: 'For years, 8 characters was considered sufficient. That\'s no longer true. Modern GPU clusters can test billions of password guesses per second, cracking an 8-character password with all character types in under a day. At 12 characters, the same attack would take roughly 5,000 years. That\'s why NIST SP 800-63B, OWASP, and PCI DSS 4.0 all recommend 12 characters as the minimum for randomly generated passwords. If your system only requires 8, use 12 anyway — the extra four characters cost you nothing but provide exponentially more security.',
+            },
+            {
+                heading: 'Crack time by password length',
+                text: 'Assuming all character types (94 possible per position) and 10 billion guesses per second: 8 characters — about 19 hours. 10 characters — about 7 months. 12 characters — about 5,000 years. 14 characters — about 46 million years. 16 characters — about 400 billion years. The jump from 8 to 12 characters is the difference between "crackable over lunch" and "outlasts civilization." If a site requires only 8 characters, you should still use 12 or more.',
+            },
+            {
+                heading: 'When 12 characters is enough — and when it\'s not',
+                text: 'For most everyday accounts — social media, shopping, streaming, forums — a random 12-character password is excellent. The realistic threat for these accounts is credential stuffing (reused passwords from breaches), not brute-force. A unique random 12-character password defeats that. For high-value targets like email, banking, cloud admin consoles, or your password manager master password, step up to 16-20 characters. The extra length provides a safety margin against future advances in computing power.',
+            },
+        ],
+        faq: [
+            { q: 'Is 12 characters enough for a secure password?', a: 'Yes, for most accounts. A 12-character password with mixed character types provides about 78 bits of entropy. Both NIST and OWASP recommend 12+ characters as a minimum. The bigger risk is password reuse, not length — make sure every account has a unique password.' },
+            { q: 'When should I use more than 12 characters?', a: 'For high-value accounts: email, banking, password manager vault, cloud infrastructure, and admin consoles. Use 16+ characters for these. For service accounts and API keys, use 20-32 characters. If your password manager handles it, there\'s no downside to going longer.' },
+            { q: 'How long would it take to crack a 12-character password?', a: 'With all character types enabled and 10 billion guesses per second, approximately 5,000 years. Even advanced GPU clusters won\'t meaningfully reduce that to a practical timeframe. A random 12-character password is safe against brute-force attacks.' },
+            { q: 'Why do some sites still only require 8 characters?', a: 'Legacy policies that haven\'t been updated. The industry consensus moved to 12+ characters years ago. Always use at least 12 regardless of what a site requires — the minimum requirement is about compatibility, not security.' },
+        ],
+    },
+    '/password-generator-15-characters': {
+        title: '15-Character Password Generator',
+        subtitle: 'Generate a strong 15-character password for enterprise and compliance requirements.',
+        length: 15,
+        mode: 'password',
+        options: { uppercase: true, lowercase: true, numbers: true, symbols: true },
+        seoHeading: 'Generate a 15-Character Password',
+        seoText: 'A 15-character password is commonly required by enterprise security policies and compliance frameworks. With all character types enabled, it provides approximately 98 bits of entropy — virtually uncrackable by brute-force. Some Active Directory environments use 15 characters as a security threshold to disable legacy NTLM password hashing. This generator creates passwords locally in your browser using cryptographic randomness, making it safe for corporate and privileged accounts.',
+        seoSections: [
+            {
+                heading: 'Why 15 characters matters for enterprise security',
+                text: 'The 15-character threshold has special significance in Windows enterprise environments. In legacy Active Directory configurations, passwords of 14 characters or fewer could be stored as LM (LAN Manager) hashes — a notoriously weak format crackable in seconds. Passwords of 15+ characters forced the system to use only NTLM hashes, which are significantly stronger. While modern Windows versions disable LM hashing by default, many enterprise policies still mandate 15 characters as a legacy security measure and general best practice.',
+            },
+            {
+                heading: 'Compliance standards and 15-character passwords',
+                text: 'PCI DSS 4.0 requires at least 12 characters for system and service accounts, but many assessors recommend 15-16 as a best practice. SOC 2 auditors commonly look for 15-character minimums on privileged access accounts. CIS Benchmarks for Windows Server recommend 14+ characters for administrator accounts. NIST SP 800-63B doesn\'t set a specific maximum recommendation but emphasizes that longer randomly generated passwords are always preferred. A 15-character policy satisfies or exceeds all major frameworks.',
+            },
+            {
+                heading: 'How 15 characters compares to other lengths',
+                text: 'With all character types (94 per position): 12 characters gives 78 bits of entropy. 14 characters gives 91 bits. 15 characters gives 98 bits. 16 characters gives 105 bits. The jump from 12 to 15 makes the password about 1 million times harder to crack. Compared to 16, you sacrifice 7 bits — negligible in practice. If your policy requires exactly 15, you\'re in excellent security territory. If you have flexibility, 16 is marginally better but 15 is already well beyond any realistic attack.',
+            },
+        ],
+        faq: [
+            { q: 'Why choose exactly 15 characters?', a: 'Enterprise security policies often mandate 15 characters. This length historically disabled weak LM hash storage in Windows Active Directory and exceeds all major compliance minimums (PCI DSS, SOC 2, CIS Benchmarks). With mixed character types, 15 characters provides about 98 bits of entropy — effectively uncrackable.' },
+            { q: 'Is 15 characters better than 14?', a: 'Marginally. Each additional character adds about 6.5 bits of entropy with all character types. The jump from 14 (91 bits) to 15 (98 bits) makes the password about 100 times harder to crack. If your policy requires 15, use 15. Otherwise, any length from 12-20 is strong.' },
+            { q: 'What compliance standards require 15-character passwords?', a: 'PCI DSS 4.0 requires at least 12 for system accounts; many assessors recommend 15+. SOC 2 auditors commonly expect 15-16 for privileged access. CIS Benchmarks suggest 14+ for admins. A 15-character policy meets or exceeds all major frameworks.' },
+            { q: 'Can I use this for my work or corporate account?', a: 'Absolutely. This generator creates passwords meeting most corporate policies — mixed case, numbers, symbols, and 15 characters. The password is generated in your browser and never sent to any server, making it safe for sensitive corporate accounts.' },
+        ],
+    },
     '/password-generator-16-characters': {
         title: '16-Character Password Generator',
         subtitle: 'Generate a strong 16-character password instantly.',
@@ -221,7 +279,9 @@ const PRESETS = {
 const SEO_LINKS = [
     { path: '/password-generator', label: 'Password Generator', desc: 'All-purpose password & passphrase tool' },
     { path: '/passphrase-generator', label: 'Passphrase Generator', desc: 'Memorable multi-word passphrases' },
+    { path: '/password-generator-12-characters', label: '12-Character Password', desc: 'The recommended minimum for strong security' },
     { path: '/password-generator-14-characters', label: '14-Character Password', desc: 'Quick passwords with symbols for most sites' },
+    { path: '/password-generator-15-characters', label: '15-Character Password', desc: 'Meets enterprise and compliance requirements' },
     { path: '/password-generator-16-characters', label: '16-Character Password', desc: 'The sweet spot of security and usability' },
     { path: '/wifi-password-generator', label: 'WiFi Password Generator', desc: 'Easy-to-type passwords for your network' },
     { path: '/api-key-generator', label: 'API Key Generator', desc: 'Random tokens and keys for developers' },
