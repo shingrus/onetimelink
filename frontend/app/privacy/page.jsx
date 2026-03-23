@@ -47,6 +47,12 @@ export default function PrivacyPage() {
                         URL path, user agent) may be retained for up to 14 days for security and
                         abuse prevention. These logs never contain secret content or decryption keys.
                     </li>
+                    <li>
+                        <strong>Aggregate counters:</strong> We maintain simple counters — total secrets
+                        shared and page visits by category (home, blog, tools). These are plain numbers,
+                        not per-user or per-session. No IP addresses, no identifiers, no way to link
+                        a count to any individual.
+                    </li>
                 </ul>
             </div>
 
@@ -55,7 +61,7 @@ export default function PrivacyPage() {
                 <ul>
                     <li>No accounts or personal information — the service works without sign-up</li>
                     <li>No cookies — not even a session cookie</li>
-                    <li>No analytics or tracking scripts — no Google Analytics, no pixels, no fingerprinting</li>
+                    <li>No analytics or tracking scripts — no Google Analytics, no pixels, no fingerprinting. We only keep an aggregate secret count with no identifying information</li>
                     <li>No third-party requests — no CDNs, ad networks, or external resources</li>
                     <li>No plaintext secrets — encryption happens client-side before transmission</li>
                 </ul>
