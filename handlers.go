@@ -275,7 +275,9 @@ func apiSaveSecret(r *http.Request) (responseCode int, response []byte) {
 					payload.Duration = defaultDuration
 				}
 
-				log.Printf("paylaod -> storage: %v, Hashedkey: %v, Duration: %v\n", payload.SecretMessage, payload.HashedKey, payload.Duration)
+				if DEBUG {
+					log.Printf("payload -> storage: %v, HashedKey: %v, Duration: %v\n", payload.SecretMessage, payload.HashedKey, payload.Duration)
+				}
 				valueToStore, _ := json.Marshal(newMessage)
 				storeKey, err := saveToStorage(valueToStore, time.Duration(payload.Duration)*time.Second)
 				if err == nil {
@@ -325,7 +327,9 @@ func apiGetMessage(r *http.Request) (responseCode int, response []byte) {
 		err := dec.Decode(&payload)
 		if err == nil {
 			if len(payload.Id) > 0 && len(payload.HashedKey) > 0 {
-				log.Printf("payload <- storage: %v, %v\n", payload.Id, payload.HashedKey)
+				if DEBUG {
+					log.Printf("payload <- storage: %v, %v\n", payload.Id, payload.HashedKey)
+				}
 				storedMessage, status, err := consumeMessageFromStorage(payload.Id, payload.HashedKey)
 				if err == nil {
 					switch status {

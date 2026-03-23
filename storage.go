@@ -64,7 +64,9 @@ func saveToStorage(value interface{}, duration time.Duration) (newKey string, er
 			return "", setErr
 		}
 		if ok {
-			log.Printf("Got new key storage: %v", newKey)
+			if DEBUG {
+				log.Printf("Got new key storage: %v", newKey)
+			}
 			return newKey, nil
 		}
 	}
