@@ -41,8 +41,8 @@ const PRESETS = {
         length: 20,
         mode: 'password',
         options: { uppercase: true, lowercase: true, numbers: true, symbols: true },
-        seoHeading: 'Free Online Strong Password Generator',
-        seoText: 'Create secure, random passwords instantly with our free password generator. Every password is generated entirely in your browser using cryptographic randomness — nothing is ever sent to a server. Choose your preferred length, character types, or switch to memorable passphrases. Strong passwords are your first line of defense against unauthorized access to your accounts.',
+        seoHeading: 'Strong Password Generator',
+        seoText: 'Generate strong passwords instantly — free, secure, and entirely in your browser. Every password is created using cryptographic randomness (Web Crypto API) and nothing is ever sent to a server. Choose your preferred length, character types, or switch to memorable passphrases. Strong passwords are your first line of defense against unauthorized access to your accounts.',
         seoSections: [
             {
                 heading: 'Why random passwords matter',
@@ -298,6 +298,37 @@ const SEO_LINKS = [
     { path: '/api-key-generator', label: 'API Key Generator', desc: 'Random tokens and keys for developers' },
 ];
 
+// Related blog guides for each tool page
+const RELATED_GUIDES = {
+    '/password-generator': [
+        { path: '/blog/how-to-share-passwords-securely', label: 'How to Share Passwords Securely', desc: 'Best practices for sending credentials safely' },
+        { path: '/blog/strong-email-password', label: 'Creating a Strong Email Password', desc: 'Protect your most important account' },
+        { path: '/blog/password-for-crypto-wallet', label: 'Passwords for Crypto Wallets', desc: 'High-stakes security for digital assets' },
+    ],
+    '/passphrase-generator': [
+        { path: '/blog/password-for-crypto-wallet', label: 'Passwords for Crypto Wallets', desc: 'Why passphrases are ideal for wallets' },
+        { path: '/blog/strong-email-password', label: 'Creating a Strong Email Password', desc: 'When to use a passphrase over a password' },
+        { path: '/blog/how-to-share-passwords-securely', label: 'How to Share Passwords Securely', desc: 'Share your passphrase without exposing it' },
+    ],
+    '/wifi-password-generator': [
+        { path: '/blog/secure-home-wifi-setup', label: 'Secure Home WiFi Setup', desc: 'Complete guide to locking down your network' },
+        { path: '/blog/how-to-share-wifi-password', label: 'How to Share Your WiFi Password', desc: 'Give guests access without compromising security' },
+        { path: '/blog/how-to-share-passwords-securely', label: 'How to Share Passwords Securely', desc: 'General best practices for credential sharing' },
+    ],
+    '/api-key-generator': [
+        { path: '/blog/how-to-share-api-keys', label: 'How to Share API Keys Safely', desc: 'Avoid leaking keys in chat and email' },
+        { path: '/blog/database-password-security', label: 'Database Password Security', desc: 'Protect your infrastructure credentials' },
+        { path: '/blog/share-secrets-from-terminal', label: 'Share Secrets from Terminal', desc: 'Use the CLI to share keys securely' },
+    ],
+};
+
+// Default guides for character-variant pages
+const DEFAULT_GUIDES = [
+    { path: '/blog/how-to-share-passwords-securely', label: 'How to Share Passwords Securely', desc: 'Best practices for sending credentials safely' },
+    { path: '/blog/strong-email-password', label: 'Creating a Strong Email Password', desc: 'Protect your most important account' },
+    { path: '/blog/team-password-sharing', label: 'Team Password Sharing', desc: 'How teams can share credentials safely' },
+];
+
 function secureRandom(max) {
     const arr = new Uint32Array(1);
     crypto.getRandomValues(arr);
@@ -423,6 +454,7 @@ export default function PasswordGenerator({ presetPath }) {
     };
 
     const otherPages = SEO_LINKS.filter(l => l.path !== presetPath);
+    const blogGuides = RELATED_GUIDES[presetPath] || DEFAULT_GUIDES;
 
     if (sharedLink) {
         return (
@@ -620,6 +652,19 @@ export default function PasswordGenerator({ presetPath }) {
                         <Link key={page.path} href={page.path} className="gen-related-card">
                             <span className="gen-related-title">{page.label}</span>
                             <span className="gen-related-desc">{page.desc}</span>
+                        </Link>
+                    ))}
+                </div>
+            </nav>
+
+            {/* Related blog guides */}
+            <nav className="gen-related" aria-label="Related guides">
+                <h3 className="gen-related-heading">Related guides</h3>
+                <div className="gen-related-grid">
+                    {blogGuides.map(guide => (
+                        <Link key={guide.path} href={guide.path} className="gen-related-card">
+                            <span className="gen-related-title">{guide.label}</span>
+                            <span className="gen-related-desc">{guide.desc}</span>
                         </Link>
                     ))}
                 </div>

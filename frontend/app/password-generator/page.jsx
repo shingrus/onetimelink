@@ -3,12 +3,12 @@ import PasswordGenerator from '../../components/PasswordGenerator';
 import {absoluteUrl, siteHost} from '../../utils/siteConfig';
 
 export const metadata = {
-    title: `Free Strong Password Generator — ${siteHost}`,
-    description: 'Generate strong, random passwords and passphrases in your browser. Client-side only, nothing sent to a server. Free, fast, and open source.',
+    title: `Strong Password Generator — Free & Secure | ${siteHost}`,
+    description: 'Generate strong, random passwords instantly in your browser. Cryptographically secure, nothing sent to a server. Choose length, symbols, or passphrases. Free and open source.',
     alternates: { canonical: '/password-generator' },
     openGraph: {
-        title: `Free Strong Password Generator — ${siteHost}`,
-        description: 'Generate strong, random passwords and passphrases in your browser. Client-side only, nothing sent to a server.',
+        title: `Strong Password Generator — Free & Secure | ${siteHost}`,
+        description: 'Generate strong, random passwords instantly in your browser. Cryptographically secure, nothing sent to a server.',
         url: '/password-generator',
         images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Free Password Generator' }],
     },
@@ -17,7 +17,7 @@ export const metadata = {
 const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'WebApplication',
-    name: 'Free Strong Password Generator',
+    name: 'Strong Password Generator',
     url: absoluteUrl('/password-generator'),
     description: 'Generate strong, random passwords and passphrases in your browser. Client-side only, nothing sent to a server.',
     applicationCategory: 'SecurityApplication',

@@ -6,8 +6,8 @@ import {absoluteUrl, isBlogEnabled, siteHost, siteUrl} from '../utils/siteConfig
 
 export const metadata = {
     metadataBase: new URL(siteUrl),
-    title: `${siteHost} - Free Encrypted One-Time Links for Passwords & Secrets`,
-    description: 'Send passwords, API keys, and sensitive data through free encrypted one-time links that self-destruct after reading. Zero-knowledge encryption — we never see your data. No signup required.',
+    title: `Share Passwords Securely — Free Encrypted One-Time Links | ${siteHost}`,
+    description: 'Share passwords, API keys, and secrets through encrypted one-time links that self-destruct after reading. Zero-knowledge encryption — we never see your data. No signup, free, open source.',
     openGraph: {
         title: `${siteHost} — Free Encrypted One-Time Secret Links`,
         description: 'Send passwords and sensitive data through encrypted one-time links. Zero-knowledge encryption, auto-destroyed after reading.',
