@@ -25,18 +25,18 @@ const jsonLd = [
         description: 'Compare 1time.io and Privnote for self-destructing messages. Learn why Privnote lacks end-to-end encryption and what that means for your secrets.',
         datePublished: '2026-01-05',
         dateModified: '2026-03-19',
-        author: { '@type': 'Organization', name: '1time.io', url: 'https://1time.io' },
+        author: { '@type': 'Person', name: 'Igor Ermakov', url: 'https://1time.io/about/' },
         publisher: { '@type': 'Organization', name: '1time.io', url: 'https://1time.io', logo: { '@type': 'ImageObject', url: 'https://1time.io/logo-512.png', width: 512, height: 512 } },
-        mainEntityOfPage: 'https://1time.io/blog/privnote-alternative',
+        mainEntityOfPage: 'https://1time.io/blog/privnote-alternative/',
         image: ['https://1time.io/og-image.png'],
     },
     {
         '@context': 'https://schema.org',
         '@type': 'BreadcrumbList',
         itemListElement: [
-            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://1time.io' },
-            { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://1time.io/blog' },
-            { '@type': 'ListItem', position: 3, name: '1time.io vs Privnote', item: 'https://1time.io/blog/privnote-alternative' },
+            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://1time.io/' },
+            { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://1time.io/blog/' },
+            { '@type': 'ListItem', position: 3, name: '1time.io vs Privnote', item: 'https://1time.io/blog/privnote-alternative/' },
         ],
     },
 ];
@@ -55,7 +55,7 @@ export default function Article() {
                     after reading is only half the equation. If the server can read your message in the
                     first place, is it really private?
                 </p>
-                <div className="article-meta">Jan 5, 2026 &middot; 5 min read</div>
+                <div className="article-meta">By Igor Ermakov &middot; Jan 5, 2026 &middot; 5 min read</div>
             </div>
 
             <div className="article-body">

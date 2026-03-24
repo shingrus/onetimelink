@@ -25,18 +25,18 @@ const jsonLd = [
         description: 'Slack stores all messages indefinitely and admins can read DMs. Learn why Slack is dangerous for sharing passwords and what secure alternatives exist.',
         datePublished: '2025-12-29',
         dateModified: '2026-03-19',
-        author: { '@type': 'Organization', name: '1time.io', url: 'https://1time.io' },
+        author: { '@type': 'Person', name: 'Igor Ermakov', url: 'https://1time.io/about/' },
         publisher: { '@type': 'Organization', name: '1time.io', url: 'https://1time.io', logo: { '@type': 'ImageObject', url: 'https://1time.io/logo-512.png', width: 512, height: 512 } },
-        mainEntityOfPage: 'https://1time.io/blog/is-slack-safe-for-passwords',
+        mainEntityOfPage: 'https://1time.io/blog/is-slack-safe-for-passwords/',
         image: ['https://1time.io/og-image.png'],
     },
     {
         '@context': 'https://schema.org',
         '@type': 'BreadcrumbList',
         itemListElement: [
-            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://1time.io' },
-            { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://1time.io/blog' },
-            { '@type': 'ListItem', position: 3, name: 'Is Slack Safe for Passwords?', item: 'https://1time.io/blog/is-slack-safe-for-passwords' },
+            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://1time.io/' },
+            { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://1time.io/blog/' },
+            { '@type': 'ListItem', position: 3, name: 'Is Slack Safe for Passwords?', item: 'https://1time.io/blog/is-slack-safe-for-passwords/' },
         ],
     },
 ];
@@ -54,7 +54,7 @@ export default function Article() {
                     You probably share passwords over Slack DMs. So does everyone else. Here is why
                     that is a serious security risk and what to do instead.
                 </p>
-                <div className="article-meta">Dec 29, 2025 &middot; 6 min read</div>
+                <div className="article-meta">By Igor Ermakov &middot; Dec 29, 2025 &middot; 6 min read</div>
             </div>
 
             <div className="article-body">

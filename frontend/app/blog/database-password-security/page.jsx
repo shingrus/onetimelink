@@ -25,18 +25,18 @@ const jsonLd = [
         description: 'Learn how to generate and manage strong database passwords for PostgreSQL, MySQL, MongoDB, and Redis.',
         datePublished: '2026-02-27',
         dateModified: '2026-03-21',
-        author: { '@type': 'Organization', name: '1time.io', url: 'https://1time.io' },
+        author: { '@type': 'Person', name: 'Igor Ermakov', url: 'https://1time.io/about/' },
         publisher: { '@type': 'Organization', name: '1time.io', url: 'https://1time.io', logo: { '@type': 'ImageObject', url: 'https://1time.io/logo-512.png', width: 512, height: 512 } },
-        mainEntityOfPage: 'https://1time.io/blog/database-password-security',
+        mainEntityOfPage: 'https://1time.io/blog/database-password-security/',
         image: ['https://1time.io/og-image.png'],
     },
     {
         '@context': 'https://schema.org',
         '@type': 'BreadcrumbList',
         itemListElement: [
-            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://1time.io' },
-            { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://1time.io/blog' },
-            { '@type': 'ListItem', position: 3, name: 'Database Password Security', item: 'https://1time.io/blog/database-password-security' },
+            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://1time.io/' },
+            { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://1time.io/blog/' },
+            { '@type': 'ListItem', position: 3, name: 'Database Password Security', item: 'https://1time.io/blog/database-password-security/' },
         ],
     },
 ];
@@ -54,7 +54,7 @@ export default function Article() {
                     Your database password is the front door to your application data.
                     Here is how to generate, store, rotate, and share database credentials without putting your data at risk.
                 </p>
-                <div className="article-meta">Feb 27, 2026 &middot; 8 min read</div>
+                <div className="article-meta">By Igor Ermakov &middot; Feb 27, 2026 &middot; 8 min read</div>
             </div>
 
             <div className="article-body">

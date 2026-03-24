@@ -25,18 +25,18 @@ const jsonLd = [
         description: 'Learn the safest ways to share your WiFi password with guests, Airbnb visitors, and coworkers without exposing your network to security risks.',
         datePublished: '2026-02-05',
         dateModified: '2026-03-20',
-        author: { '@type': 'Organization', name: '1time.io', url: 'https://1time.io' },
+        author: { '@type': 'Person', name: 'Igor Ermakov', url: 'https://1time.io/about/' },
         publisher: { '@type': 'Organization', name: '1time.io', url: 'https://1time.io', logo: { '@type': 'ImageObject', url: 'https://1time.io/logo-512.png', width: 512, height: 512 } },
-        mainEntityOfPage: 'https://1time.io/blog/how-to-share-wifi-password',
+        mainEntityOfPage: 'https://1time.io/blog/how-to-share-wifi-password/',
         image: ['https://1time.io/og-image.png'],
     },
     {
         '@context': 'https://schema.org',
         '@type': 'BreadcrumbList',
         itemListElement: [
-            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://1time.io' },
-            { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://1time.io/blog' },
-            { '@type': 'ListItem', position: 3, name: 'How to Share WiFi Password', item: 'https://1time.io/blog/how-to-share-wifi-password' },
+            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://1time.io/' },
+            { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://1time.io/blog/' },
+            { '@type': 'ListItem', position: 3, name: 'How to Share WiFi Password', item: 'https://1time.io/blog/how-to-share-wifi-password/' },
         ],
     },
 ];
@@ -54,7 +54,7 @@ export default function Article() {
                     Whether you are hosting guests, running an Airbnb, or onboarding office visitors,
                     sharing WiFi passwords the wrong way can compromise your entire network.
                 </p>
-                <div className="article-meta">Feb 5, 2026 &middot; 5 min read</div>
+                <div className="article-meta">By Igor Ermakov &middot; Feb 5, 2026 &middot; 5 min read</div>
             </div>
 
             <div className="article-body">

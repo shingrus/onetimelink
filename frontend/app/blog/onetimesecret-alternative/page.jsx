@@ -25,18 +25,18 @@ const jsonLd = [
         description: 'An honest, transparent comparison between 1time.io and OneTimeSecret (onetimesecret.com). Compare encryption, privacy, features, pricing, and open-source status side by side.',
         datePublished: '2025-12-15',
         dateModified: '2026-03-18',
-        author: { '@type': 'Organization', name: '1time.io', url: 'https://1time.io' },
+        author: { '@type': 'Person', name: 'Igor Ermakov', url: 'https://1time.io/about/' },
         publisher: { '@type': 'Organization', name: '1time.io', url: 'https://1time.io', logo: { '@type': 'ImageObject', url: 'https://1time.io/logo-512.png', width: 512, height: 512 } },
-        mainEntityOfPage: 'https://1time.io/blog/onetimesecret-alternative',
+        mainEntityOfPage: 'https://1time.io/blog/onetimesecret-alternative/',
         image: ['https://1time.io/og-image.png'],
     },
     {
         '@context': 'https://schema.org',
         '@type': 'BreadcrumbList',
         itemListElement: [
-            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://1time.io' },
-            { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://1time.io/blog' },
-            { '@type': 'ListItem', position: 3, name: '1time.io vs OneTimeSecret', item: 'https://1time.io/blog/onetimesecret-alternative' },
+            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://1time.io/' },
+            { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://1time.io/blog/' },
+            { '@type': 'ListItem', position: 3, name: '1time.io vs OneTimeSecret', item: 'https://1time.io/blog/onetimesecret-alternative/' },
         ],
     },
 ];
@@ -56,7 +56,7 @@ export default function Article() {
                     comparison — where we are better, where we are similar, and where OneTimeSecret
                     has the edge.
                 </p>
-                <div className="article-meta">Dec 15, 2025 &middot; 5 min read</div>
+                <div className="article-meta">By Igor Ermakov &middot; Dec 15, 2025 &middot; 5 min read</div>
             </div>
 
             <div className="article-body">
@@ -207,9 +207,9 @@ export default function Article() {
                             <td><span className="partial">~</span> Limited (25 chars for anon)</td>
                         </tr>
                         <tr>
-                            <td><strong>API access</strong></td>
-                            <td><span className="cross">✗</span> Not yet</td>
-                            <td><span className="check">✓</span> With account</td>
+                            <td><strong>Automation</strong></td>
+                            <td><span className="check">✓</span> CLI + client-side SDK (zero-knowledge)</td>
+                            <td><span className="check">✓</span> Server-side API (server sees secrets)</td>
                         </tr>
                         <tr>
                             <td><strong>Self-hosting</strong></td>
@@ -224,7 +224,7 @@ export default function Article() {
                     Let us be fair about where OneTimeSecret offers something we do not (yet):
                 </p>
                 <ul>
-                    <li><strong>API access.</strong> OneTimeSecret offers a REST API for programmatic secret sharing. Useful for integrating into CI/CD pipelines or internal tools. We plan to add this.</li>
+                    <li><strong>Server-side API.</strong> OneTimeSecret offers a REST API for programmatic secret sharing. This is convenient for automation — but it requires the server to see your secrets in plaintext. 1time.io takes a different approach: a first-party CLI and client-side encryption that keeps secrets out of the server entirely.</li>
                     <li><strong>Established reputation.</strong> OneTimeSecret has been around longer and has a larger user base. That matters for trust.</li>
                     <li><strong>Custom branding</strong> on paid plans. Enterprise users can white-label the interface.</li>
                 </ul>
@@ -240,10 +240,11 @@ export default function Article() {
 
                 <h2>The Bottom Line</h2>
                 <p>
-                    If you need an API or enterprise features like custom branding, OneTimeSecret is a
+                    If you need enterprise features like custom branding, OneTimeSecret is a
                     solid choice. But if your priority is <strong>maximum privacy and genuine
                     zero-knowledge encryption</strong>, 1time.io has a fundamental architectural
-                    advantage: the server never sees your secrets, period.
+                    advantage: the server never sees your secrets, period. For automation, the 1time CLI
+                    lets you pipe secrets from your terminal with the same end-to-end encryption.
                 </p>
                 <p>
                     Both tools are open source, so you do not have to take our word for it. Read the

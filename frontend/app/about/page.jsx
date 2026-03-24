@@ -17,7 +17,7 @@ export const metadata = {
 const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'AboutPage',
-    url: `${siteUrl}about/`,
+    url: absoluteUrl('/about/'),
     name: `About ${siteHost} — Zero-Knowledge Secret Sharing, Open Source`,
     description: `Learn how ${siteHost} uses end-to-end encryption to share secrets securely. Open source, zero-knowledge, no accounts required.`,
     mainEntity: {

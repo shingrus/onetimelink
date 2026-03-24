@@ -25,18 +25,18 @@ const jsonLd = [
         description: 'Learn why emailing passwords is dangerous and discover safe alternatives. Use encrypted one-time links to share passwords over email without exposing them.',
         datePublished: '2025-12-22',
         dateModified: '2026-03-19',
-        author: { '@type': 'Organization', name: '1time.io', url: 'https://1time.io' },
+        author: { '@type': 'Person', name: 'Igor Ermakov', url: 'https://1time.io/about/' },
         publisher: { '@type': 'Organization', name: '1time.io', url: 'https://1time.io', logo: { '@type': 'ImageObject', url: 'https://1time.io/logo-512.png', width: 512, height: 512 } },
-        mainEntityOfPage: 'https://1time.io/blog/how-to-send-passwords-over-email',
+        mainEntityOfPage: 'https://1time.io/blog/how-to-send-passwords-over-email/',
         image: ['https://1time.io/og-image.png'],
     },
     {
         '@context': 'https://schema.org',
         '@type': 'BreadcrumbList',
         itemListElement: [
-            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://1time.io' },
-            { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://1time.io/blog' },
-            { '@type': 'ListItem', position: 3, name: 'How to Send Passwords Over Email', item: 'https://1time.io/blog/how-to-send-passwords-over-email' },
+            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://1time.io/' },
+            { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://1time.io/blog/' },
+            { '@type': 'ListItem', position: 3, name: 'How to Send Passwords Over Email', item: 'https://1time.io/blog/how-to-send-passwords-over-email/' },
         ],
     },
 ];
@@ -54,7 +54,7 @@ export default function Article() {
                     Email is the most common way people share passwords. It is also one of the worst.
                     Here is why, and what to do instead.
                 </p>
-                <div className="article-meta">Dec 22, 2025 &middot; 6 min read</div>
+                <div className="article-meta">By Igor Ermakov &middot; Dec 22, 2025 &middot; 6 min read</div>
             </div>
 
             <div className="article-body">

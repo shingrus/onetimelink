@@ -25,18 +25,18 @@ const jsonLd = [
         description: 'Learn how self-destructing messages work under the hood: encryption, one-time access, and permanent deletion.',
         datePublished: '2025-12-08',
         dateModified: '2026-03-18',
-        author: { '@type': 'Organization', name: '1time.io', url: 'https://1time.io' },
+        author: { '@type': 'Person', name: 'Igor Ermakov', url: 'https://1time.io/about/' },
         publisher: { '@type': 'Organization', name: '1time.io', url: 'https://1time.io', logo: { '@type': 'ImageObject', url: 'https://1time.io/logo-512.png', width: 512, height: 512 } },
-        mainEntityOfPage: 'https://1time.io/blog/self-destructing-messages-explained',
+        mainEntityOfPage: 'https://1time.io/blog/self-destructing-messages-explained/',
         image: ['https://1time.io/og-image.png'],
     },
     {
         '@context': 'https://schema.org',
         '@type': 'BreadcrumbList',
         itemListElement: [
-            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://1time.io' },
-            { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://1time.io/blog' },
-            { '@type': 'ListItem', position: 3, name: 'Self-Destructing Messages — How They Actually Work', item: 'https://1time.io/blog/self-destructing-messages-explained' },
+            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://1time.io/' },
+            { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://1time.io/blog/' },
+            { '@type': 'ListItem', position: 3, name: 'Self-Destructing Messages — How They Actually Work', item: 'https://1time.io/blog/self-destructing-messages-explained/' },
         ],
     },
 ];
@@ -54,7 +54,7 @@ export default function Article() {
                     You send a message, the recipient reads it, and it vanishes forever.
                     But what actually happens under the hood? And are all self-destructing messages equally private?
                 </p>
-                <div className="article-meta">Dec 8, 2025 &middot; 6 min read</div>
+                <div className="article-meta">By Igor Ermakov &middot; Dec 8, 2025 &middot; 6 min read</div>
             </div>
 
             <div className="article-body">

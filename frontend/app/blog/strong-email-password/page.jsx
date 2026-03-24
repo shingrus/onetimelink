@@ -25,18 +25,18 @@ const jsonLd = [
         description: 'Your email password is the master key to your digital life. Learn how to create one that cannot be cracked.',
         datePublished: '2026-02-13',
         dateModified: '2026-03-20',
-        author: { '@type': 'Organization', name: '1time.io', url: 'https://1time.io' },
+        author: { '@type': 'Person', name: 'Igor Ermakov', url: 'https://1time.io/about/' },
         publisher: { '@type': 'Organization', name: '1time.io', url: 'https://1time.io', logo: { '@type': 'ImageObject', url: 'https://1time.io/logo-512.png', width: 512, height: 512 } },
-        mainEntityOfPage: 'https://1time.io/blog/strong-email-password',
+        mainEntityOfPage: 'https://1time.io/blog/strong-email-password/',
         image: ['https://1time.io/og-image.png'],
     },
     {
         '@context': 'https://schema.org',
         '@type': 'BreadcrumbList',
         itemListElement: [
-            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://1time.io' },
-            { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://1time.io/blog' },
-            { '@type': 'ListItem', position: 3, name: 'Strong Email Password', item: 'https://1time.io/blog/strong-email-password' },
+            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://1time.io/' },
+            { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://1time.io/blog/' },
+            { '@type': 'ListItem', position: 3, name: 'Strong Email Password', item: 'https://1time.io/blog/strong-email-password/' },
         ],
     },
 ];
@@ -54,7 +54,7 @@ export default function Article() {
                     Your email account is the skeleton key to your entire digital life. Anyone who gets in
                     can reset every other password you have. Here is how to protect it.
                 </p>
-                <div className="article-meta">Feb 13, 2026 &middot; 6 min read</div>
+                <div className="article-meta">By Igor Ermakov &middot; Feb 13, 2026 &middot; 6 min read</div>
             </div>
 
             <div className="article-body">

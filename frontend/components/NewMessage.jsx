@@ -142,9 +142,10 @@ export default function NewMessage() {
             <section className="seo-section">
                 <h1>Share Secrets with Encrypted One-Time Links</h1>
                 <p>
-                    {siteHost} creates encrypted one-time links
-                    that automatically self-destruct after being read. End-to-end encrypted in your
-                    browser before anything leaves your device — we never see your data.
+                    {siteHost} is a free, open-source tool for sharing passwords and secrets through
+                    encrypted one-time links. Each secret is encrypted in your browser using AES-256-GCM
+                    before being stored — the server never sees the plaintext. Links self-destruct after
+                    being read once or after a set expiry period. No signup required.
                 </p>
 
                 <div className="features-grid">
@@ -199,6 +200,28 @@ export default function NewMessage() {
                     database credentials, configuration secrets, or any text you need to share
                     securely just once.
                 </p>
+
+                <h2>Security tools</h2>
+                <nav className="seo-nav">
+                    <Link href="/password-generator">Password Generator</Link>
+                    <Link href="/passphrase-generator">Passphrase Generator</Link>
+                    <Link href="/wifi-password-generator">WiFi Password Generator</Link>
+                    <Link href="/api-key-generator">API Key Generator</Link>
+                    <Link href="/password-generator-12-characters">12-Character Password</Link>
+                    <Link href="/password-generator-14-characters">14-Character Password</Link>
+                    <Link href="/password-generator-15-characters">15-Character Password</Link>
+                    <Link href="/password-generator-16-characters">16-Character Password</Link>
+                </nav>
+
+                <h2>From the blog</h2>
+                <nav className="seo-nav">
+                    <Link href="/blog/onetimesecret-alternative">1time.io vs OneTimeSecret</Link>
+                    <Link href="/blog/privnote-alternative">1time.io vs Privnote</Link>
+                    <Link href="/blog/is-slack-safe-for-passwords">Is Slack Safe for Passwords?</Link>
+                    <Link href="/blog/how-to-share-passwords-securely">How to Share Passwords Securely</Link>
+                    <Link href="/blog/how-to-share-api-keys">How to Share API Keys Securely</Link>
+                    <Link href="/blog/share-secrets-from-terminal">Share Secrets from Terminal</Link>
+                </nav>
 
             </section>
         </div>

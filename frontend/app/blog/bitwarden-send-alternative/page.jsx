@@ -25,18 +25,18 @@ const jsonLd = [
         description: 'Compare 1time.io and Bitwarden Send for sharing secrets securely. See why a dedicated one-time link tool is faster and easier than Bitwarden Send.',
         datePublished: '2026-03-06',
         dateModified: '2026-03-21',
-        author: { '@type': 'Organization', name: '1time.io', url: 'https://1time.io' },
+        author: { '@type': 'Person', name: 'Igor Ermakov', url: 'https://1time.io/about/' },
         publisher: { '@type': 'Organization', name: '1time.io', url: 'https://1time.io', logo: { '@type': 'ImageObject', url: 'https://1time.io/logo-512.png', width: 512, height: 512 } },
-        mainEntityOfPage: 'https://1time.io/blog/bitwarden-send-alternative',
+        mainEntityOfPage: 'https://1time.io/blog/bitwarden-send-alternative/',
         image: ['https://1time.io/og-image.png'],
     },
     {
         '@context': 'https://schema.org',
         '@type': 'BreadcrumbList',
         itemListElement: [
-            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://1time.io' },
-            { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://1time.io/blog' },
-            { '@type': 'ListItem', position: 3, name: '1time.io vs Bitwarden Send', item: 'https://1time.io/blog/bitwarden-send-alternative' },
+            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://1time.io/' },
+            { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://1time.io/blog/' },
+            { '@type': 'ListItem', position: 3, name: '1time.io vs Bitwarden Send', item: 'https://1time.io/blog/bitwarden-send-alternative/' },
         ],
     },
 ];
@@ -55,7 +55,7 @@ export default function Article() {
                     to someone quickly, Bitwarden Send adds friction. Here is how the two compare for
                     one-time secret sharing.
                 </p>
-                <div className="article-meta">Mar 6, 2026 &middot; 5 min read</div>
+                <div className="article-meta">By Igor Ermakov &middot; Mar 6, 2026 &middot; 5 min read</div>
             </div>
 
             <div className="article-body">

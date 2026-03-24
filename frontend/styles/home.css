@@ -108,3 +108,25 @@
   margin: 0;
   line-height: 1.5;
 }
+
+.seo-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.seo-nav a {
+  font-size: 14px;
+  color: var(--text-secondary);
+  text-decoration: none;
+  padding: 4px 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  transition: border-color var(--transition), color var(--transition);
+}
+
+.seo-nav a:hover {
+  border-color: var(--text-muted);
+  color: var(--text);
+}

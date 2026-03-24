@@ -25,18 +25,18 @@ const jsonLd = [
         description: 'A plain-language explanation of HKDF and how 1time.io uses it to separate encryption keys from server-side auth tokens.',
         datePublished: '2026-03-21',
         dateModified: '2026-03-21',
-        author: { '@type': 'Organization', name: '1time.io', url: 'https://1time.io' },
+        author: { '@type': 'Person', name: 'Igor Ermakov', url: 'https://1time.io/about/' },
         publisher: { '@type': 'Organization', name: '1time.io', url: 'https://1time.io', logo: { '@type': 'ImageObject', url: 'https://1time.io/logo-512.png', width: 512, height: 512 } },
-        mainEntityOfPage: 'https://1time.io/blog/hkdf-key-derivation-explained',
+        mainEntityOfPage: 'https://1time.io/blog/hkdf-key-derivation-explained/',
         image: ['https://1time.io/og-image.png'],
     },
     {
         '@context': 'https://schema.org',
         '@type': 'BreadcrumbList',
         itemListElement: [
-            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://1time.io' },
-            { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://1time.io/blog' },
-            { '@type': 'ListItem', position: 3, name: 'HKDF Key Derivation Explained', item: 'https://1time.io/blog/hkdf-key-derivation-explained' },
+            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://1time.io/' },
+            { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://1time.io/blog/' },
+            { '@type': 'ListItem', position: 3, name: 'HKDF Key Derivation Explained', item: 'https://1time.io/blog/hkdf-key-derivation-explained/' },
         ],
     },
 ];
@@ -54,7 +54,7 @@ export default function Article() {
                     We recently upgraded <Link href="/">1time.io</Link> from simple SHA-256 hashing to HKDF-based key derivation.
                     Here is what that means in plain language, why it matters, and how it makes your secrets safer.
                 </p>
-                <div className="article-meta">Mar 21, 2026 &middot; 8 min read</div>
+                <div className="article-meta">By Igor Ermakov &middot; Mar 21, 2026 &middot; 8 min read</div>
             </div>
 
             <div className="article-body">

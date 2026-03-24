@@ -25,18 +25,18 @@ const jsonLd = [
         description: 'Step-by-step guide to securing your home WiFi network with strong passwords, WPA3, and proper router configuration.',
         datePublished: '2026-02-20',
         dateModified: '2026-03-21',
-        author: { '@type': 'Organization', name: '1time.io', url: 'https://1time.io' },
+        author: { '@type': 'Person', name: 'Igor Ermakov', url: 'https://1time.io/about/' },
         publisher: { '@type': 'Organization', name: '1time.io', url: 'https://1time.io', logo: { '@type': 'ImageObject', url: 'https://1time.io/logo-512.png', width: 512, height: 512 } },
-        mainEntityOfPage: 'https://1time.io/blog/secure-home-wifi-setup',
+        mainEntityOfPage: 'https://1time.io/blog/secure-home-wifi-setup/',
         image: ['https://1time.io/og-image.png'],
     },
     {
         '@context': 'https://schema.org',
         '@type': 'BreadcrumbList',
         itemListElement: [
-            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://1time.io' },
-            { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://1time.io/blog' },
-            { '@type': 'ListItem', position: 3, name: 'Secure Home WiFi Setup', item: 'https://1time.io/blog/secure-home-wifi-setup' },
+            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://1time.io/' },
+            { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://1time.io/blog/' },
+            { '@type': 'ListItem', position: 3, name: 'Secure Home WiFi Setup', item: 'https://1time.io/blog/secure-home-wifi-setup/' },
         ],
     },
 ];
@@ -54,7 +54,7 @@ export default function Article() {
                     Your WiFi password is the front door to your home network. Every device — laptop, phone,
                     smart TV, baby monitor — connects through it. Here is how to lock it down properly.
                 </p>
-                <div className="article-meta">Feb 20, 2026 &middot; 7 min read</div>
+                <div className="article-meta">By Igor Ermakov &middot; Feb 20, 2026 &middot; 7 min read</div>
             </div>
 
             <div className="article-body">

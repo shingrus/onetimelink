@@ -178,27 +178,42 @@ export default function ViewSecretMessage() {
                 )}
 
                 {/* Destroyed state */}
-                {(secretMessage.length > 0 || isNoMessage) && (
+                {isNoMessage && secretMessage.length === 0 && (
                     <div className="destroyed-notice">
-                        <p>
-                            {isNoMessage && secretMessage.length === 0
-                                ? "This message has already been read or has expired."
-                                : "This message has been destroyed."}
-                        </p>
+                        <p>This message has already been read or has expired.</p>
                         <button
                             className="btn btn-secondary"
                             type="button"
                             onClick={() => router.push('/')}
                         >
-                            Create your own secret
+                            Create your own secret link
                         </button>
                     </div>
                 )}
+
+                {/* Post-read CTA */}
+                {secretMessage.length > 0 && (
+                    <div className="view-cta">
+                        <p className="view-cta-destroyed">This message has been permanently destroyed from our servers.</p>
+                        <div className="view-cta-box">
+                            <p className="view-cta-heading">Need to share a secret yourself?</p>
+                            <p className="view-cta-desc">Create an encrypted, self-destructing link in seconds. Free, no signup required.</p>
+                            <button
+                                className="btn btn-primary"
+                                type="button"
+                                onClick={() => router.push('/')}
+                            >
+                                Create a secure link
+                            </button>
+                        </div>
+                    </div>
+                )}
             </form>
-            <div style={{textAlign: 'center', padding: '24px 0 8px', fontSize: '12px'}}>
-                <a href="https://1time.io" target="_blank" rel="noopener noreferrer" style={{color: 'var(--text-muted)', textDecoration: 'none'}}>
-                    Powered by <strong>1time.io</strong> — zero-knowledge secret sharing
+            <div className="view-powered-by">
+                <a href="https://1time.io" target="_blank" rel="noopener noreferrer">
+                    Powered by <strong>1time.io</strong>
                 </a>
+                <span className="view-powered-by-tagline">Free, open-source, zero-knowledge encryption. Your secrets are encrypted in the browser — the server never sees them.</span>
             </div>
         </div>
     );

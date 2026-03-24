@@ -25,18 +25,18 @@ const jsonLd = [
         description: 'Learn how to share API keys, tokens, and secrets with developers safely. Stop pasting credentials in Slack and use encrypted one-time links instead.',
         datePublished: '2026-01-13',
         dateModified: '2026-03-20',
-        author: { '@type': 'Organization', name: '1time.io', url: 'https://1time.io' },
+        author: { '@type': 'Person', name: 'Igor Ermakov', url: 'https://1time.io/about/' },
         publisher: { '@type': 'Organization', name: '1time.io', url: 'https://1time.io', logo: { '@type': 'ImageObject', url: 'https://1time.io/logo-512.png', width: 512, height: 512 } },
-        mainEntityOfPage: 'https://1time.io/blog/how-to-share-api-keys',
+        mainEntityOfPage: 'https://1time.io/blog/how-to-share-api-keys/',
         image: ['https://1time.io/og-image.png'],
     },
     {
         '@context': 'https://schema.org',
         '@type': 'BreadcrumbList',
         itemListElement: [
-            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://1time.io' },
-            { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://1time.io/blog' },
-            { '@type': 'ListItem', position: 3, name: 'How to Share API Keys Securely', item: 'https://1time.io/blog/how-to-share-api-keys' },
+            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://1time.io/' },
+            { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://1time.io/blog/' },
+            { '@type': 'ListItem', position: 3, name: 'How to Share API Keys Securely', item: 'https://1time.io/blog/how-to-share-api-keys/' },
         ],
     },
 ];
@@ -54,7 +54,7 @@ export default function Article() {
                     Every developer has done it: pasted an API key into Slack, a GitHub issue, or an
                     email. Here is why that is a serious risk and how to share credentials safely.
                 </p>
-                <div className="article-meta">Jan 13, 2026 &middot; 7 min read</div>
+                <div className="article-meta">By Igor Ermakov &middot; Jan 13, 2026 &middot; 7 min read</div>
             </div>
 
             <div className="article-body">

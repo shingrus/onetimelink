@@ -25,18 +25,18 @@ const jsonLd = [
         description: 'Practical approaches to sharing passwords within a team when you do not have a password manager.',
         datePublished: '2026-01-21',
         dateModified: '2026-03-20',
-        author: { '@type': 'Organization', name: '1time.io', url: 'https://1time.io' },
+        author: { '@type': 'Person', name: 'Igor Ermakov', url: 'https://1time.io/about/' },
         publisher: { '@type': 'Organization', name: '1time.io', url: 'https://1time.io', logo: { '@type': 'ImageObject', url: 'https://1time.io/logo-512.png', width: 512, height: 512 } },
-        mainEntityOfPage: 'https://1time.io/blog/team-password-sharing',
+        mainEntityOfPage: 'https://1time.io/blog/team-password-sharing/',
         image: ['https://1time.io/og-image.png'],
     },
     {
         '@context': 'https://schema.org',
         '@type': 'BreadcrumbList',
         itemListElement: [
-            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://1time.io' },
-            { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://1time.io/blog' },
-            { '@type': 'ListItem', position: 3, name: 'Team Password Sharing', item: 'https://1time.io/blog/team-password-sharing' },
+            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://1time.io/' },
+            { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://1time.io/blog/' },
+            { '@type': 'ListItem', position: 3, name: 'Team Password Sharing', item: 'https://1time.io/blog/team-password-sharing/' },
         ],
     },
 ];
@@ -54,7 +54,7 @@ export default function Article() {
                     Not every team has a password manager. Not every situation justifies one. Here is how
                     to share credentials securely with your team using tools that require zero setup.
                 </p>
-                <div className="article-meta">Jan 21, 2026 &middot; 7 min read</div>
+                <div className="article-meta">By Igor Ermakov &middot; Jan 21, 2026 &middot; 7 min read</div>
             </div>
 
             <div className="article-body">

@@ -25,18 +25,18 @@ const jsonLd = [
         description: 'Learn why sharing passwords via Slack, email, or spreadsheets is dangerous and discover secure alternatives like encrypted one-time links, password managers, and more.',
         datePublished: '2025-12-01',
         dateModified: '2026-03-18',
-        author: { '@type': 'Organization', name: '1time.io', url: 'https://1time.io' },
+        author: { '@type': 'Person', name: 'Igor Ermakov', url: 'https://1time.io/about/' },
         publisher: { '@type': 'Organization', name: '1time.io', url: 'https://1time.io', logo: { '@type': 'ImageObject', url: 'https://1time.io/logo-512.png', width: 512, height: 512 } },
-        mainEntityOfPage: 'https://1time.io/blog/how-to-share-passwords-securely',
+        mainEntityOfPage: 'https://1time.io/blog/how-to-share-passwords-securely/',
         image: ['https://1time.io/og-image.png'],
     },
     {
         '@context': 'https://schema.org',
         '@type': 'BreadcrumbList',
         itemListElement: [
-            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://1time.io' },
-            { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://1time.io/blog' },
-            { '@type': 'ListItem', position: 3, name: 'How to Share Passwords Securely', item: 'https://1time.io/blog/how-to-share-passwords-securely' },
+            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://1time.io/' },
+            { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://1time.io/blog/' },
+            { '@type': 'ListItem', position: 3, name: 'How to Share Passwords Securely', item: 'https://1time.io/blog/how-to-share-passwords-securely/' },
         ],
     },
 ];
@@ -54,7 +54,7 @@ export default function Article() {
                     Slack DMs, emails, and spreadsheets are the most common ways teams share passwords.
                     They are also the least secure. Here is what to do instead.
                 </p>
-                <div className="article-meta">Dec 1, 2025 &middot; 7 min read</div>
+                <div className="article-meta">By Igor Ermakov &middot; Dec 1, 2025 &middot; 7 min read</div>
             </div>
 
             <div className="article-body">

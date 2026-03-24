@@ -25,18 +25,18 @@ const jsonLd = [
         description: 'Compare 1time.io and Password Pusher (pwpush.com) for sharing passwords securely.',
         datePublished: '2026-01-29',
         dateModified: '2026-03-20',
-        author: { '@type': 'Organization', name: '1time.io', url: 'https://1time.io' },
+        author: { '@type': 'Person', name: 'Igor Ermakov', url: 'https://1time.io/about/' },
         publisher: { '@type': 'Organization', name: '1time.io', url: 'https://1time.io', logo: { '@type': 'ImageObject', url: 'https://1time.io/logo-512.png', width: 512, height: 512 } },
-        mainEntityOfPage: 'https://1time.io/blog/password-pusher-alternative',
+        mainEntityOfPage: 'https://1time.io/blog/password-pusher-alternative/',
         image: ['https://1time.io/og-image.png'],
     },
     {
         '@context': 'https://schema.org',
         '@type': 'BreadcrumbList',
         itemListElement: [
-            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://1time.io' },
-            { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://1time.io/blog' },
-            { '@type': 'ListItem', position: 3, name: '1time.io vs Password Pusher', item: 'https://1time.io/blog/password-pusher-alternative' },
+            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://1time.io/' },
+            { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://1time.io/blog/' },
+            { '@type': 'ListItem', position: 3, name: '1time.io vs Password Pusher', item: 'https://1time.io/blog/password-pusher-alternative/' },
         ],
     },
 ];
@@ -55,7 +55,7 @@ export default function Article() {
                     through expiring links. Here is how it compares to 1time.io in terms of
                     encryption, privacy, and everyday usability.
                 </p>
-                <div className="article-meta">Jan 29, 2026 &middot; 5 min read</div>
+                <div className="article-meta">By Igor Ermakov &middot; Jan 29, 2026 &middot; 5 min read</div>
             </div>
 
             <div className="article-body">
@@ -129,9 +129,9 @@ export default function Article() {
                             <td><span className="check">✓</span> Configurable view count</td>
                         </tr>
                         <tr>
-                            <td><strong>API access</strong></td>
-                            <td><span className="cross">✗</span> Not yet</td>
-                            <td><span className="check">✓</span> REST API</td>
+                            <td><strong>Automation</strong></td>
+                            <td><span className="check">✓</span> CLI + client-side SDK (zero-knowledge)</td>
+                            <td><span className="check">✓</span> Server-side REST API</td>
                         </tr>
                         <tr>
                             <td><strong>Self-hosting</strong></td>
@@ -164,7 +164,7 @@ export default function Article() {
                 <h2>Where Password Pusher Wins</h2>
                 <ul>
                     <li><strong>Multi-view links.</strong> You can allow a link to be viewed multiple times before expiring. Useful for team scenarios where several people need the same credential.</li>
-                    <li><strong>API access.</strong> Password Pusher has a REST API, making it useful for CI/CD pipelines and automation scripts.</li>
+                    <li><strong>Server-side API.</strong> Password Pusher has a REST API for automation — though this means the server handles your secrets in plaintext. 1time.io offers a CLI instead, keeping encryption client-side.</li>
                     <li><strong>File sharing.</strong> You can share files, not just text.</li>
                     <li><strong>Mature deployment options.</strong> One-click deploys to Heroku, Kubernetes charts, and extensive Docker documentation.</li>
                 </ul>
@@ -180,7 +180,7 @@ export default function Article() {
                 <h2>The Bottom Line</h2>
                 <p>
                     Password Pusher is a capable tool with a strong feature set, especially around
-                    multi-view links and API access. If you need those features, it is a solid choice.
+                    multi-view links and server-side automation. If you need those features, it is a solid choice.
                 </p>
                 <p>
                     But if your primary concern is <strong>security and privacy</strong>, 1time.io

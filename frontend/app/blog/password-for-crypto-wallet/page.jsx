@@ -25,18 +25,18 @@ const jsonLd = [
         description: 'Learn why crypto wallets need the strongest passwords possible and how to generate one that resists brute-force attacks.',
         datePublished: '2026-03-14',
         dateModified: '2026-03-21',
-        author: { '@type': 'Organization', name: '1time.io', url: 'https://1time.io' },
+        author: { '@type': 'Person', name: 'Igor Ermakov', url: 'https://1time.io/about/' },
         publisher: { '@type': 'Organization', name: '1time.io', url: 'https://1time.io', logo: { '@type': 'ImageObject', url: 'https://1time.io/logo-512.png', width: 512, height: 512 } },
-        mainEntityOfPage: 'https://1time.io/blog/password-for-crypto-wallet',
+        mainEntityOfPage: 'https://1time.io/blog/password-for-crypto-wallet/',
         image: ['https://1time.io/og-image.png'],
     },
     {
         '@context': 'https://schema.org',
         '@type': 'BreadcrumbList',
         itemListElement: [
-            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://1time.io' },
-            { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://1time.io/blog' },
-            { '@type': 'ListItem', position: 3, name: 'Crypto Wallet Password', item: 'https://1time.io/blog/password-for-crypto-wallet' },
+            { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://1time.io/' },
+            { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://1time.io/blog/' },
+            { '@type': 'ListItem', position: 3, name: 'Crypto Wallet Password', item: 'https://1time.io/blog/password-for-crypto-wallet/' },
         ],
     },
 ];
@@ -54,7 +54,7 @@ export default function Article() {
                     Your crypto wallet password is the last line of defense between your assets and an attacker.
                     A weak one can be cracked in hours. Here is how to make one that cannot.
                 </p>
-                <div className="article-meta">Mar 14, 2026 &middot; 6 min read</div>
+                <div className="article-meta">By Igor Ermakov &middot; Mar 14, 2026 &middot; 6 min read</div>
             </div>
 
             <div className="article-body">
